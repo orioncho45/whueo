@@ -1,0 +1,4 @@
+const LOBBY_TTL = 300;
+const WORD_TTL = 30;
+const START_TTL = 120;
+export {LOBBY_TTL, WORD_TTL, START_TTL}
