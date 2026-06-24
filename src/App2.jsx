@@ -14,6 +14,8 @@ import NotFound from "./pages/404"
 import { DefaultSEO } from "@power-seo/react"
 import LandingPage from "./pages/landing"
 import SiteLayout from "./routes/siteLayout"
+import PrivacyPolicy from "./pages/privacy"
+import Terms from "./pages/terms"
 
 function AppContent({room=false}) {
   const { showAlert, confirmAction } = useOutletContext()
@@ -127,9 +129,11 @@ export default function App() {
                <Route path="about" element={<About/>}/>
             <Route path="subscribe" element={<NewsletterPage />}/>
             <Route path="*" element={<NotFound/>} ></Route> 
+            <Route path="privacy" element={<PrivacyPolicy/>} ></Route>
+            <Route path="terms" element={<Terms/>} ></Route> 
             </Route>
             <Route path="play" element={<Layout/>} >
-              <Route  path=":preStep" element={<AppContent/>} ></Route>
+              <Route  path=":preStep?" element={<AppContent/>} ></Route>
               <Route path="room/:roomId?" element={<AppContent room={true} />} />
               
               <Route path="*" element={<NotFound/>} ></Route>

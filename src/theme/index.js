@@ -4,7 +4,6 @@ const theme = createTheme({
   palette: {
     primary: {
       main: '#53753fff',
-      
     },
     text: {
         primary: "#fff"
@@ -15,8 +14,31 @@ const theme = createTheme({
         boxLight: "#23382cff",
         border: "#4e6457ff",
         white: "#fff"
+    },
+    // design tokens (moved from landing.jsx)
+    t: {
+      bg:           "#0c1410",
+      surface:      "#161e15",
+      surfaceUp:    "#1c2a1a",
+      overlay:      "rgba(0,0,0,0.25)",
+      border:       "rgba(78,100,87,0.45)",
+      borderMid:    "rgba(78,100,87,0.70)",
+      borderHi:     "#4e6457",
+      borderAccent: "rgba(83,117,63,0.55)",
+      textHi:       "#e9efe8",
+      textMid:      "rgba(233,239,232,0.60)",
+      textLow:      "rgba(233,239,232,0.38)",
+      textLowest:   "rgba(233,239,232,0.22)",
+      accent:       "#7db87a",
+      accentDim:    "rgba(83,117,63,0.12)",
+      accentBorder: "rgba(83,117,63,0.35)",
+      warm:         "#c8a96e",
+      warmDim:      "rgba(200,169,110,0.10)",
+      warmBorder:   "rgba(200,169,110,0.28)",
+      cool:         "#6e9db8",
+      coolDim:      "rgba(110,157,184,0.10)",
+      coolBorder:   "rgba(110,157,184,0.25)",
     }
-    // ...add other palette colors if needed...
   },
   components: {
     MuiSelect: {

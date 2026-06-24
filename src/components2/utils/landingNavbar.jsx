@@ -1,0 +1,64 @@
+import { AppBar, Box, Button, IconButton, Toolbar } from "@mui/material"
+import { useEffect } from "react"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { MailOutlined } from "@mui/icons-material"
+// --- NEW: Landing page specific navbar (keeps global navbar untouched) ---
+export function LandingNavbar() {
+  const navigate = useNavigate()
+  const [isSticky, setIsSticky] = useState(false)
+
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId)
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" })
+      return
+    }
+    navigate("/#" + sectionId)
+  }
+
+  useEffect(() => {
+    const onScroll = () => setIsSticky(window.scrollY > 20)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  return (
+    <>
+      <AppBar
+        position={"fixed"}
+        elevation={isSticky ? 3 : 0}
+        sx={{
+          backgroundColor: isSticky ? "brand.dark" : "transparent",
+          borderBottom: isSticky ? 1 : "none",
+          borderColor: "divider",
+          color: "white",
+          top: 0,
+          zIndex: (theme) => theme.zIndex.appBar,
+          transition: "all 200ms ease",
+        }}
+      >
+        <Toolbar sx={{ minHeight: 64, display: "flex", justifyContent: "space-between", gap: 2 }}>
+          <Box
+            component="img"
+            src="/logo.png"
+            alt="Logo"
+            onClick={() => navigate("/")}
+            sx={{ cursor: "pointer", width: 100, objectFit: "contain", opacity: isSticky ? "1" : "0" }}
+          />
+
+          <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+            <Button color="inherit" onClick={() => scrollToSection("how-to-play")}>How To Play</Button>
+            <Button color="inherit" onClick={() => scrollToSection("how-it-works")}>How it works</Button>
+            {/* <IconButton color="inherit" onClick={() => navigate("/subscribe")} aria-label="subscribe">
+              <MailOutlined />
+            </IconButton> */}
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+      {/* spacer so content doesn't jump when AppBar becomes fixed */}
+      {isSticky && <Toolbar sx={{ minHeight: 64 }} />}
+    </>
+  )
+}

@@ -82,8 +82,6 @@ export default function Chat({ inGame = false }) {
               width: 280,
               height: 400,
               right: 10,
-              bottom: inGame ? 70 : 15,
-              top: "auto"
             }
           }}
         >

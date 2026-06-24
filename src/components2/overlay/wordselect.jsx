@@ -33,7 +33,7 @@ export default function WordSelectOverlay({ words = [], showAlert }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "#000",
+        bgcolor: "brand.dark",
         
       }}
     >
@@ -45,12 +45,30 @@ export default function WordSelectOverlay({ words = [], showAlert }) {
           alignItems: "center",
           padding: 4,
           borderRadius: 3,
-          background: "rgba(20,20,20,0.9)",
-          border: "1px solid #333",
           minWidth: 300,
-          position:"relative"
+          borderRadius: 5,
+          // bgcolor: "brand.light",
+          overflow: "hidden",
+          position: "relative",
+          bgcolor: "transparent",
+          color: "white",
+          border: "3px solid #374151"
         }}
       >
+        {/* GLOW */}
+          <Box
+            sx={{
+              position: "absolute",
+              width: 300,
+              height: 300,
+              borderRadius: "50%",
+              bgcolor: "rgba(21, 255, 0, 0.12)",
+              filter: "blur(100px)",
+              top: -120,
+              right: -100,
+              pointerEvents: "none"
+            }}
+          />
         <DisplayTimerPill startTime={timeRef} text={"Autoselects in: "} totalTime={WORD_TTL} onFinish={()=>handleSelect(words[0])} />
         <Typography
           sx={{

@@ -4,7 +4,8 @@ import { Avatar, Skeleton, Box } from '@mui/material';
 export const GameAvatar = ({ 
   id, 
   size = 56, 
-  altText = "Game Avatar" 
+  altText = "Game Avatar",
+  imposter=false
 }) => {
   // Ensure the ID stays within your 1-9 asset range
   const avatarId = Math.min(Math.max(id, 1), 9);
@@ -51,8 +52,8 @@ export const GameAvatar = ({
         sx={{ 
           width: size, 
           height: size,
-          border: '2px solid #2196f3', // Matches the cool blue sunglasses
-          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.15)'
+          border: `2px solid ${imposter  ? "red" : "brand.light"}`, // Matches the cool blue sunglasses
+          boxShadow: `0px 4px 10px ${imposter ? "rgba(255, 0, 0, 0.15)" : "rgba(0, 0, 0, 0.15)"}`
         }}
       />
     </Box>

@@ -41,7 +41,7 @@ export default function RoundOverlay({
       open={true}
       sx={{
         zIndex: 99999,
-        background: "#000",
+        bgcolor: "brand.dark",
       }}
     >
 

@@ -1,817 +1,538 @@
+import { useRef, useEffect, useState } from "react"
 import {
-  AppBar,
   Box,
   Button,
-  Chip,
   Container,
-  MailOutline,
-  Paper,
   Stack,
-  Toolbar,
   Typography,
-  LinearProgress,
-  IconButton,
+  Paper,
+  Chip,
 } from "@mui/material"
-import MailOutlineIcon from "@mui/icons-material/MailOutline"
 
-import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded"
-import PublicRoundedIcon from "@mui/icons-material/PublicRounded"
-import GroupsRoundedIcon from "@mui/icons-material/GroupsRounded"
-import LockRoundedIcon from "@mui/icons-material/LockRounded"
-import TagRoundedIcon from "@mui/icons-material/TagRounded"
-import CodeRoundedIcon from "@mui/icons-material/CodeRounded"
-import RouterRoundedIcon from "@mui/icons-material/RouterRounded"
-import mascot from "../assets/mascot/success.png"
-import Footer from "../components2/utils/footer"
-import { Navigate, useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
+import PlayArrowRoundedIcon       from "@mui/icons-material/PlayArrowRounded"
+import PlayCircleRoundedIcon      from "@mui/icons-material/PlayCircleRounded"
+import RecordVoiceOverRoundedIcon from "@mui/icons-material/RecordVoiceOverRounded"
+import VisibilityOffRoundedIcon   from "@mui/icons-material/VisibilityOffRounded"
+import HowToVoteRoundedIcon       from "@mui/icons-material/HowToVoteRounded"
+import BrushRoundedIcon           from "@mui/icons-material/BrushRounded"
+import PeopleRoundedIcon          from "@mui/icons-material/PeopleRounded"
+import MeetingRoomRoundedIcon     from "@mui/icons-material/MeetingRoomRounded"
 
-// ─── Brand tokens ────────────────────────────────────────────────────────────
-const brand = {
-  green:      "brand.light",
-  greenLight: "#4ade80",
-  greenDim:   "rgba(74,222,128,0.10)",
-  greenBorder:"rgba(74,222,128,0.18)",
-  bg:         "brand.dark",
-  surface:    "rgba(255,255,255,0.04)",
-  surfaceHover:"rgba(255,255,255,0.07)",
-  border:     "rgba(255,255,255,0.08)",
-  borderHover:"rgba(74,222,128,0.30)",
-  textMid:    "rgba(255,255,255,0.65)",
-  textLow:    "rgba(255,255,255,0.40)",
-  textLowest: "rgba(255,255,255,0.25)",
+import banner        from "../assets/banner/hero.png"
+import drawingBanner from "../assets/banner/drawing.png" // your drawing-feature banner
+import { useNavigate } from "react-router-dom"
+import usePublicRooms  from "../hooks/publicRooms"
+import HowToPlay from "../components2/site/howToPlay"
+import theme from "../theme"
+import HowItWorks from "../components2/site/howItWorks"
+
+const t = theme.palette.t
+const displayFont = "'Playfair Display', Georgia, serif"
+const TRAILER_URL = ""
+
+
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+const Divider = () => <Box sx={{ borderTop: `1px solid ${t.border}` }} />
+
+const Overline = ({ children, color }) => (
+  <Typography sx={{
+    fontSize: "0.65rem", fontWeight: 700,
+    letterSpacing: "0.14em", textTransform: "uppercase",
+    color: color || t.accent,
+  }}>
+    {children}
+  </Typography>
+)
+
+const LiveDot = ({ active }) => (
+  <Box sx={{
+    width: 6, height: 6, borderRadius: "50%", flexShrink: 0,
+    bgcolor: active ? t.accent : t.textLowest,
+    "@keyframes livePulse": {
+      "0%,100%": { opacity: 1 },
+      "50%":      { opacity: 0.3 },
+    },
+    animation: active ? "livePulse 2.2s ease-in-out infinite" : "none",
+  }} />
+)
+
+const cardBase = {
+  p: 3,
+  borderRadius: "16px",
+  background: t.surface,
+  border: `1px solid ${t.border}`,
+  transition: "border-color 0.22s, transform 0.22s, box-shadow 0.22s",
 }
 
-// ─── Reusable card sx ────────────────────────────────────────────────────────
-const cardSx = (accent = false) => ({
-  flex: 1,
-  p: 3,
-  borderRadius: 4,
-  background: brand.surface,
-  border: `1px solid ${accent ? brand.greenBorder : brand.border}`,
-  backdropFilter: "blur(8px)",
-  transition: "border-color 0.2s, transform 0.2s",
-  "&:hover": {
-    transform: "translateY(-3px)",
-    borderColor: brand.borderHover,
-  },
-})
 
-// ─── SLOTS (always render 3) ──────────────────────────────────────────────────
-const ROOM_SLOTS = 3
 
-// --- NEW: Landing page specific navbar (keeps global navbar untouched) ---
-export function LandingNavbar() {
+// ══════════════════════════════════════════════════════════════════════════════
+export default function LandingPage() {
   const navigate = useNavigate()
-  const [isSticky, setIsSticky] = useState(false)
+  const { activePlayers, activeRooms } = usePublicRooms({ limit: 10 })
+  const [heroVisible, setHeroVisible] = useState(false)
+
+  const liveCount  = (activeRooms || []).length
+  const hasActivity = (activePlayers || 0) >= 2 || liveCount > 0
 
   useEffect(() => {
-    const onScroll = () => setIsSticky(window.scrollY > 20)
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
+    const t = setTimeout(() => setHeroVisible(true), 80)
+    return () => clearTimeout(t)
   }, [])
 
   return (
-    <>
-      <AppBar
-        position={isSticky ? "fixed" : "static"}
-        elevation={isSticky ? 3 : 0}
-        sx={{
-          backgroundColor: isSticky ? "brand.dark" : "transparent",
-          borderBottom: 1,
-          borderColor: "divider",
-          color: "white",
-          top: 0,
-          zIndex: (theme) => theme.zIndex.appBar,
-          transition: "all 200ms ease",
-        }}
-      >
-        <Toolbar sx={{ minHeight: 64, display: "flex", justifyContent: "space-between", gap: 2 }}>
-          <Box
-            component="img"
-            src="/logo.png"
-            alt="Logo"
-            onClick={() => navigate("/")}
-            sx={{ cursor: "pointer", width: 100, objectFit: "contain" }}
-          />
+    <Box sx={{ minHeight: "100vh", color: t.textHi, overflow: "hidden" }}>
 
-          <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-            <Button color="inherit" onClick={() => navigate("/how-to-play")}>How To Play</Button>
-            <Button color="inherit" onClick={() => navigate("/about")}>About Developer</Button>
-            <IconButton color="inherit" onClick={() => navigate("/subscribe")} aria-label="subscribe">
-              <MailOutlineIcon />
-            </IconButton>
-          </Box>
-        </Toolbar>
-      </AppBar>
-
-      {/* spacer so content doesn't jump when AppBar becomes fixed */}
-      {isSticky && <Toolbar sx={{ minHeight: 64 }} />}
-    </>
-  )
-}
-
-export default function LandingPage({
-  activePlayers = 0,
-  publicRooms   = [],
-  activeRooms   = 0,
-}) {
-  const navigate   = useNavigate()
-  const liveRooms  = publicRooms.slice(0, ROOM_SLOTS)
-  const emptySlots = ROOM_SLOTS - liveRooms.length
-  const hasLive    = liveRooms.length > 0
-  const hasActivity= activePlayers >= 8 || hasLive
-
-  return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        bgcolor: brand.bg,
-        color: "white",
+      {/* ══ HERO — fullscreen, centered, fading in ══════════════════════════ */}
+      <Box sx={{
+        position: "relative",
+        width: "100%",
+        height: "100dvh",
         overflow: "hidden",
-      }}
-    >
+      }}>
+        <Box
+          component="img"
+          src={banner}
+          alt=""
+          sx={{
+            position: "absolute", inset: 0,
+            width: "100%", height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+        />
 
-      {/* ══════════════════════════════════════════════
-          HERO  — compact two-column
-      ══════════════════════════════════════════════ */}
-      <Container
-        maxWidth="xl"
-        sx={{ pt: { xs: 9, md: 10 }, pb: { xs: 7, md: 8 } }}
-      >
-        <Stack
-          direction={{ xs: "column", md: "row" }}
-          spacing={{ xs: 6, md: 4 }}
-          alignItems="center"
-          justifyContent="space-between"
-        >
+        {/* Dark vignette */}
+        <Box sx={{
+          position: "absolute", inset: 0,
+          background: `
+            radial-gradient(ellipse at center, rgba(8,14,10,0.2) 0%, rgba(8,14,10,0.72) 100%),
+            linear-gradient(180deg, rgba(8,14,10,0.1) 0%, rgba(8,14,10,0.9) 100%)
+          `,
+        }} />
 
-          {/* LEFT */}
-          <Box flex={1}>
-            <Stack spacing={3}>
-
-              <Chip
-                icon={<RouterRoundedIcon sx={{ fontSize: 15 }} />}
-                label="Realtime Multiplayer · Social Deduction"
+        {/* Centered content with fade + rise animation */}
+        <Box sx={{
+          position: "absolute", inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
+          <Box sx={{
+            textAlign: "center",
+            px: 3,
+            maxWidth: 680,
+            opacity: heroVisible ? 1 : 0,
+            transform: heroVisible ? "translateY(0)" : "translateY(20px)",
+            transition: "opacity 0.9s cubic-bezier(.16,1,.3,1), transform 0.9s cubic-bezier(.16,1,.3,1)",
+          }}>
+            {/* Live badge */}
+            {hasActivity && (
+              <Stack
+                direction="row" spacing={1} alignItems="center"
+                justifyContent="center"
                 sx={{
-                  alignSelf: "flex-start",
-                  bgcolor: brand.greenDim,
-                  border: `1px solid ${brand.greenBorder}`,
-                  color: brand.greenLight,
-                  fontWeight: 700,
-                  fontSize: "0.72rem",
-                  letterSpacing: "0.04em",
-                  textTransform: "uppercase",
-                  borderRadius: "99px",
-                }}
-              />
-
-              {/* Title with animated underline */}
-              <Box sx={{ position: "relative", width: "fit-content" }}>
-                <Typography
-                  variant="h1"
-                  sx={{
-                    fontWeight: 900,
-                    lineHeight: 1,
-                    letterSpacing: "-0.05em",
-                    fontSize: { xs: "3.8rem", md: "6rem" },
-                    "& .accent": { color: brand.greenLight },
-                  }}
-                >
-                  Wh<span className="accent">u</span>eo
-                </Typography>
-                {/* Sweep underline — CSS animation via sx keyframe */}
-                <Box
-                  sx={{
-                    height: "4px",
-                    borderRadius: "2px",
-                    background: brand.green,
-                    mt: "6px",
-                    width: 0,
-                    "@keyframes sweepIn": {
-                      from: { width: "0%" },
-                      to:   { width: "100%" },
-                    },
-                    animation: "sweepIn 0.7s cubic-bezier(.16,1,.3,1) 0.3s forwards",
-                  }}
-                />
-              </Box>
-
-              <Typography
-                sx={{
-                  fontSize: { xs: "1rem", md: "1.1rem" },
-                  lineHeight: 1.8,
-                  maxWidth: 440,
-                  color: brand.textMid,
+                  mb: 3,
+                  opacity: heroVisible ? 1 : 0,
+                  transition: "opacity 1.1s 0.3s",
                 }}
               >
-                Find the imposters before they manipulate the room.
-                One hidden word. Endless suspicion.
-              </Typography>
-
-              {/* CTA row */}
-              <Stack direction={{ xs: "column", sm: "row" }} spacing={1.5}>
-                <Button
-                  size="large"
-                  variant="contained"
-                  startIcon={<PlayArrowRoundedIcon />}
-                  onClick={() => navigate("/play/public_room")}
-                  sx={{
-                    px: 4,
-                    py: 1.4,
-                    borderRadius: 3,
-                    fontWeight: 800,
-                    fontSize: "0.92rem",
-                    // bgcolor: brand.green,
-                    // color: "#040d1a",
-                    // boxShadow: "none",
-                    // "&:hover": { bgcolor: brand.greenLight, boxShadow: "none" },
-                  }}
-                >
-                  Play Now
-                </Button>
-                <Button
-                  size="large"
-                  variant="outlined"
-                  onClick={() => navigate("/how-to-play")}
-                  sx={{
-                    px: 4,
-                    py: 1.4,
-                    borderRadius: 3,
-                    fontWeight: 700,
-                    borderColor: brand.border,
-                    color: "primary.main",
-                    "&:hover": {
-                      borderColor: brand.greenBorder,
-                      color: brand.greenLight,
-                      bgcolor: "transparent",
-                    },
-                  }}
-                >
-                  How To Play
-                </Button>
-              </Stack>
-
-              {/* Live indicator */}
-              <Stack direction="row" spacing={1} alignItems="center">
-                <Box
-                  sx={{
-                    width: 7, height: 7,
-                    borderRadius: "50%",
-                    bgcolor: hasActivity ? brand.green : "rgba(255,255,255,0.2)",
-                    "@keyframes blink": {
-                      "0%,100%": { opacity: 1 },
-                      "50%":      { opacity: 0.35 },
-                    },
-                    animation: hasActivity ? "blink 2s ease-in-out infinite" : "none",
-                  }}
-                />
-                <Typography sx={{ fontSize: "0.84rem", color: brand.textLow }}>
-                  {hasActivity
-                    ? `${activePlayers} players currently causing chaos.`
-                    : "Create a room and begin the deception."}
-                </Typography>
-              </Stack>
-
-            </Stack>
-          </Box>
-
-          {/* RIGHT — mascot */}
-          <Box
-            flex={1}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Box
-              sx={{
-                width: { xs: 180, md: 220 },
-                height: { xs: 180, md: 220 },
-                borderRadius: "50%",
-                bgcolor: brand.greenDim,
-                border: `1px solid ${brand.greenBorder}`,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                "@keyframes float": {
-                  "0%,100%": { transform: "translateY(0)" },
-                  "50%":      { transform: "translateY(-10px)" },
-                },
-                animation: "float 4s ease-in-out infinite",
-              }}
-            >
-              <Box
-                component="img"
-                src={mascot}
-                alt="Whueo Mascot"
-                sx={{
-                  width: "78%",
-                  height: "auto",
-                  filter: "drop-shadow(0 16px 32px rgba(0,0,0,0.4))",
-                }}
-              />
-            </Box>
-          </Box>
-
-        </Stack>
-      </Container>
-
-      {/* ══════════════════════════════════════════════
-          LIVE ROOMS — hybrid 3-slot grid
-      ══════════════════════════════════════════════ */}
-      <Box sx={{ borderTop: `1px solid ${brand.border}` }}>
-        <Container maxWidth="xl" sx={{ py: { xs: 6, md: 7 } }}>
-          <Stack spacing={4}>
-
-            {/* Section head */}
-            <Stack spacing={0.5}>
-              <Stack direction="row" spacing={1} alignItems="center">
-                <GroupsRoundedIcon
-                  sx={{ fontSize: 18, color: brand.greenLight }}
-                />
-                <Typography
-                  sx={{
-                    fontSize: "0.7rem",
-                    fontWeight: 700,
-                    letterSpacing: "0.1em",
-                    textTransform: "uppercase",
-                    color: brand.greenLight,
-                  }}
-                >
-                  Live Rooms
-                </Typography>
-              </Stack>
-              <Typography variant="h5" fontWeight={800}>
-                Public Matches
-              </Typography>
-              <Typography sx={{ fontSize: "0.88rem", color: brand.textLow }}>
-                {hasLive
-                  ? `${liveRooms.length} of ${ROOM_SLOTS} slots active — rooms open frequently.`
-                  : "No rooms live right now. Create one and others will join."}
-              </Typography>
-            </Stack>
-
-            {/* 3-slot grid */}
-            <Stack
-              direction={{ xs: "column", md: "row" }}
-              spacing={2}
-            >
-
-              {/* Live room cards */}
-              {liveRooms.map(room => {
-                const isWaiting = room.state?.toLowerCase() === "waiting"
-                const fill = Math.round((room.players / room.maxPlayers) * 100)
-                return (
-                  <Paper
-                    key={room.id}
-                    elevation={0}
-                    sx={cardSx()}
-                  >
-                    <Stack spacing={2.5}>
-
-                      {/* Card head */}
-                      <Stack direction="row" justifyContent="space-between" alignItems="center">
-                        <Typography
-                          sx={{ fontSize: "0.78rem", color: brand.textLow, fontWeight: 600 }}
-                        >
-                          #{room.id}
-                        </Typography>
-                        <Chip
-                          label={room.state}
-                          size="small"
-                          sx={{
-                            bgcolor: isWaiting
-                              ? "rgba(251,191,36,0.10)"
-                              : brand.greenDim,
-                            color: isWaiting ? "#fbbf24" : brand.greenLight,
-                            border: `1px solid ${isWaiting ? "rgba(251,191,36,0.2)" : brand.greenBorder}`,
-                            fontWeight: 700,
-                            fontSize: "0.7rem",
-                            borderRadius: "99px",
-                          }}
-                        />
-                      </Stack>
-
-                      {/* Players + bar */}
-                      <Stack spacing={1}>
-                        <Typography sx={{ fontSize: "0.82rem", color: brand.textMid }}>
-                          <Box component="span" sx={{ color: "#fff", fontWeight: 700 }}>
-                            {room.players}
-                          </Box>
-                          {" / "}{room.maxPlayers} players
-                        </Typography>
-                        <Box
-                          sx={{
-                            height: 4,
-                            bgcolor: "rgba(255,255,255,0.08)",
-                            borderRadius: "99px",
-                            overflow: "hidden",
-                          }}
-                        >
-                          <Box
-                            sx={{
-                              height: "100%",
-                              width: `${fill}%`,
-                              bgcolor: brand.green,
-                              borderRadius: "99px",
-                              transition: "width 0.4s ease",
-                            }}
-                          />
-                        </Box>
-                      </Stack>
-
-                      <Button
-                        fullWidth
-                        variant="contained"
-                        sx={{
-                          borderRadius: 2.5,
-                          py: 1.1,
-                          fontWeight: 700,
-                          fontSize: "0.85rem",
-                          bgcolor: brand.greenDim,
-                          color: brand.greenLight,
-                          border: `1px solid ${brand.greenBorder}`,
-                          boxShadow: "none",
-                          "&:hover": {
-                            bgcolor: "rgba(74,222,128,0.18)",
-                            boxShadow: "none",
-                          },
-                        }}
-                      >
-                        Join Room
-                      </Button>
-
-                    </Stack>
-                  </Paper>
-                )
-              })}
-
-              {/* Empty ghost slots */}
-              {Array.from({ length: emptySlots }).map((_, i) => (
-                <Paper
-                  key={`empty-${i}`}
-                  elevation={0}
-                  sx={{
-                    flex: 1,
-                    p: 3,
-                    borderRadius: 4,
-                    background: "rgba(255,255,255,0.02)",
-                    border: "1px dashed rgba(255,255,255,0.07)",
-                    opacity: 0.5,
-                    pointerEvents: "none",
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: 2.5,
-                  }}
-                >
-                  <Stack direction="row" justifyContent="space-between" alignItems="center">
-                    <Typography sx={{ fontSize: "0.78rem", color: brand.textLowest }}>
-                      —
-                    </Typography>
-                    <Chip
-                      label="Empty"
-                      size="small"
-                      sx={{
-                        bgcolor: "rgba(255,255,255,0.04)",
-                        color: brand.textLowest,
-                        border: "1px solid rgba(255,255,255,0.06)",
-                        borderRadius: "99px",
-                        fontSize: "0.7rem",
-                      }}
-                    />
-                  </Stack>
-                  <Typography
-                    sx={{
-                      fontSize: "0.82rem",
-                      color: brand.textLowest,
-                      textAlign: "center",
-                      py: 1,
-                    }}
-                  >
-                    No room in this slot
-                  </Typography>
-                  <Box
-                    sx={{
-                      height: 36,
-                      borderRadius: 2.5,
-                      bgcolor: "rgba(255,255,255,0.03)",
-                      border: "1px solid rgba(255,255,255,0.05)",
-                    }}
-                  />
-                </Paper>
-              ))}
-
-            </Stack>
-
-            {/* Live note */}
-            {hasLive && (
-              <Stack direction="row" spacing={1} alignItems="center">
-                <Box
-                  sx={{
-                    width: 6, height: 6,
-                    borderRadius: "50%",
-                    bgcolor: brand.green,
-                    "@keyframes blink2": {
-                      "0%,100%": { opacity: 1 },
-                      "50%": { opacity: 0.3 },
-                    },
-                    animation: "blink2 2s ease-in-out infinite",
-                  }}
-                />
-                <Typography sx={{ fontSize: "0.78rem", color: brand.textLowest }}>
-                  {activePlayers} players active across all rooms
+                <LiveDot active />
+                <Typography sx={{ fontSize: "0.76rem", color: t.textLow }}>
+                  {activePlayers} players in the shadows right now
                 </Typography>
               </Stack>
             )}
 
-          </Stack>
-        </Container>
-      </Box>
-
-      {/* ══════════════════════════════════════════════
-          MORE WAYS TO PLAY — always visible
-      ══════════════════════════════════════════════ */}
-      <Box sx={{ borderTop: `1px solid ${brand.border}` }}>
-        <Container maxWidth="xl" sx={{ py: { xs: 6, md: 7 } }}>
-          <Stack spacing={4}>
-
-            <Stack spacing={0.5}>
-              <Typography
-                sx={{
-                  fontSize: "0.7rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  color: brand.greenLight,
-                }}
-              >
-                Jump in
-              </Typography>
-              <Typography variant="h5" fontWeight={800}>
-                More Ways To Play
-              </Typography>
-              <Typography sx={{ fontSize: "0.88rem", color: brand.textLow }}>
-                Public matches, private rooms, or join a friend instantly.
-              </Typography>
-            </Stack>
-
-            <Stack
-              direction={{ xs: "column", md: "row" }}
-              spacing={2}
-            >
-
-              {/* Public */}
-              <Paper elevation={0} sx={{ ...cardSx(true), flex: 1 }}>
-                <Stack spacing={2.5}>
-                  <PublicRoundedIcon sx={{ fontSize: 36, color: brand.greenLight }} />
-                  <Box>
-                    <Typography variant="h6" fontWeight={700} mb={0.5}>
-                      Public Match
-                    </Typography>
-                    <Typography sx={{ fontSize: "0.85rem", lineHeight: 1.75, color: brand.textMid }}>
-                      Join live public rooms and compete with players around the world.
-                    </Typography>
-                  </Box>
-                  <Button
-                    variant="contained"
-                    onClick={() => navigate("/play/public_room")}
-                    sx={{
-                      borderRadius: 2.5,
-                      py: 1.2,
-                      fontWeight: 700,
-                      // bgcolor: brand.green,
-                      boxShadow: "none",
-                      // "&:hover": { bgcolor: brand.greenLight, boxShadow: "none" },
-                    }}
-                  >
-                    Find Match
-                  </Button>
-                </Stack>
-              </Paper>
-
-              {/* Private */}
-              <Paper elevation={0} sx={{ ...cardSx(), flex: 1 }}>
-                <Stack spacing={2.5}>
-                  <LockRoundedIcon sx={{ fontSize: 36, color: "#fbbf24" }} />
-                  <Box>
-                    <Typography variant="h6" fontWeight={700} mb={0.5}>
-                      Private Room
-                    </Typography>
-                    <Typography sx={{ fontSize: "0.85rem", lineHeight: 1.75, color: brand.textMid }}>
-                      Play privately with friends using fully customisable room settings.
-                    </Typography>
-                  </Box>
-                  <Button
-                    variant="outlined"
-                    onClick={() => navigate("/play/create_username")}
-                    sx={{
-                      borderRadius: 2.5,
-                      py: 1.2,
-                      fontWeight: 700,
-                      borderColor: brand.border,
-                      color: "white",
-                      "&:hover": {
-                        borderColor: brand.greenBorder,
-                        color: brand.greenLight,
-                        bgcolor: "transparent",
-                      },
-                    }}
-                  >
-                    Create Room
-                  </Button>
-                </Stack>
-              </Paper>
-
-              {/* Code */}
-              <Paper elevation={0} sx={{ ...cardSx(), flex: 1 }}>
-                <Stack spacing={2.5}>
-                  <TagRoundedIcon sx={{ fontSize: 36, color: "#60a5fa" }} />
-                  <Box>
-                    <Typography variant="h6" fontWeight={700} mb={0.5}>
-                      Enter Room Code
-                    </Typography>
-                    <Typography sx={{ fontSize: "0.85rem", lineHeight: 1.75, color: brand.textMid }}>
-                      Already have a code? Join instantly without waiting in any queue.
-                    </Typography>
-                  </Box>
-                  <Button
-                    variant="outlined"
-                    onClick={() => navigate("/play/join_room")}
-                    sx={{
-                      borderRadius: 2.5,
-                      py: 1.2,
-                      fontWeight: 700,
-                      borderColor: brand.border,
-                      color: "white",
-                      "&:hover": {
-                        borderColor: brand.greenBorder,
-                        color: brand.greenLight,
-                        bgcolor: "transparent",
-                      },
-                    }}
-                  >
-                    Join By Code
-                  </Button>
-                </Stack>
-              </Paper>
-
-            </Stack>
-          </Stack>
-        </Container>
-      </Box>
-
-      {/* ══════════════════════════════════════════════
-          HOW IT WORKS
-      ══════════════════════════════════════════════ */}
-      <Box sx={{ borderTop: `1px solid ${brand.border}` }}>
-        <Container maxWidth="xl" sx={{ py: { xs: 6, md: 7 } }}>
-          <Stack spacing={4}>
-
-            <Stack spacing={0.5}>
-              <Typography
-                sx={{
-                  fontSize: "0.7rem",
-                  fontWeight: 700,
-                  letterSpacing: "0.1em",
-                  textTransform: "uppercase",
-                  color: brand.greenLight,
-                }}
-              >
-                The loop
-              </Typography>
-              <Typography variant="h5" fontWeight={800}>
-                How It Works
-              </Typography>
-              <Typography sx={{ fontSize: "0.88rem", color: brand.textLow }}>
-                Fast rounds. Hidden roles. Pure social chaos.
-              </Typography>
-            </Stack>
-
-            <Stack
-              direction={{ xs: "column", md: "row" }}
-              spacing={2}
-            >
-              {[
-                {
-                  step: "01",
-                  title: "Join Players",
-                  desc: "Enter a public or private room and ready up. Anyone can create a game in seconds.",
-                },
-                {
-                  step: "02",
-                  title: "Hidden Imposters",
-                  desc: "Some players secretly receive a different word. They must blend in and avoid detection.",
-                },
-                {
-                  step: "03",
-                  title: "Discuss & Vote",
-                  desc: "Debate suspicious behaviour and vote to eliminate imposters before they outnumber you.",
-                },
-              ].map(item => (
-                <Paper
-                  key={item.step}
-                  elevation={0}
-                  sx={{
-                    flex: 1,
-                    p: 3,
-                    borderRadius: 4,
-                    background: "rgba(255,255,255,0.025)",
-                    border: `1px solid ${brand.border}`,
-                  }}
-                >
-                  <Stack spacing={1.5}>
-                    <Typography
-                      sx={{
-                        fontSize: "0.7rem",
-                        fontWeight: 800,
-                        letterSpacing: "0.08em",
-                        textTransform: "uppercase",
-                        color: brand.greenLight,
-                      }}
-                    >
-                      Step {item.step}
-                    </Typography>
-                    <Typography variant="h6" fontWeight={700}>
-                      {item.title}
-                    </Typography>
-                    <Typography sx={{ fontSize: "0.85rem", lineHeight: 1.75, color: brand.textMid }}>
-                      {item.desc}
-                    </Typography>
-                  </Stack>
-                </Paper>
-              ))}
-            </Stack>
-
-          </Stack>
-        </Container>
-      </Box>
-
-      {/* ══════════════════════════════════════════════
-          FOOTER
-      ══════════════════════════════════════════════ */}
-      <Box sx={{ borderTop: `1px solid ${brand.border}` }}>
-        <Container maxWidth="xl">
-          <Stack
-            direction={{ xs: "column", sm: "row" }}
-            justifyContent="space-between"
-            alignItems={{ xs: "flex-start", sm: "center" }}
-            spacing={2}
-            sx={{ py: 3 }}
-          >
-            <Typography sx={{ fontSize: "0.8rem", color: brand.textLowest }}>
-              © 2025 Whueo. All rights reserved.
+            {/* Title */}
+            <Typography sx={{
+              fontFamily: displayFont,
+              fontWeight: 900,
+              lineHeight: 0.95,
+              letterSpacing: "-0.02em",
+              fontSize: { xs: "3rem", sm: "4rem", md: "5.5rem" },
+              color: t.textHi,
+              textShadow: "0 6px 40px rgba(0,0,0,0.6)",
+              mb: 2.5,
+            }}>
+              Whueo?<Box component="span" sx={{ color: t.accent }}>io</Box>
             </Typography>
 
-            <Stack direction="row" spacing={2.5} alignItems="center">
-              {["Privacy", "Terms"].map(label => (
-                <Typography
-                  key={label}
-                  component="a"
-                  href="#"
-                  sx={{
-                    fontSize: "0.8rem",
-                    color: brand.textLowest,
-                    textDecoration: "none",
-                    "&:hover": { color: brand.textMid },
-                  }}
-                >
-                  {label}
-                </Typography>
-              ))}
+            {/* Tagline */}
+            <Typography sx={{
+              fontSize: { xs: "1rem", md: "1.15rem" },
+              lineHeight: 1.65,
+              color: t.textMid,
+              mb: 4,
+            }}>
+              One canvas each. One word to hide.<br/>
 
-              {/* Developer link — subtle pill */}
-              <Box
-                // component="a"
-                onClick={e=>{
-                  e.preventDefault();
-                  navigate("/about")
-                }}
+              Draw your truth — or fake it till they vote you out.
+            </Typography>
+
+            {/* CTAs */}
+            <Stack
+              direction="row"
+              spacing={1.5}
+              justifyContent="center"
+              flexWrap="wrap"
+            >
+              <Button
+                size="large"
+                variant="contained"
+                startIcon={<PlayArrowRoundedIcon />}
+                onClick={() => navigate("/play")}
                 sx={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: 0.75,
-                  fontSize: "0.78rem",
-                  fontWeight: 700,
-                  color: "rgba(74,222,128,0.55)",
-                  border: "1px solid rgba(74,222,128,0.15)",
-                  borderRadius: "6px",
-                  px: 1.25,
-                  py: 0.5,
-                  textDecoration: "none",
-                  transition: "color 0.15s, border-color 0.15s",
+                  px: 3.5, py: 1.3,
+                  borderRadius: "12px",
+                  fontWeight: 800, fontSize: "0.9rem",
+                  boxShadow: "none",
+                  "&:hover": { boxShadow: "0 0 28px rgba(83,117,63,0.45)" },
+                }}
+              >
+                Start Playing
+              </Button>
+              <Button
+                size="large"
+                variant="outlined"
+                onClick={() => navigate("/how-to-play")}
+                sx={{
+                  px: 3, py: 1.3,
+                  borderRadius: "12px",
+                  fontWeight: 700, fontSize: "0.9rem",
+                  borderColor: "rgba(255,255,255,0.18)",
+                  color: t.textMid,
                   "&:hover": {
-                    color: brand.greenLight,
-                    borderColor: brand.greenBorder,
+                    borderColor: "rgba(255,255,255,0.35)",
+                    color: t.textHi,
+                    bgcolor: "rgba(255,255,255,0.05)",
                   },
                 }}
               >
-                <CodeRoundedIcon sx={{ fontSize: 15 }} />
-                About Developer
-              </Box>
+                How It Works
+              </Button>
             </Stack>
+          </Box>
+        </Box>
+
+        {/* Scroll nudge */}
+        <Box sx={{
+          position: "absolute",
+          bottom: 32,
+          left: "50%",
+          transform: "translateX(-50%)",
+          opacity: heroVisible ? 0.35 : 0,
+          transition: "opacity 1.5s 1.2s",
+          "@keyframes nudge": {
+            "0%,100%": { transform: "translateX(-50%) translateY(0)" },
+            "50%":     { transform: "translateX(-50%) translateY(6px)" },
+          },
+          animation: "nudge 2.4s ease-in-out infinite",
+        }}>
+          <Box sx={{
+            width: 24, height: 24,
+            borderRight: `1.5px solid ${t.textLowest}`,
+            borderBottom: `1.5px solid ${t.textLowest}`,
+            transform: "rotate(45deg)",
+          }} />
+        </Box>
+      </Box>
+
+      <Divider />
+
+      {/* ══ ABOUT — short centered intro ═══════════════════════════════════ */}
+      <Container maxWidth="md" sx={{ py: { xs: 8, md: 10 }, textAlign: "center" }}>
+        <Overline>What Is This</Overline>
+        <Typography sx={{
+          fontFamily: displayFont,
+          fontWeight: 900,
+          fontSize: { xs: "1.8rem", md: "2.6rem" },
+          letterSpacing: "-0.02em",
+          lineHeight: 1.1,
+          mt: 1.5, mb: 3,
+          color: t.textHi,
+        }}>
+          A drawing game built on silence — and suspicion.<br />
+          <Box component="span" sx={{ color: t.accent }}>built on trust — and lies.</Box>
+        </Typography>
+        <Typography sx={{
+          fontSize: { xs: "0.98rem", md: "1.07rem" },
+          lineHeight: 1.85,
+          color: t.textMid,
+          maxWidth: 560,
+          mx: "auto",
+        }}>
+          Everyone picks up a brush. Most players share a secret word and draw it as best they can. The imposter gets nothing — no word, no hint — and must bluff their way through every stroke. When the time is up or the vote session is called, the room votes. One wrong line and you're exposed.
+        </Typography>
+      </Container>
+
+      <Divider />
+
+      {/* ══ DRAWING FEATURE — special banner section ════════════════════════ */}
+      <Box sx={{ position: "relative", overflow: "hidden" }}>
+        <Box
+          component="img"
+          src={drawingBanner}
+          alt=""
+          sx={{
+            position: "absolute", inset: 0,
+            width: "100%", height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            opacity: 0.18,
+          }}
+        />
+        <Box sx={{
+          position: "absolute", inset: 0,
+          background: `linear-gradient(135deg, rgba(8,14,10,0.95) 0%, rgba(8,14,10,0.7) 60%, rgba(8,14,10,0.92) 100%)`,
+        }} />
+
+        <Container maxWidth="xl" sx={{ py: { xs: 8, md: 10 }, position: "relative" }}>
+          <Stack
+            direction={{ xs: "column", md: "row" }}
+            spacing={{ xs: 5, md: 8 }}
+            alignItems="center"
+          >
+            {/* Left — copy */}
+            <Box flex={1}>
+              <Typography sx={{
+                fontFamily: displayFont,
+                fontWeight: 900,
+                fontSize: { xs: "2rem", md: "2.8rem" },
+                letterSpacing: "-0.02em",
+                lineHeight: 1.1,
+                color: t.textHi,
+                mb: 2.5,
+              }}>
+                Your canvas is your alibi.<br />
+              </Typography>
+              <Typography sx={{
+                fontSize: "0.92rem",
+                lineHeight: 1.85,
+                color: t.textMid,
+                mb: 3.5,
+                maxWidth: 460,
+              }}>
+                In most games, you talk your way out. Here, you draw. Every player gets their own canvas and paints what they know — or what they're pretending to know. The imposter watches the others, mimics the shapes, and hopes no one notices the bluff hiding in the brushstrokes.
+              </Typography>
+            </Box>
+
+            {/* Right — image preview */}
+            <Box
+              flex={1}
+              sx={{
+                borderRadius: "20px",
+                overflow: "hidden",
+                border: `1px solid ${t.border}`,
+                aspectRatio: "4 / 3",
+                width: "100%",
+                bgcolor: t.surface,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Box
+                component="img"
+                src={drawingBanner}
+                alt="Drawing mode preview"
+                sx={{
+                  width: "100%", height: "100%",
+                  objectFit: "cover", display: "block",
+                }}
+              />
+            </Box>
           </Stack>
         </Container>
       </Box>
+
+      <Divider />
+
+      {/* ══ TRAILER ════════════════════════════════════════════════════════ */}
+      <Container maxWidth="xl" sx={{ py: { xs: 7, md: 9 } }}>
+        <Stack spacing={4}>
+          <Stack spacing={0.75} textAlign={{ xs: "left" }}>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <PlayCircleRoundedIcon sx={{ fontSize: 15, color: t.accent }} />
+              <Overline>Watch</Overline>
+            </Stack>
+            <Typography sx={{
+              fontFamily: displayFont,
+              fontWeight: 900,
+              fontSize: { xs: "1.6rem", md: "2rem" },
+              letterSpacing: "-0.02em",
+              lineHeight: 1.1,
+            }}>
+              See It In Action
+            </Typography>
+            <Typography sx={{ fontSize: "0.83rem", color: t.textLow }}>
+              60 seconds of bluffing, voting, and getting caught.
+            </Typography>
+          </Stack>
+
+          <Box sx={{
+            width: "100%",
+            aspectRatio: "16 / 9",
+            borderRadius: "18px",
+            overflow: "hidden",
+            border: `1px solid ${t.border}`,
+            bgcolor: t.surface,
+          }}>
+            {TRAILER_URL ? (
+              <Box
+                component="iframe"
+                src={TRAILER_URL}
+                title="Whueo?io Trailer"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                sx={{ width: "100%", height: "100%", border: 0, display: "block" }}
+              />
+            ) : (
+              <Stack alignItems="center" justifyContent="center" spacing={1.5} sx={{ width: "100%", height: "100%" }}>
+                <PlayCircleRoundedIcon sx={{ fontSize: 52, color: t.textLowest }} />
+                <Typography sx={{ fontSize: "0.82rem", color: t.textLow }}>
+                  Trailer coming soon
+                </Typography>
+              </Stack>
+            )}
+          </Box>
+        </Stack>
+      </Container>
+
+      <Divider />
+
+      {/* ══ HOW IT WORKS — cards with screenshots ══════════════════════════ */}
+      <HowItWorks/>
+
+      <Divider />
+
+      {/* ══ HOW TO PLAY ════════════════════════════════════════════════════ */}
+      <Container maxWidth="xl" sx={{ py: { xs: 7, md: 9 } }}>
+        <HowToPlay />
+      </Container>
+
+      <Divider />
+
+      {/* ══ LIVE STATS — only shown if enough activity ══════════════════════ */}
+      {hasActivity && (
+        <>
+          <Container maxWidth="xl" sx={{ py: { xs: 6, md: 7 } }}>
+            <Stack spacing={3} alignItems="center" textAlign="center">
+              <Stack spacing={0.75}>
+                <Stack direction="row" spacing={1} alignItems="center" justifyContent="center">
+                  <LiveDot active />
+                  <Overline>Live Now</Overline>
+                </Stack>
+                <Typography sx={{
+                  fontFamily: displayFont,
+                  fontWeight: 900,
+                  fontSize: { xs: "1.5rem", md: "1.9rem" },
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1.1,
+                }}>
+                  People are playing right now
+                </Typography>
+              </Stack>
+
+              <Stack direction="row" spacing={3} justifyContent="center" flexWrap="wrap">
+                {activePlayers >= 1 && (
+                  <Paper elevation={0} sx={{
+                    ...cardBase,
+                    px: 4, py: 3,
+                    textAlign: "center",
+                    minWidth: 140,
+                  }}>
+                    <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" mb={0.75}>
+                      <PeopleRoundedIcon sx={{ fontSize: 18, color: t.accent }} />
+                    </Stack>
+                    <Typography sx={{ fontSize: "2rem", fontWeight: 800, color: t.textHi, lineHeight: 1 }}>
+                      {activePlayers}
+                    </Typography>
+                    <Typography sx={{ fontSize: "0.74rem", color: t.textLow, mt: 0.5 }}>
+                      active players
+                    </Typography>
+                  </Paper>
+                )}
+                {liveCount >= 1 && (
+                  <Paper elevation={0} sx={{
+                    ...cardBase,
+                    px: 4, py: 3,
+                    textAlign: "center",
+                    minWidth: 140,
+                  }}>
+                    <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" mb={0.75}>
+                      <MeetingRoomRoundedIcon sx={{ fontSize: 18, color: t.warm }} />
+                    </Stack>
+                    <Typography sx={{ fontSize: "2rem", fontWeight: 800, color: t.textHi, lineHeight: 1 }}>
+                      {liveCount}
+                    </Typography>
+                    <Typography sx={{ fontSize: "0.74rem", color: t.textLow, mt: 0.5 }}>
+                      open room{liveCount > 1 ? "s" : ""}
+                    </Typography>
+                  </Paper>
+                )}
+              </Stack>
+
+              <Button
+                variant="outlined"
+                onClick={() => navigate("/play/public_room")}
+                sx={{
+                  px: 3, py: 1.1,
+                  borderRadius: "11px",
+                  fontWeight: 700, fontSize: "0.85rem",
+                  borderColor: t.accentBorder,
+                  color: t.accent,
+                  "&:hover": {
+                    borderColor: t.borderHi,
+                    bgcolor: t.accentDim,
+                  },
+                }}
+              >
+                Browse Open Rooms
+              </Button>
+            </Stack>
+          </Container>
+          <Divider />
+        </>
+      )}
+
+      {/* ══ FOOTER CTA ════════════════════════════════════════════════════ */}
+      <Container maxWidth="md" sx={{ py: { xs: 9, md: 12 }, textAlign: "center" }}>
+        <Typography sx={{
+          fontFamily: displayFont,
+          fontWeight: 900,
+          fontSize: { xs: "2rem", md: "3rem" },
+          letterSpacing: "-0.02em",
+          lineHeight: 1.05,
+          color: t.textHi,
+          mb: 2.5,
+        }}>
+          Ready to<br />
+          <Box component="span" sx={{ color: t.accent }}>find the imposter?</Box>
+        </Typography>
+        <Typography sx={{
+          fontSize: "0.95rem", color: t.textMid,
+          lineHeight: 1.7, mb: 4, maxWidth: 400, mx: "auto",
+        }}>
+          No download. No account. Just open a room and let the suspicion begin.
+        </Typography>
+        <Button
+          size="large"
+          variant="contained"
+          startIcon={<PlayArrowRoundedIcon />}
+          onClick={() => navigate("/play")}
+          sx={{
+            px: 4.5, py: 1.4,
+            borderRadius: "13px",
+            fontWeight: 800, fontSize: "0.95rem",
+            boxShadow: "none",
+            "&:hover": { boxShadow: "0 0 36px rgba(83,117,63,0.45)" },
+          }}
+        >
+          Play Free Now
+        </Button>
+      </Container>
 
     </Box>
   )

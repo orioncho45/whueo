@@ -116,7 +116,7 @@ export default function About() {
                 maxWidth: 750
               }}
             >
-              Passionate about building scalable software,
+              A Bangladeshi developer who is passionate about building scalable software,
               immersive experiences, and hardware-integrated
               solutions. Focused on creating products that
               solve real-world problems through engineering,

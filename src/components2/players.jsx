@@ -255,12 +255,6 @@ export default function Players({
           width: 280,
 
           right: 10,
-
-          bottom: inGame
-            ? 75
-            : 15,
-
-          top: "auto"
         }
       }}
     >

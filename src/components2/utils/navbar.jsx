@@ -29,7 +29,7 @@ export default function Navbar({showAlert=()=>{}, confirmAction = () => {}}) {
     dispatch(closePlayers())
     dispatch(setRoomData(null));
     closeSocket();
-    Navigate("/")
+    Navigate("/play")
   }
   const startVote = (data)=>{
     console.log(data)
@@ -136,21 +136,25 @@ export default function Navbar({showAlert=()=>{}, confirmAction = () => {}}) {
               </Button>
             )}
 
-            <Badge
-              badgeContent={unreadCount}
-              color="error"
-            >
-              <IconButton
-                onClick={() => {
-                  dispatch(closePlayers());
-                  dispatch(openChat())
-                  dispatch(closeSettings())
-                }}
-                color="inherit"
-              >
-                <ChatIcon />
-              </IconButton>
-            </Badge>
+            {
+              (roomData && (inGame || roomData.state==="vote")) && (
+                  <Badge
+                    badgeContent={unreadCount}
+                    color="error"
+                  >
+                    <IconButton
+                      onClick={() => {
+                        dispatch(closePlayers());
+                        dispatch(openChat())
+                        dispatch(closeSettings())
+                      }}
+                      color="inherit"
+                    >
+                      <ChatIcon />
+                    </IconButton>
+                  </Badge>
+              )
+            }
             <IconButton
               onClick={() => {
                 dispatch(openSettings());

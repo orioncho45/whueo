@@ -59,7 +59,7 @@ const GameUtils = ({ showAlert = () => {}, confirmAction = () => {} }) => {
         dispatch(setRoomData(null))
         dispatch(clearMessages())
         resetState()
-        Navigate("/")
+        Navigate("/play")
     }, [dispatch, showAlert])
 
     // ============================

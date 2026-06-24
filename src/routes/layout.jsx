@@ -42,8 +42,6 @@ export default function Layout() {
                     <Outlet context={{showAlert, confirmAction}}/>
                 
                 </Box>
-            <Footer/>
-            
             </Box>
         
     </ThemeProvider>

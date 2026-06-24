@@ -42,7 +42,7 @@ export default function RoomCodeForm({ onJoin = () => {}, showAlert = () => {}, 
           if (!response.success) {
             showAlert("error", response.message || "Room not found")
             dispatch(setRoomData(null))
-            Navigate("/")
+            Navigate("/play")
             closeSocket()
             return
           }

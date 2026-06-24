@@ -41,7 +41,7 @@ export default function RoleRevealOverlay({ isImposter, onDone = () => {} }) {
         alignItems: "center",
         justifyContent: "center",
         flexDirection: "column",
-        background: "#000",
+        bgcolor: "brand.dark",
 
         opacity: fadeOut ? 0 : 1,
         transform: fadeOut ? "scale(1.03)" : "scale(1)",
