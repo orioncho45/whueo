@@ -146,29 +146,30 @@ export default function App() {
               "Whueo.io Multiplayer Drawing Game"
           }
         ]}
-      />
-      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <ScrollToTop/>
-        <Routes>
+      >
+        <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <ScrollToTop/>
+          <Routes>
 
-          <Route element={<SiteLayout/>} >
-            <Route index element={<LandingPage/>} ></Route>
-              <Route path="about" element={<About/>}/>
-          <Route path="subscribe" element={<NewsletterPage />}/>
-          <Route path="*" element={<NotFound/>} ></Route> 
-          <Route path="privacy" element={<PrivacyPolicy/>} ></Route>
-          <Route path="terms" element={<Terms/>} ></Route> 
-          <Route path="contact" element={<Contact/>} ></Route> 
-          </Route>
-          <Route path="play" element={<Layout/>} >
-            <Route  path=":preStep?" element={<AppContent/>} ></Route>
-            <Route path="room/:roomId?" element={<AppContent room={true} />} />
+            <Route element={<SiteLayout/>} >
+              <Route index element={<LandingPage/>} ></Route>
+                <Route path="about" element={<About/>}/>
+            <Route path="subscribe" element={<NewsletterPage />}/>
+            <Route path="*" element={<NotFound/>} ></Route> 
+            <Route path="privacy" element={<PrivacyPolicy/>} ></Route>
+            <Route path="terms" element={<Terms/>} ></Route> 
+            <Route path="contact" element={<Contact/>} ></Route> 
+            </Route>
+            <Route path="play" element={<Layout/>} >
+              <Route  path=":preStep?" element={<AppContent/>} ></Route>
+              <Route path="room/:roomId?" element={<AppContent room={true} />} />
+              
+              <Route path="*" element={<NotFound/>} ></Route>
+            </Route>
             
-            <Route path="*" element={<NotFound/>} ></Route>
-          </Route>
-          
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </DefaultSEO>
     </ThemeProvider>
   )
 }

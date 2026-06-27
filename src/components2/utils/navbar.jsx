@@ -29,7 +29,7 @@ export default function Navbar({showAlert=()=>{}, confirmAction = () => {}}) {
     dispatch(closePlayers())
     dispatch(setRoomData(null));
     closeSocket();
-    Navigate("/play")
+    Navigate(!roomData?.state ? "/" : "/play")
   }
   const startVote = (data)=>{
     //console.log(data)

@@ -1,4 +1,4 @@
-import AboutPage from "../routes/about"
+import AboutPage from "../pages/about"
 import {SEO} from "@power-seo/react"
 export default function About(){
   return (
