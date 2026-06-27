@@ -35,7 +35,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postbuild": "react-snap"
+  },
+  "reactSnap": {
+    "routes": [
+      "/",
+      "/about",
+      "/contact",
+      "/privacy",
+      "/terms",
+      "/subscribe"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -59,5 +70,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-snap": "^1.23.0"
   }
 }
