@@ -46,7 +46,6 @@ export default function WordSelectOverlay({ words = [], showAlert }) {
           gap: 3,
           alignItems: "center",
           padding: 4,
-          borderRadius: 3,
           minWidth: 300,
           borderRadius: 5,
           // bgcolor: "brand.light",
