@@ -20,7 +20,7 @@ import MeetingRoomRoundedIcon     from "@mui/icons-material/MeetingRoomRounded"
 
 import banner        from "../assets/banner/hero.png"
 import drawingBanner from "../assets/banner/drawing.png" // your drawing-feature banner
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import usePublicRooms  from "../hooks/publicRooms"
 import HowToPlay from "../components2/site/howToPlay"
 import theme from "../theme"
@@ -70,6 +70,7 @@ const cardBase = {
 // ══════════════════════════════════════════════════════════════════════════════
 export default function LandingPage() {
   const navigate = useNavigate()
+  const {hash} = useLocation()
   const { activePlayers, activeRooms } = usePublicRooms({ limit: 10 })
   const [heroVisible, setHeroVisible] = useState(false)
 
@@ -80,6 +81,20 @@ export default function LandingPage() {
     const t = setTimeout(() => setHeroVisible(true), 80)
     return () => clearTimeout(t)
   }, [])
+  useEffect(() => {
+    if (hash) {
+      // Remove the '#' from the string to get the pure ID
+      const elementId = hash.replace("#", "");
+      const element = document.getElementById(elementId);
+
+      if (element) {
+        // Wrap in a tiny timeout to ensure the DOM has fully rendered
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 100);
+      }
+    }
+  }, [hash]); // Runs every time the URL hash changes
 
   return (
     <Box sx={{ minHeight: "100vh", color: t.textHi, overflow: "hidden" }}>

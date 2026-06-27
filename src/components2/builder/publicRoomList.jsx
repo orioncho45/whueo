@@ -28,7 +28,6 @@ export default function PublicRoomsList({ onClick = () => {} }) {
         justifyContent="center"
         alignItems="center"
         minHeight="100%"
-        bgcolor="brand.dark"
         sx={{ px: 4 }}
       >
         <Paper

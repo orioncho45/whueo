@@ -1,9 +1,6 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 
-import {
-  Box,
-  Typography
-} from "@mui/material"
+import useSound from "../sounds/player"
 
 export default function GameTimer({
   startTime,
@@ -23,6 +20,7 @@ export default function GameTimer({
 
   const [timeLeft, setTimeLeft] =
     useState(totalTime)
+  const [stop, setStop] = useState(null)
 
   /*
   =========================================
@@ -49,6 +47,11 @@ export default function GameTimer({
         clearInterval(interval)
 
         onFinish()
+        if (stopRef.current) {
+          stopRef.current()
+          stopRef.current = null
+        }
+
 
         return
       }
@@ -61,6 +64,9 @@ export default function GameTimer({
       clearInterval(interval)
 
   }, [startTime, totalTime])
+
+  
+
 
   /*
   =========================================
@@ -75,6 +81,34 @@ export default function GameTimer({
     )
 
   }, [timeLeft, totalTime])
+
+  /*
+  =========================================
+  Sound
+  =========================================
+  */
+  const playSound = useSound()
+  const stopRef = useRef(null)
+  const isLow = timeLeft > 0 && percentage < 0.3
+
+  useEffect(() => {
+    if (isLow && !stopRef.current) {
+      stopRef.current = playSound({ type: "tick", repeat: true })
+    }
+
+    if (!isLow && stopRef.current) {
+      stopRef.current()
+      stopRef.current = null
+    }
+
+    return () => {
+      if (stopRef.current) {
+        stopRef.current()
+        stopRef.current = null
+      }
+    }
+  }, [isLow])
+
 
   /*
   =========================================
@@ -110,6 +144,6 @@ export default function GameTimer({
   }, [timeLeft])
 
   return (
-    <b style={{color: `${color} !important`}} >{formatted}</b>
+    <span style={{ color }}>{formatted}</span>
   )
 }

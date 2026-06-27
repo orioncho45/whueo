@@ -144,7 +144,7 @@ export default function RoomCodeForm({ onJoin = () => {}, showAlert = () => {}, 
   if (!roomData) return null
 
   return (
-    <Box display="flex" justifyContent="center" alignItems="center" height="100%" bgcolor="brand.dark">
+    <Box display="flex" justifyContent="center" alignItems="center" height="100%" >
       <Box sx={{ position: "relative", width: "100%", width: "100%", height: "100%", overflow: "visible", bgcolor: "transparent" }}>
         <OrbitingPlayers players={players} hostId={roomData.hostId} />
 

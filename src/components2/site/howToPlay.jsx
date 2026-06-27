@@ -66,78 +66,80 @@ function AdviceCard({
 
 export default function HowToPlay() {
   return (
-    <Box py={10} id="how-to-play">
-      <Container  maxWidth="md">
+    <section id="how-to-play">
+      <Box py={10}>
+        <Container  maxWidth="md">
 
-        <Stack spacing={8}>
+          <Stack spacing={8}>
 
-          {/* HEADER */}
+            {/* HEADER */}
 
-          <Stack spacing={2} textAlign="center">
+            <Stack spacing={2} textAlign="center">
 
-            <Typography
-              variant="h3"
-              fontWeight={800}
-            >
-              How To Play
-            </Typography>
+              <Typography
+                variant="h3"
+                fontWeight={800}
+              >
+                How To Play
+              </Typography>
 
-            <Typography
-              color="primary"
-            >
-              Learn the basics in less than a minute.
-            </Typography>
+              <Typography
+                color="primary"
+              >
+                Learn the basics in less than a minute.
+              </Typography>
+
+            </Stack>
+
+            {/* CREWMATES */}
+
+            <Stack spacing={4}>
+
+              <Typography
+                variant="h4"
+                fontWeight={700}
+              >
+                Crewmate Guide
+              </Typography>
+
+              {crewmateTips.map((tip, i) => (
+                <AdviceCard
+                  key={i}
+                  
+                  id={i+1}
+                  text={tip}
+                />
+              ))}
+
+            </Stack>
+
+            {/* IMPOSTERS */}
+
+            <Stack spacing={4}>
+
+              <Typography
+                variant="h4"
+                fontWeight={700}
+                color="error"
+              >
+                Imposter Guide
+              </Typography>
+
+              {imposterTips.map((tip, i) => (
+                <AdviceCard
+                  key={i}
+                  id={i+1}
+                  text={tip}
+                  imposter
+                />
+              ))}
+
+            </Stack>
 
           </Stack>
 
-          {/* CREWMATES */}
-
-          <Stack spacing={4}>
-
-            <Typography
-              variant="h4"
-              fontWeight={700}
-            >
-              Crewmate Guide
-            </Typography>
-
-            {crewmateTips.map((tip, i) => (
-              <AdviceCard
-                key={i}
-                
-                id={i+1}
-                text={tip}
-              />
-            ))}
-
-          </Stack>
-
-          {/* IMPOSTERS */}
-
-          <Stack spacing={4}>
-
-            <Typography
-              variant="h4"
-              fontWeight={700}
-              color="error"
-            >
-              Imposter Guide
-            </Typography>
-
-            {imposterTips.map((tip, i) => (
-              <AdviceCard
-                key={i}
-                id={i+1}
-                text={tip}
-                imposter
-              />
-            ))}
-
-          </Stack>
-
-        </Stack>
-
-      </Container>
-    </Box>
+        </Container>
+      </Box>
+    </section>
   )
 }

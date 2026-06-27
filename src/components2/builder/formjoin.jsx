@@ -90,7 +90,6 @@ export default function JoinRoomForm({
       justifyContent="center"
       alignItems="center"
       minHeight="100%"
-      bgcolor="brand.dark"
       sx={{
         px: 4
       }}

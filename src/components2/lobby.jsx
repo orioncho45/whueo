@@ -96,7 +96,6 @@ export default function GameLobby({ showAlert = () => {}}) {
       justifyContent="center"
       alignItems="center"
       minHeight="100%"
-      bgcolor="brand.dark"
       p={2}
     >
       <Box sx={{position:"fixed", bottom: 40, left: "50%", transform: 'translateX(-50%)'}}>

@@ -10,10 +10,12 @@ import { useNavigate } from "react-router-dom";
 import PingHUD from "./utils/ping";
 import Players from "./players";
 import { closePlayers } from "../store/features/players";
+import useSound from "../sounds/player";
 
 const GameUtils = ({ showAlert = () => {}, confirmAction = () => {} }) => {
 
     const socket = getSocket();
+    const playSound = useSound();
     const Navigate = useNavigate()
     const dispatch = useDispatch()
     const roomData = useSelector(state => state.roomData.value);
@@ -85,6 +87,7 @@ const GameUtils = ({ showAlert = () => {}, confirmAction = () => {} }) => {
 
     const handleUserJoined = useCallback(({ roomData: newRoomData }) => {
         dispatch(setRoomData(newRoomData))
+        playSound({type: "join"});
     }, [dispatch])
 
     const handleUserLeft = useCallback(({ roomData: newRoomData, socketId: removedIds, reason }) => {
@@ -118,6 +121,7 @@ const GameUtils = ({ showAlert = () => {}, confirmAction = () => {} }) => {
             }
             dispatch(setRoomData(newRoomData))
         }
+        playSound({type: "leave"});
     }, [dispatch, socketId, reset])
 
     const handleMessage = useCallback((payload) => {
@@ -217,7 +221,6 @@ const GameUtils = ({ showAlert = () => {}, confirmAction = () => {} }) => {
 
     return (
         <>
-        {roomData.state}
             {socketId && <PingHUD ping={ping} />}
             {showChat && <ChatComponent />}
             {showOverlays && (

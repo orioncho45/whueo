@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react"
+import theme from "../theme"
+import banner from "../assets/banner/hero.png"
 import {
   Box,
   Chip,
@@ -72,14 +75,97 @@ const sections = [
 ]
 
 export default function Terms() {
+  const [heroVisible, setHeroVisible] = useState(false)
+  const t = theme.palette.t
+  const displayFont = "'Playfair Display', Georgia, serif"
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setHeroVisible(true), 80)
+    return () => clearTimeout(timeout)
+  }, [])
+
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        py: 8,
-        px: 2
-      }}
-    >
+    <Box sx={{ minHeight: "100vh"}}>
+      <Box
+        sx={{
+          position: "relative",
+          width: "100%",
+          height: "100dvh",
+          overflow: "hidden",
+          mb: 10
+        }}
+      >
+        <Box
+          component="img"
+          src={banner}
+          alt=""
+          sx={{
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center"
+          }}
+        />
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            background: `
+              radial-gradient(ellipse at center, rgba(8,14,10,0.2) 0%, rgba(8,14,10,0.72) 100%),
+              linear-gradient(180deg, rgba(8,14,10,0.1) 0%, rgba(8,14,10,0.9) 100%)
+            `
+          }}
+        />
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center"
+          }}
+        >
+          <Box
+            sx={{
+              textAlign: "center",
+              px: 3,
+              maxWidth: 680,
+              opacity: heroVisible ? 1 : 0,
+              transform: heroVisible ? "translateY(0)" : "translateY(20px)",
+              transition:
+                "opacity 0.9s cubic-bezier(.16,1,.3,1), transform 0.9s cubic-bezier(.16,1,.3,1)"
+            }}
+          >
+            <Typography
+              sx={{
+                fontFamily: displayFont,
+                fontWeight: 900,
+                lineHeight: 0.95,
+                letterSpacing: "-0.02em",
+                fontSize: { xs: "3rem", sm: "4rem", md: "5.5rem" },
+                color: t.textHi,
+                textShadow: "0 6px 40px rgba(0,0,0,0.6)",
+                mb: 2.5
+              }}
+            >
+              Terms
+            </Typography>
+            <Typography
+              sx={{
+                color: "white",
+                fontSize: { xs: "1rem", md: "1.15rem" },
+                maxWidth: 520,
+                mx: "auto"
+              }}
+            >
+              Last updated: June, 2026
+            </Typography>
+          </Box>
+        </Box>
+      </Box>
+
       <Container maxWidth="md">
 
         <Paper
@@ -95,25 +181,7 @@ export default function Terms() {
 
           <Stack spacing={4}>
 
-            <Stack spacing={2}>
-
-              <Typography
-                variant="h3"
-                fontWeight={800}
-              >
-                Terms
-              </Typography>
-
-              <Chip
-                label="Last Updated: June 2026"
-                sx={{
-                  width: "fit-content"
-                }}
-              />
-
-              
-
-            </Stack>
+            
 
             <Divider />
 

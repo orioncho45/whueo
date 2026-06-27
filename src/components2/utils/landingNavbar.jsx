@@ -2,12 +2,13 @@ import { AppBar, Box, Button, IconButton, Toolbar } from "@mui/material"
 import { useEffect } from "react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { MailOutlined } from "@mui/icons-material"
+import { PlayArrow } from "@mui/icons-material"
+import theme from "../../theme"
 // --- NEW: Landing page specific navbar (keeps global navbar untouched) ---
 export function LandingNavbar() {
   const navigate = useNavigate()
   const [isSticky, setIsSticky] = useState(false)
-
+  const t = theme.palette.t
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId)
     if (section) {
@@ -50,9 +51,12 @@ export function LandingNavbar() {
           <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
             <Button color="inherit" onClick={() => scrollToSection("how-to-play")}>How To Play</Button>
             <Button color="inherit" onClick={() => scrollToSection("how-it-works")}>How it works</Button>
-            {/* <IconButton color="inherit" onClick={() => navigate("/subscribe")} aria-label="subscribe">
-              <MailOutlined />
-            </IconButton> */}
+            <Button variant="contained" color="primary" 
+              sx={{
+                boxShadow: "none",
+                "&:hover": { boxShadow: `0 0 28px ${t.boxShadow}` },
+              }}
+              onClick={()=>navigate("/play")} ><PlayArrow/> Play Now</Button>
           </Box>
         </Toolbar>
       </AppBar>

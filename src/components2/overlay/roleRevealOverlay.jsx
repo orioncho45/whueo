@@ -4,10 +4,12 @@ import { Box, Typography } from "@mui/material"
 // 👉 replace with your actual image paths
 import goodMascot from "../../assets/mascot/good.png"
 import badMascot from "../../assets/mascot/bad.png"
+import useSound from "../../sounds/player"
 
 export default function RoleRevealOverlay({ isImposter, onDone = () => {} }) {
   const [visible, setVisible] = useState(true)
   const [fadeOut, setFadeOut] = useState(false)
+  const playSound = useSound();
 
   useEffect(() => {
     const fadeTimer = setTimeout(() => {
@@ -18,6 +20,7 @@ export default function RoleRevealOverlay({ isImposter, onDone = () => {} }) {
       setVisible(false)
       onDone()
     }, 2000)
+    playSound({type: "role"});
 
     return () => {
       clearTimeout(fadeTimer)
@@ -42,6 +45,9 @@ export default function RoleRevealOverlay({ isImposter, onDone = () => {} }) {
         justifyContent: "center",
         flexDirection: "column",
         bgcolor: "brand.dark",
+          backgroundImage:
+              "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)",
+          backgroundSize: "26px 26px",
 
         opacity: fadeOut ? 0 : 1,
         transform: fadeOut ? "scale(1.03)" : "scale(1)",

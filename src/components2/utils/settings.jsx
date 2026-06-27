@@ -178,11 +178,7 @@ export default function SettingsDialog({
         "@media (max-width: 768px)": {
           width: 280,
 
-          right: 10,
-
-          bottom: inGame ? 70 : 15,
-
-          top: "auto",
+          right: 10
         },
       }}
     >

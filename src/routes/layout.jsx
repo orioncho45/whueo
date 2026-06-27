@@ -33,6 +33,10 @@ export default function Layout() {
                     overflow: roomData?.state==="lobby" ? "visible":"auto",
                     width: "100%",
                     position: "relative",
+                    bgcolor: "brand.dark",
+                    backgroundImage:
+                        "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)",
+                    backgroundSize: "26px 26px",
                 }}
                 >
         

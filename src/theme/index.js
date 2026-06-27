@@ -13,7 +13,8 @@ const theme = createTheme({
         light: "#1f3729",
         boxLight: "#23382cff",
         border: "#4e6457ff",
-        white: "#fff"
+        white: "#fff",
+        
     },
     // design tokens (moved from landing.jsx)
     t: {
@@ -38,6 +39,7 @@ const theme = createTheme({
       cool:         "#6e9db8",
       coolDim:      "rgba(110,157,184,0.10)",
       coolBorder:   "rgba(110,157,184,0.25)",
+      boxShadow: "rgba(83,117,63,0.45)",
     }
   },
   components: {

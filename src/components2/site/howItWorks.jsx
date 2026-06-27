@@ -128,7 +128,8 @@ const HowItWorks = () => {
 
     const navigate = useNavigate()
     return (
-        <Container id="how-it-works" maxWidth="xl" sx={{ py: { xs: 7, md: 9 } }}>
+      <section id="how-it-works">
+        <Container maxWidth="xl" sx={{ py: { xs: 7, md: 9 } }}>
             <Stack spacing={6}>
                 <Stack spacing={0.75}>
                     <Overline>The Loop</Overline>
@@ -149,6 +150,10 @@ const HowItWorks = () => {
                 {/* Swiper carousel (responsive) */}
                 <Box>
                   <Swiper
+                    style={{
+                      '--swiper-navigation-color': theme.palette.brand.light,
+                      '--swiper-pagination-color': theme.palette.brand.light,
+                    }}
                     modules={[Navigation, Pagination, A11y]}
                     navigation
                     pagination={{ clickable: true }}
@@ -226,7 +231,7 @@ const HowItWorks = () => {
                         borderRadius: "12px",
                         fontWeight: 800, fontSize: "0.9rem",
                         boxShadow: "none",
-                        "&:hover": { boxShadow: "0 0 28px rgba(83,117,63,0.45)" },
+                        "&:hover": { boxShadow: `0 0 28px ${t.boxShadow}` },
                     }}
                     >
                     Play Now — It's Free
@@ -234,6 +239,7 @@ const HowItWorks = () => {
                 </Stack>
             </Stack>
         </Container>
+      </section>
     )
 }
 export default HowItWorks

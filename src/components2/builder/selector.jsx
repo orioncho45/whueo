@@ -12,6 +12,7 @@ import { useEffect, useState } from "react"
 import createGameBg from "../../assets/menu/create_game.jpg"
 import joinGameBg from "../../assets/menu/join_room.jpg"
 import publicGameBg from "../../assets/menu/join_public_room.jpg"
+import useSound from "../../sounds/player"
 
 const cards = [
   {
@@ -191,6 +192,11 @@ const Selector = ({
 }) => {
   const [loaded, setLoaded] =
     useState(false)
+  const playSound = useSound()
+  const handleClick = (e)=>{
+    playSound({type: "click"});
+    onClick(e)
+  }
 
   useEffect(() => {
     preloadImages(
@@ -207,7 +213,6 @@ const Selector = ({
         justifyContent="center"
         alignItems="center"
         height="100%"
-        bgcolor="brand.dark"
       >
         <CircularProgress
           size={46}
@@ -225,7 +230,6 @@ const Selector = ({
       justifyContent="center"
       alignItems="center"
       height="100%"
-      bgcolor="brand.dark"
       px={2}
     //   py={2}
     >
@@ -246,7 +250,7 @@ const Selector = ({
           <SelectorCard
             key={card.title}
             card={card}
-            onClick={onClick}
+            onClick={handleClick}
           />
         ))}
       </Stack>
@@ -271,19 +275,19 @@ const Selector = ({
         >
           <SelectorCard
             card={cards[0]}
-            onClick={onClick}
+            onClick={handleClick}
           />
 
           <SelectorCard
             card={cards[1]}
-            onClick={onClick}
+            onClick={handleClick}
           />
         </Stack>
 
         {/* BOTTOM CENTER */}
         <SelectorCard
           card={cards[2]}
-          onClick={onClick}
+          onClick={handleClick}
         />
       </Box>
     </Box>

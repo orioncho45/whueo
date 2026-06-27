@@ -34,7 +34,9 @@ export default function WordSelectOverlay({ words = [], showAlert }) {
         alignItems: "center",
         justifyContent: "center",
         bgcolor: "brand.dark",
-        
+          backgroundImage:
+              "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)",
+          backgroundSize: "26px 26px",
       }}
     >
       <Box
