@@ -110,7 +110,7 @@ export default function Players({
 
       } catch (err) {
 
-        console.log(err)
+        //console.log(g(err)
       }
     }
 

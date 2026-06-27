@@ -32,7 +32,7 @@
 //   // =====================================
 //   socket.onopen = () => {
 
-//     console.log("OPENED")
+//     //console.log("OPENED")
 
 //     setStatus("connected")
 
@@ -56,7 +56,7 @@
 //   // =====================================
 //   socket.onerror = (err) => {
 
-//     console.log(err)
+//     //console.log(err)
 
 //     addLog("socket error")
 //   }
@@ -321,7 +321,7 @@ export default function StateTest() {
         setSocket(sock)
 
         sock.onopen = () => {
-          console.log(
+          //console.log(
             "connected"
           )
         }
@@ -332,14 +332,14 @@ export default function StateTest() {
   }, [])
 
   const createData = () => {
-    console.log("hey")
+    //console.log("hey")
     if (!socket) return
-    console.log("hey2")
+    //console.log("hey2")
     socket.emit(
       "create",
       {requestId:(new Date()).getTime()},
       (res) => {
-        console.log(res)
+        //console.log(res)
         setResponse(res)
       }
     )
@@ -354,7 +354,7 @@ export default function StateTest() {
       "join",
       {requestId:(new Date()).getTime()},
       (res) => {
-        console.log("H")
+        //console.log("H")
         setResponse(res)
       }
     )

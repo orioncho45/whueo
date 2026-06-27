@@ -38,7 +38,7 @@ export default function RoomCodeForm({ onJoin = () => {}, showAlert = () => {}, 
       newSocket.onopen = () => {
         newSocket.emit("get_room", roomCode, (response) => {
           setLoading(false)
-          console.log(response)
+          ////console.log(response)
           if (!response.success) {
             showAlert("error", response.message || "Room not found")
             dispatch(setRoomData(null))

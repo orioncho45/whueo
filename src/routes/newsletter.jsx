@@ -51,7 +51,7 @@ export default function NewsletterPage() {
       setEmail("")
       Navigate("/")
     } catch (err) {
-      console.log(err)
+      //console.log(err)
 
       setError(
         "Something went wrong. Please try again."

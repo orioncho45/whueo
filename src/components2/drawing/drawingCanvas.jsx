@@ -46,7 +46,7 @@ export default function DrawingCanvas({onDrawing=()=>{}, onChunk=()=>{}, isElimi
     ctx.lineJoin = "round"
 
     ctxRef.current = ctx
-    console.log("setup")
+    //console.log(g("setup")
 
   }, [isEliminated])
   /*

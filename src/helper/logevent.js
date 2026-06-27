@@ -8,10 +8,10 @@ async function logEvent(data) {
         },
         body: JSON.stringify(data)
     })
-    console.log(response)
+    //console.log(response)
   } catch (err) {
     // silent fail
-    console.log("Analytics failed (ignored)")
+    //console.log("Analytics failed (ignored)")
   }
 }
 export default logEvent;

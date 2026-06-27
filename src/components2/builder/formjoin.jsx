@@ -64,7 +64,7 @@ export default function JoinRoomForm({
       },
       ({userId, socketId, ...response}) => {
         setLoading(false)
-        console.log(response)
+        //console.log(g(response)
         if (!response.success) {
 
           showAlert(

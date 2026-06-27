@@ -166,8 +166,7 @@ const HowItWorks = () => {
                     
                     slidesPerView={3}
                     scrollbar={{ draggable: true }}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    onSlideChange={() => console.log('slide change')}
+                    
                     a11y={{ enabled: true }}
                   >
                     {HOW_IT_WORKS.map((item, idx) => (

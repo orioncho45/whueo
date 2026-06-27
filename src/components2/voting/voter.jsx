@@ -34,7 +34,7 @@ export default function VotingScreen() {
   const duration = roomData.settings?.votingTime || 30
 
   const handleVotingResults = (data) => {
-    console.log(data)
+    //console.log(g(data)
     setVotingResults(data.voteResults)
     setWaitingResult(false)
     setVotingEnded(true)
@@ -42,7 +42,7 @@ export default function VotingScreen() {
   const handleResults = (data) => {
     setFinalResults(data.results)
     // Delay the dramatic reveal
-    console.log(data)
+    //console.log(g(data)
     setTimeout(() => {
       setShowFinalReveal(true)
     }, 2000)
@@ -61,10 +61,10 @@ export default function VotingScreen() {
   // Voting logic
   const handleVote = (skip=false) => {
     if (!selectedPlayer && !skip) return
-    console.log(skip===true ? null:selectedPlayer)
+    //console.log(g(skip===true ? null:selectedPlayer)
     setWaitingResult(true)
     socket.emit("vote", { vote: skip===true ? null:selectedPlayer }, (response)=>{
-      console.log(response)
+      //console.log(g(response)
     })
   }
 

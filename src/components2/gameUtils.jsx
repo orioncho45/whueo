@@ -68,7 +68,7 @@ const GameUtils = ({ showAlert = () => {}, confirmAction = () => {} }) => {
     // SOCKET HANDLERS
     // ============================
     const handleGameStarted = useCallback(({ roomData: newRoomData, words, selectorSocketId }) => {
-        console.log(newRoomData)
+        //console.log(newRoomData)
         const player = newRoomData.players[socketId];
         setWords(words)
         setTempRoomData(newRoomData)
@@ -225,6 +225,7 @@ const GameUtils = ({ showAlert = () => {}, confirmAction = () => {} }) => {
             {showChat && <ChatComponent />}
             {showOverlays && (
                 <Overlays
+                    showAlert={showAlert}
                     isEliminated={isEliminated}
                     selectorSocketId={selectorSocketId}
                     words={words}

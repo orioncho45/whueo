@@ -9,7 +9,7 @@ const roomDataSlice = createSlice({
 
   reducers: {
     setRoomData: (state, action) => {
-      console.log(action.payload)
+      //console.log(g(action.payload)
       state.value = action.payload;
     },
     removePlayer: (state, action) => {

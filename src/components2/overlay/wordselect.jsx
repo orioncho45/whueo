@@ -3,7 +3,7 @@ import { Box, Button, CircularProgress, Typography } from "@mui/material"
 import { getSocket } from "../../socket/test"
 import DisplayTimerPill from "../utils/displayTimer"
 import { WORD_TTL } from "../../helper/ttls"
-export default function WordSelectOverlay({ words = [], showAlert }) {
+export default function WordSelectOverlay({ words = [], showAlert = () => {} }) {
   const [loadingWord, setLoadingWord] = useState(null)
   const socket = getSocket()
   const timeRef = useRef(Date.now()).current

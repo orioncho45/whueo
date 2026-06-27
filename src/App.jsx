@@ -11,12 +11,12 @@ export default function App() {
   useEffect(() => {
     // 1. CONNECTION STATUS
     socket.on("connect", () => {
-      console.log("Connected:", socket.id)
+      //console.log("Connected:", socket.id)
       setStatus("connected")
     })
 
     socket.on("disconnect", () => {
-      console.log("Disconnected")
+      //console.log("Disconnected")
       setStatus("disconnected")
     })
 
@@ -39,7 +39,7 @@ export default function App() {
             setUname(username)
             setRoomData(roomData);
             setStatus("started")
-            console.log(roomData, username);
+            //console.log(roomData, username);
           }}/>
         ): status === "started" ? (
           <Game roomData={roomData} username={uname} socket={socket} status={status} />

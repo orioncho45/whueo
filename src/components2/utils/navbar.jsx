@@ -32,7 +32,7 @@ export default function Navbar({showAlert=()=>{}, confirmAction = () => {}}) {
     Navigate("/play")
   }
   const startVote = (data)=>{
-    console.log(data)
+    //console.log(data)
     setVoteLoading(true)
     socket.emit("vote_start",{}, (response)=>{
       if (!response.success) {

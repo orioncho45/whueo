@@ -69,7 +69,7 @@ const Game = () => {
 
   if (!roomData) return null;
   
-  console.log(roomData)
+  //console.log(roomData)
   return (
     <Box
       sx={{

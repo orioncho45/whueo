@@ -76,7 +76,7 @@ export default function GameResultDemo() {
 
       <GameResult
         gameResult={scenario}
-        showAlert={(severity, msg) => console.log(severity, msg)}
+        // showAlert={(severity, msg) => //console.log(severity, msg)}
       />
     </Provider>
   );
