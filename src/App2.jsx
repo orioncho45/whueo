@@ -19,6 +19,7 @@ import Contact from "./routes/contact"
 import ScrollToTop from "./components2/utils/scrollToTop"
 import useSound from "./sounds/player"
 import { useEffect } from "react"
+import LaunchingSoonHero from "./pages/launching"
 
 function AppContent({room=false}) {
   const { showAlert, confirmAction } = useOutletContext()
@@ -66,7 +67,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       
-      <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+      {/* <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <ScrollToTop/>
         <Routes>
 
@@ -87,8 +88,8 @@ export default function App() {
           </Route>
           
         </Routes>
-      </BrowserRouter>
-      
+      </BrowserRouter> */}
+      <LaunchingSoonHero/>
     </ThemeProvider>
   )
 }

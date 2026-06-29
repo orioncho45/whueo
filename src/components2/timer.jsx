@@ -128,17 +128,31 @@ export default function GameTimer({
 
   const formatted = useMemo(() => {
 
+    const days =
+      Math.floor(timeLeft / 86400)
+
+    const hours =
+      Math.floor((timeLeft % 86400) / 3600)
+
     const minutes =
-      Math.floor(timeLeft / 60)
+      Math.floor((timeLeft % 3600) / 60)
 
     const seconds =
       timeLeft % 60
 
-    if (minutes <= 0) {
-      return `${seconds}s`
+    if (days > 0) {
+      return `${days}d ${hours}h ${minutes}min ${seconds}s`
     }
 
-    return `${minutes}min ${seconds}s`
+    if (hours > 0) {
+      return `${hours}h ${minutes}min ${seconds}s`
+    }
+
+    if (minutes > 0) {
+      return `${minutes}min ${seconds}s`
+    }
+
+    return `${seconds}s`
 
   }, [timeLeft])
 

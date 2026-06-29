@@ -20,6 +20,9 @@ import usePublicRooms  from "../hooks/publicRooms"
 import HowToPlay from "../components2/site/howToPlay"
 import theme from "../theme"
 import HowItWorks from "../components2/site/howItWorks"
+import { Facebook } from "@mui/icons-material"
+import DiscordIcon from "../components2/utils/icons/discord"
+import { DISCORD_URL, FACEBOOK_URL } from "../helper/urls"
 
 const t = theme.palette.t
 const displayFont = "'Playfair Display', Georgia, serif"
@@ -542,6 +545,85 @@ export default function LandingPage() {
         >
           Play Free Now
         </Button>
+      </Container>
+      <Container maxWidth="md" sx={{ py: { xs: 8, md: 10 }, textAlign: "center" }}>
+        <Paper elevation={0} sx={{
+          ...cardBase,
+          py: { xs: 5, md: 6.5 },
+          px: { xs: 3, md: 7 },
+        }}>
+          <Stack direction="row" spacing={1} alignItems="center" justifyContent="center" mb={1.25}>
+            <PeopleRoundedIcon sx={{ fontSize: 16, color: t.accent }} />
+            <Overline>Community</Overline>
+          </Stack>
+      
+          <Typography sx={{
+            fontFamily: displayFont,
+            fontWeight: 900,
+            fontSize: { xs: "1.8rem", md: "2.4rem" },
+            letterSpacing: "-0.02em",
+            lineHeight: 1.1,
+            mb: 2.5,
+            color: t.textHi,
+          }}>
+            Find your fellow<br />
+            <Box component="span" sx={{ color: t.accent }}>imposters online.</Box>
+          </Typography>
+      
+          <Typography sx={{
+            fontSize: { xs: "0.95rem", md: "1.02rem" },
+            lineHeight: 1.85,
+            color: t.textMid,
+            maxWidth: 460,
+            mx: "auto",
+            mb: 4,
+          }}>
+            Squad up for a round, vote on new word packs, report bugs straight to the people building the game, and gloat about the bluff that got you crowned imposter three rounds running.
+          </Typography>
+      
+          <Stack
+            direction="row"
+            spacing={1.5}
+            justifyContent="center"
+            flexWrap="wrap"
+          >
+            <Button
+              size="large"
+              variant="contained"
+              startIcon={<DiscordIcon fontSize="0.9rem" />}
+              onClick={() => window.open(DISCORD_URL, "_blank", "noopener,noreferrer")}
+              sx={{
+                px: 3.5, py: 1.3,
+                borderRadius: "12px",
+                fontWeight: 800, fontSize: "0.9rem",
+                boxShadow: "none",
+                "&:hover": { boxShadow: "0 0 28px rgba(83,117,63,0.45)" },
+              }}
+            >
+              Join the Discord
+            </Button>
+            <Button
+              size="large"
+              variant="outlined"
+              startIcon={<Facebook />}
+              onClick={() => window.open(FACEBOOK_URL, "_blank", "noopener,noreferrer")}
+              sx={{
+                px: 3, py: 1.3,
+                borderRadius: "12px",
+                fontWeight: 700, fontSize: "0.9rem",
+                borderColor: "rgba(255,255,255,0.18)",
+                color: t.textMid,
+                "&:hover": {
+                  borderColor: "rgba(255,255,255,0.35)",
+                  color: t.textHi,
+                  bgcolor: "rgba(255,255,255,0.05)",
+                },
+              }}
+            >
+              Follow on Facebook
+            </Button>
+          </Stack>
+        </Paper>
       </Container>
 
     </Box>
