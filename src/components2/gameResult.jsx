@@ -39,7 +39,7 @@ const GameResult = ({ gameResult, showAlert }) => {
       : null
   );
 
-  const crewWin = gameResult.winner === "crewmates";
+  const crewWin = gameResult.winner === "artists";
   const accent = crewWin ? palette.crew : palette.imposter;
 
   const reasonText =
@@ -99,7 +99,6 @@ const GameResult = ({ gameResult, showAlert }) => {
             py: 5,
                 
             overflow: "hidden",
-            position: "relative",
             bgcolor: "transparent",
             color: "white",
             border: "3px solid #374151"
@@ -155,7 +154,7 @@ const GameResult = ({ gameResult, showAlert }) => {
               lineHeight: 1.1,
             }}
           >
-            {crewWin ? "Crewmates win" : "Imposters win"}
+            {crewWin ? "Artists win" : "Imposters win"}
           </Typography>
 
           {/* Reason */}

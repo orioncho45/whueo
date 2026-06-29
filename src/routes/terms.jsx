@@ -3,7 +3,6 @@ import theme from "../theme"
 import banner from "../assets/banner/hero.png"
 import {
   Box,
-  Chip,
   Container,
   Divider,
   Paper,
@@ -83,6 +82,9 @@ export default function Terms() {
     const timeout = setTimeout(() => setHeroVisible(true), 80)
     return () => clearTimeout(timeout)
   }, [])
+  useEffect(() => {
+    document.title = "Terms | Whueo?.io";
+  }, []);
 
   return (
     <Box sx={{ minHeight: "100vh"}}>

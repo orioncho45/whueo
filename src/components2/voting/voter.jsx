@@ -1,19 +1,14 @@
 import { useState, useEffect } from "react"
 import {
-  Avatar,
   Box,
   Button,
   Typography,
-  Fade,
-  Paper
 } from "@mui/material"
-import PersonIcon from "@mui/icons-material/Person"
 import GameTimer from "../timer"
 import { useSelector } from "react-redux"
 import { getSocket } from "../../socket/test"
 import RenderVotingResults from "./votingResult"
 import RenderFinalReveal from "./FinalReveal"
-import { green } from "@mui/material/colors"
 import { GameAvatar } from "../utils/avatar"
 export default function VotingScreen() {
   const roomData = useSelector(state => state.roomData.value)
@@ -201,7 +196,7 @@ export default function VotingScreen() {
                   fontSize={14}
                 >
                   {/* ADDED: Display distinct sub-label for out-of-game players */}
-                  {isEliminated ? "Eliminated" : isSelf ? "You" : "Crewmate"}
+                  {isEliminated ? "Eliminated" : isSelf ? "You" : "Artist"}
                 </Typography>
               </Box>
             </Box>

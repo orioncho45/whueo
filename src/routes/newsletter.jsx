@@ -29,8 +29,7 @@ export default function NewsletterPage() {
       setLoading(true)
       setError("")
       setSuccess(false)
-
-      const response = await fetch(
+      await fetch(
         "https://script.google.com/macros/s/AKfycbwH9HOzGeAg6cVdZoFAxsnVA9roBEfUVZCFWvUOURXsrrxHBzEXItT3lU5uAZb5-2MK/exec",
         {
           method: "POST",

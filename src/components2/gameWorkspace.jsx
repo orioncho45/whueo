@@ -9,7 +9,6 @@ const Game = () => {
   const socket = getSocket();
 
   const roomData = useSelector(state => state.roomData.value)
-  const socketId = useSelector(state => state.personal.value?.socketId)
 
   // Store liveChunk and finalStroke for each player
   const [liveChunk, setLiveChunk] = useState({});

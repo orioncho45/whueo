@@ -1,4 +1,3 @@
-import colorsMatch from "./colorsMatch"
 import hexToRgb from "./hexToRgb"
 
 

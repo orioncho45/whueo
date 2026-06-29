@@ -1,13 +1,8 @@
-import { useEffect } from "react"
 import {
   Box,
   CircularProgress,
   Typography
 } from "@mui/material"
-
-import { getSocket } from "../../socket/test"
-import { useDispatch, useSelector } from "react-redux"
-import { selectWord } from "../../store/features/roomData"
 
 export default function WaitingForWordOverlay() {
   return (

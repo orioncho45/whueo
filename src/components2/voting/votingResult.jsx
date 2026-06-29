@@ -1,5 +1,5 @@
-import { HighlightOff, HowToVote, Person } from "@mui/icons-material";
-import { Avatar, Box, Fade, Paper, Typography } from "@mui/material";
+import { HighlightOff, HowToVote } from "@mui/icons-material";
+import { Box, Fade, Paper, Typography } from "@mui/material";
 import { useSelector } from "react-redux"
 import { GameAvatar } from "../utils/avatar";
 

@@ -9,20 +9,20 @@ import { GameAvatar } from "../utils/avatar"
 
 
 
-const crewmateTips = [
+const artistTips = [
   "Pay attention to what everyone says. Imposters often struggle to stay consistent.",
   "Use the secret word naturally during discussions.",
   "Don't accuse too early. Gather information first.",
   "Watch who avoids speaking or changes stories.",
-  "Vote carefully. Eliminating a crewmate helps the imposters."
+  "Vote carefully. Eliminating a artist helps the imposters."
 ]
 
 const imposterTips = [
   "You don't know the real word, so listen carefully.",
   "Blend in before making accusations.",
   "Use vague descriptions to avoid exposing yourself.",
-  "Let crewmates suspect each other whenever possible.",
-  "Survive until imposters equal the remaining crewmates."
+  "Let artists suspect each other whenever possible.",
+  "Survive until imposters equal the remaining artists."
 ]
 
 function AdviceCard({
@@ -91,7 +91,7 @@ export default function HowToPlay() {
 
             </Stack>
 
-            {/* CREWMATES */}
+            {/* ARTISTS */}
 
             <Stack spacing={4}>
 
@@ -99,10 +99,10 @@ export default function HowToPlay() {
                 variant="h4"
                 fontWeight={700}
               >
-                Crewmate Guide
+                Artist Guide
               </Typography>
 
-              {crewmateTips.map((tip, i) => (
+              {artistTips.map((tip, i) => (
                 <AdviceCard
                   key={i}
                   

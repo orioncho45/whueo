@@ -20,7 +20,6 @@ export default function GameTimer({
 
   const [timeLeft, setTimeLeft] =
     useState(totalTime)
-  const [stop, setStop] = useState(null)
 
   /*
   =========================================

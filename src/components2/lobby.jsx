@@ -1,6 +1,6 @@
 import { Box, IconButton, Tooltip, CircularProgress } from "@mui/material"
 import { ContentCopy, CheckCircle, PlayArrow } from "@mui/icons-material"
-import { useState, useEffect, useRef } from "react"
+import { useState, useRef } from "react"
 import { getSocket } from "../socket/test"
 import { useSelector } from "react-redux"
 import OrbitingPlayers from "./orbitingPlayers"
@@ -15,20 +15,7 @@ export default function GameLobby({ showAlert = () => {}}) {
   const [loading, setLoading] = useState(false)
   const [copied, setCopied] = useState(false)
   const containerRef = useRef(null)
-  const [containerSize, setContainerSize] = useState({ W: 600, H: 520 })
-
-  useEffect(() => {
-    const el = containerRef.current
-    if (!el) return
-    const ro = new ResizeObserver(([entry]) => {
-      setContainerSize({
-        W: entry.contentRect.width,
-        H: entry.contentRect.height,
-      })
-    })
-    ro.observe(el)
-    return () => ro.disconnect()
-  }, [])
+  
 
   const players = roomData?.players ? Object.entries(roomData.players) : []
 

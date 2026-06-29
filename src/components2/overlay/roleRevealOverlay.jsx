@@ -30,7 +30,7 @@ export default function RoleRevealOverlay({ isImposter, onDone = () => {} }) {
 
   if (!visible) return null
 
-  const role = isImposter ? "IMPOSTER" : "CREWMATE"
+  const role = isImposter ? "IMPOSTER" : "ARTIST"
   const mascot = isImposter ? badMascot : goodMascot
   const glowColor = isImposter ? "#ff3b3b" : "#4fc3f7"
 

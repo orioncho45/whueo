@@ -110,20 +110,6 @@ const HowItWorks = () => {
         },
         ]
 
-    // slider settings with lazy loading
-    const sliderSettings = {
-      dots: true,
-      arrows: true,
-      lazyLoad: "ondemand",
-      infinite: false,
-      speed: 320,
-      slidesToShow: 3,
-      slidesToScroll: 1,
-      responsive: [
-        { breakpoint: 1200, settings: { slidesToShow: 2 } },
-        { breakpoint: 900, settings: { slidesToShow: 1 } },
-      ],
-    }
     // removed react-slick settings; Swiper breakpoints used below
 
     const navigate = useNavigate()

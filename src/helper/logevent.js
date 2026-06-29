@@ -1,6 +1,6 @@
 async function logEvent(data) {
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbz9tV1MZi_M8WTwx02dTfSsSVEcTNYCjzoSZqxRkI1NHJpY2tmuHfXpsflL8Bh9Ozy3Ow/exec", {
+    await fetch("https://script.google.com/macros/s/AKfycbz9tV1MZi_M8WTwx02dTfSsSVEcTNYCjzoSZqxRkI1NHJpY2tmuHfXpsflL8Bh9Ozy3Ow/exec", {
         method: "POST",
         mode: "no-cors",
         headers: {

@@ -36,7 +36,7 @@ const mockStore = configureStore({
 
 // ---- Scenarios ----
 const crewWin = {
-  winner: "crewmates",
+  winner: "artists",
   reason: "all_imposters_eliminated",
   imposters: ["user2"],
 };
@@ -48,7 +48,7 @@ const imposterWin = {
 };
 
 const maxRounds = {
-  winner: "crewmates",
+  winner: "artists",
   reason: "max_round_reached",
   imposters: ["user2", "user3", "user4"],
 };

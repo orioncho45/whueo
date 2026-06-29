@@ -11,18 +11,16 @@ import {
 } from "@mui/material"
 
 import GitHubIcon from "@mui/icons-material/GitHub"
-import LinkedInIcon from "@mui/icons-material/LinkedIn"
 import EmailIcon from "@mui/icons-material/Email"
 import banner from "../assets/banner/hero.png"
 import { useEffect, useState } from "react"
 import theme from "../theme"
+import { Language } from "@mui/icons-material"
 export default function About() {
    const [heroVisible, setHeroVisible] = useState(false)
   
 const t = theme.palette.t
 const displayFont = "'Playfair Display', Georgia, serif"
-const TRAILER_URL = ""
-
   const skills = [
     "Full-Stack Development",
     "Real-Time Multiplayer Systems",
@@ -101,7 +99,7 @@ const TRAILER_URL = ""
               textShadow: "0 6px 40px rgba(0,0,0,0.6)",
               mb: 2.5,
             }}>
-              About Developer
+              Behind The Canvas
             </Typography>
           </Box>
         </Box>
@@ -255,75 +253,6 @@ const TRAILER_URL = ""
               }}
             />
 
-            {/* CURRENT STATUS */}
-            <Stack spacing={1} alignItems="center">
-              <Typography variant="h6" fontWeight={600}>
-                Current Focus
-              </Typography>
-
-              <Typography
-                textAlign="center"
-                sx={{
-                  color: "rgba(255,255,255,0.75)",
-                  lineHeight: 1.8
-                }}
-              >
-                Currently pursuing Electrical, Electronic &
-                Communication Engineering at Military Institute
-                of Science and Technology (MIST), while actively
-                developing modern web platforms, multiplayer
-                systems, and embedded hardware solutions.
-              </Typography>
-            </Stack>
-
-            {/* EDUCATION */}
-            <Stack spacing={2} width="100%">
-              <Typography
-                variant="h6"
-                fontWeight={600}
-                textAlign="center"
-              >
-                Education
-              </Typography>
-
-              <Stack
-                spacing={2}
-                sx={{
-                  bgcolor: "rgba(255,255,255,0.03)",
-                  borderRadius: 3,
-                  p: 3,
-                  border: "1px solid rgba(255,255,255,0.06)"
-                }}
-              >
-                <Box>
-                  <Typography fontWeight={600}>
-                    Military Institute of Science and Technology
-                    (MIST)
-                  </Typography>
-
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "rgba(255,255,255,0.7)" }}
-                  >
-                    Electrical, Electronic & Communication
-                    Engineering
-                  </Typography>
-                </Box>
-
-                <Box>
-                  <Typography fontWeight={600}>
-                    Notre Dame College, Dhaka
-                  </Typography>
-
-                  <Typography
-                    variant="body2"
-                    sx={{ color: "rgba(255,255,255,0.7)" }}
-                  >
-                    Higher Secondary Education
-                  </Typography>
-                </Box>
-              </Stack>
-            </Stack>
 
             {/* PERSONAL PHILOSOPHY */}
             <Stack spacing={1} alignItems="center">
@@ -353,6 +282,27 @@ const TRAILER_URL = ""
               justifyContent="center"
             >
               <IconButton
+                component="a"
+                href="https://personal-b9h7.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Website Portfolio"
+                sx={{
+                  bgcolor: "rgba(255,255,255,0.05)",
+                  "&:hover": {
+                    bgcolor: "rgba(255,255,255,0.1)"
+                  }
+                }}
+              >
+                <Language />
+              </IconButton>
+
+              <IconButton
+                component="a"
+                href="https://github.com/orioncho45" // Replace with your actual profile tail
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn Profile"
                 sx={{
                   bgcolor: "rgba(255,255,255,0.05)",
                   "&:hover": {
@@ -364,17 +314,9 @@ const TRAILER_URL = ""
               </IconButton>
 
               <IconButton
-                sx={{
-                  bgcolor: "rgba(255,255,255,0.05)",
-                  "&:hover": {
-                    bgcolor: "rgba(255,255,255,0.1)"
-                  }
-                }}
-              >
-                <LinkedInIcon />
-              </IconButton>
-
-              <IconButton
+                component="a"
+                href="mailto:orioncho45@gmail.com"
+                aria-label="Email Contact"
                 sx={{
                   bgcolor: "rgba(255,255,255,0.05)",
                   "&:hover": {

@@ -1,11 +1,10 @@
-import React, {
+import {
   useEffect,
   useState,
   useCallback
 } from "react"
 
 import {
-  Avatar,
   Box,
   Button,
   CircularProgress,
