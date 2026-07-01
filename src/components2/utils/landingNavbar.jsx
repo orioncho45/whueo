@@ -23,6 +23,7 @@ import {
 } from "@mui/icons-material"
 
 import theme from "../../theme"
+import scrollToSection from "../../helper/scrolltoSection"
 
 // --- Landing page specific navbar (keeps global navbar untouched) ---
 export function LandingNavbar() {
@@ -33,19 +34,7 @@ export function LandingNavbar() {
 
   const t = theme.palette.t
 
-  const scrollToSection = (sectionId) => {
-    const section = document.getElementById(sectionId)
-
-    if (section) {
-      section.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      })
-      return
-    }
-
-    navigate("/#" + sectionId)
-  }
+  
 
   useEffect(() => {
     const onScroll = () => setIsSticky(window.scrollY > 20)
@@ -102,14 +91,14 @@ export function LandingNavbar() {
           >
             <Button
               color="inherit"
-              onClick={() => scrollToSection("how-to-play")}
+              onClick={() => scrollToSection("how-to-play",navigate)}
             >
               How To Play
             </Button>
 
             <Button
               color="inherit"
-              onClick={() => scrollToSection("how-it-works")}
+              onClick={() => scrollToSection("how-it-works", navigate)}
             >
               How It Works
             </Button>
@@ -182,7 +171,7 @@ export function LandingNavbar() {
         <List>
           <ListItemButton
             onClick={() => {
-              scrollToSection("how-to-play")
+              scrollToSection("how-to-play", navigate)
               closeDrawer()
             }}
           >
@@ -195,7 +184,7 @@ export function LandingNavbar() {
 
           <ListItemButton
             onClick={() => {
-              scrollToSection("how-it-works")
+              scrollToSection("how-it-works", navigate)
               closeDrawer()
             }}
           >

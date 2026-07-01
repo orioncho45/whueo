@@ -23,6 +23,7 @@ import HowItWorks from "../components2/site/howItWorks"
 import { Facebook } from "@mui/icons-material"
 import DiscordIcon from "../components2/utils/icons/discord"
 import { DISCORD_URL, FACEBOOK_URL } from "../helper/urls"
+import scrollToSection from "../helper/scrolltoSection"
 
 const t = theme.palette.t
 const displayFont = "'Playfair Display', Georgia, serif"
@@ -210,7 +211,7 @@ export default function LandingPage() {
               <Button
                 size="large"
                 variant="outlined"
-                onClick={() => navigate("/how-to-play")}
+                onClick={() => scrollToSection("how-it-works", navigate)}
                 sx={{
                   px: 3, py: 1.3,
                   borderRadius: "12px",
