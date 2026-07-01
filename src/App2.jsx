@@ -67,7 +67,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       
-     {/* <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <ScrollToTop/>
         <Routes>
 
@@ -88,8 +88,8 @@ export default function App() {
           </Route>
           
         </Routes>
-      </BrowserRouter> */}
-      <LaunchingSoonHero/>
+      </BrowserRouter>
+      {/* <LaunchingSoonHero/> */}
     </ThemeProvider>
   )
 }

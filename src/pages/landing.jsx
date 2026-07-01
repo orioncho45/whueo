@@ -364,7 +364,7 @@ export default function LandingPage() {
       <Divider />
 
       {/* ══ TRAILER ════════════════════════════════════════════════════════ */}
-      <Container maxWidth="xl" sx={{ py: { xs: 7, md: 9 } }}>
+      {/* <Container maxWidth="xl" sx={{ py: { xs: 7, md: 9 } }}>
         <Stack spacing={4}>
           <Stack spacing={0.75} textAlign={{ xs: "left" }}>
             <Stack direction="row" spacing={1} alignItems="center">
@@ -414,7 +414,7 @@ export default function LandingPage() {
         </Stack>
       </Container>
 
-      <Divider />
+      <Divider /> */}
 
       {/* ══ HOW IT WORKS — cards with screenshots ══════════════════════════ */}
       <HowItWorks/>

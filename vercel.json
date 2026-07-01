@@ -1,6 +1,9 @@
 {
   "rewrites": [
     { "source": "/about", "destination": "/about.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" },
     { "source": "/(.*)", "destination": "/index.html" },
     { "source": "/googlefcdf53ee30fa5c04", "destination": "/googlefcdf53ee30fa5c04.html" },
     { "source": "/sitemap", "destination": "/sitemap.xml" }
