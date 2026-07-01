@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, useCallback } from "react"
 const DEFAULT_WS_URL =
   "https://kp.orioncho45.partykit.dev/parties/register/public"
 
-const DEFAULT_LIMIT = 20
+const DEFAULT_LIMIT = 10
 
 export default function usePublicRooms({
   wsUrl = DEFAULT_WS_URL,
