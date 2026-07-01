@@ -191,20 +191,20 @@ const Selector = ({
   onClick = () => {}
 }) => {
   const [loaded, setLoaded] =
-    useState(false)
+    useState(true)
   const playSound = useSound()
   const handleClick = (e)=>{
     playSound({type: "click"});
     onClick(e)
   }
 
-  useEffect(() => {
-    preloadImages(
-      cards.map(card => card.image)
-    ).then(() => {
-      setLoaded(true)
-    })
-  }, [])
+  // useEffect(() => {
+  //   preloadImages(
+  //     cards.map(card => card.image)
+  //   ).then(() => {
+  //     setLoaded(true)
+  //   })
+  // }, [])
 
   if (!loaded) {
     return (
