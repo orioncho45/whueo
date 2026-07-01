@@ -227,8 +227,8 @@ export default function useAlertDialog() {
               }}
             >
               {alert.type === "success"
-                ? "🎉 Mission Complete!"
-                : "⚠️ Oops Captain!"}
+                ? "🎉 Great!"
+                : "⚠️ Oops Artist!"}
             </Typography>
 
             <Typography

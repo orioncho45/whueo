@@ -1,67 +1,227 @@
-import { AppBar, Box, Button, Toolbar } from "@mui/material"
-import { useEffect } from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { PlayArrow } from "@mui/icons-material"
+
+import {
+  AppBar,
+  Box,
+  Button,
+  Drawer,
+  IconButton,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Toolbar,
+} from "@mui/material"
+
+import {
+  Menu as MenuIcon,
+  PlayArrow,
+  Close,
+  HelpOutline,
+  InfoOutlined,
+} from "@mui/icons-material"
+
 import theme from "../../theme"
-// --- NEW: Landing page specific navbar (keeps global navbar untouched) ---
+
+// --- Landing page specific navbar (keeps global navbar untouched) ---
 export function LandingNavbar() {
   const navigate = useNavigate()
+
   const [isSticky, setIsSticky] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+
   const t = theme.palette.t
+
   const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId)
+
     if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" })
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
       return
     }
+
     navigate("/#" + sectionId)
   }
 
   useEffect(() => {
     const onScroll = () => setIsSticky(window.scrollY > 20)
+
     window.addEventListener("scroll", onScroll, { passive: true })
+
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
+
+  const closeDrawer = () => setMobileOpen(false)
 
   return (
     <>
       <AppBar
-        position={"fixed"}
+        position="fixed"
         elevation={isSticky ? 3 : 0}
         sx={{
           backgroundColor: isSticky ? "brand.dark" : "transparent",
           borderBottom: isSticky ? 1 : "none",
           borderColor: "divider",
           color: "white",
-          top: 0,
-          zIndex: (theme) => theme.zIndex.appBar,
           transition: "all 200ms ease",
         }}
       >
-        <Toolbar sx={{ minHeight: 64, display: "flex", justifyContent: "space-between", gap: 2 }}>
+        <Toolbar
+          sx={{
+            minHeight: 64,
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          {/* Logo */}
           <Box
             component="img"
             src="/logo.png"
             alt="Logo"
             onClick={() => navigate("/")}
-            sx={{ cursor: "pointer", width: 100, objectFit: "contain", opacity: isSticky ? "1" : "0" }}
+            sx={{
+              cursor: "pointer",
+              width: { xs: 80, sm: 100 },
+              objectFit: "contain",
+              opacity: isSticky ? 1 : 0,
+              transition: "opacity 200ms",
+            }}
           />
 
-          <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
-            <Button color="inherit" onClick={() => scrollToSection("how-to-play")}>How To Play</Button>
-            <Button color="inherit" onClick={() => scrollToSection("how-it-works")}>How it works</Button>
-            <Button variant="contained" color="primary" 
+          {/* Desktop Navigation */}
+          <Box
+            sx={{
+              display: { xs: "none", md: "flex" },
+              gap: 1,
+              alignItems: "center",
+            }}
+          >
+            <Button
+              color="inherit"
+              onClick={() => scrollToSection("how-to-play")}
+            >
+              How To Play
+            </Button>
+
+            <Button
+              color="inherit"
+              onClick={() => scrollToSection("how-it-works")}
+            >
+              How It Works
+            </Button>
+
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => navigate("/play")}
               sx={{
                 boxShadow: "none",
-                "&:hover": { boxShadow: `0 0 28px ${t.boxShadow}` },
+                "&:hover": {
+                  boxShadow: `0 0 28px ${t.boxShadow}`,
+                },
               }}
-              onClick={()=>navigate("/play")} ><PlayArrow/> Play Now</Button>
+            >
+              <PlayArrow sx={{ mr: 0.5 }} />
+              Play Now
+            </Button>
           </Box>
+
+          {/* Mobile Menu Button */}
+          <IconButton
+            onClick={() => setMobileOpen(true)}
+            sx={{
+              display: { xs: "flex", md: "none" },
+              color: "white",
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
         </Toolbar>
       </AppBar>
 
-      {/* spacer so content doesn't jump when AppBar becomes fixed */}
+      {/* Drawer */}
+      <Drawer
+        anchor="right"
+        open={mobileOpen}
+        onClose={closeDrawer}
+        PaperProps={{
+          sx: {
+            width: 280,
+            backgroundColor: "brand.dark",
+            color: "white",
+          },
+        }}
+      >
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Box
+            component="img"
+            src="/logo.png"
+            alt="Logo"
+            sx={{
+              width: 90,
+            }}
+          />
+
+          <IconButton
+            onClick={closeDrawer}
+            sx={{ color: "white" }}
+          >
+            <Close />
+          </IconButton>
+        </Toolbar>
+
+        <List>
+          <ListItemButton
+            onClick={() => {
+              scrollToSection("how-to-play")
+              closeDrawer()
+            }}
+          >
+            <ListItemIcon sx={{ color: "white" }}>
+              <HelpOutline />
+            </ListItemIcon>
+
+            <ListItemText primary="How To Play" />
+          </ListItemButton>
+
+          <ListItemButton
+            onClick={() => {
+              scrollToSection("how-it-works")
+              closeDrawer()
+            }}
+          >
+            <ListItemIcon sx={{ color: "white" }}>
+              <InfoOutlined />
+            </ListItemIcon>
+
+            <ListItemText primary="How It Works" />
+          </ListItemButton>
+
+          <ListItemButton
+            onClick={() => {
+              navigate("/play")
+              closeDrawer()
+            }}
+          >
+            <ListItemIcon sx={{ color: "white" }}>
+              <PlayArrow />
+            </ListItemIcon>
+
+            <ListItemText primary="Play Now" />
+          </ListItemButton>
+        </List>
+      </Drawer>
+
+      {/* Spacer */}
       {isSticky && <Toolbar sx={{ minHeight: 64 }} />}
     </>
   )

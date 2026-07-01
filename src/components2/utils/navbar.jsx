@@ -52,11 +52,11 @@ export default function Navbar({showAlert=()=>{}, confirmAction = () => {}}) {
       position="static"
       elevation={0}
       sx={{
-        background: "transparent !important",
-        bgcolor: "brand.dark",
-                    backgroundImage:
-                        "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)",
-                    backgroundSize: "26px 26px",
+        background: "transparent",
+        // bgcolor: "brand.dark",
+        //             backgroundImage:
+        //                 "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)",
+        //             backgroundSize: "26px 26px",
         color: "text.primary",
       }}
     >

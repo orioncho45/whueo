@@ -22,6 +22,11 @@ const sections = [
       "You must comply with applicable laws and regulations when using the service."
   },
   {
+    title: "Advertisements",
+    content:
+      "Advertisements may be displayed on website."
+  },
+  {
     title: "Player Conduct",
     content:
       "Players may not harass, threaten, impersonate, exploit bugs, cheat, spam, or intentionally disrupt gameplay."

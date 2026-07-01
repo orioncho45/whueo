@@ -190,6 +190,7 @@ export default function LandingPage() {
               spacing={1.5}
               justifyContent="center"
               flexWrap="wrap"
+              gap={2}
             >
               <Button
                 size="large"
@@ -586,6 +587,7 @@ export default function LandingPage() {
             spacing={1.5}
             justifyContent="center"
             flexWrap="wrap"
+            gap={2}
           >
             <Button
               size="large"

@@ -11,7 +11,8 @@ import SettingsDialog from "../components2/utils/settings"
 export default function Layout() {
   const { AlertDialog, showAlert } = useAlertDialog()
   const roomData = useSelector(state=>state.roomData.value);
-  const { ConfirmDialog, confirmAction } = useConfirmAction()
+// const roomData = {}
+const { ConfirmDialog, confirmAction } = useConfirmAction()
   
   return (
     <ThemeProvider theme={theme}>

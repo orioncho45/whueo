@@ -8,7 +8,7 @@ const t = theme.palette.t
 const displayFont = "'Playfair Display', Georgia, serif"
 
 // Wednesday at 10:00 PM — adjust the date to the correct upcoming Wednesday
-const LAUNCH_DATE = (new Date("2026-07-01T22:00:00")).getTime()
+const LAUNCH_DATE = (new Date("2026-07-01T22:30:00")).getTime()
 
 export default function LaunchingSoonHero() {
   const [heroVisible, setHeroVisible] = useState(false)
