@@ -2,7 +2,7 @@
   "rewrites": [
     { "source": "/about", "destination": "/about.html" },
     { "source": "/(.*)", "destination": "/index.html" },
-    { "source": "/googlefcdf53ee30fa5c04", "destination": "/googlefcdf53ee30fa5c04.html" },
+    { "source": "/googlefcdf53ee30fa5c04", "destination": "/googlefcdf53ee30fa5c04.html" }
     
   ]
 }
