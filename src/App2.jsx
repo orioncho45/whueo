@@ -17,8 +17,6 @@ import PrivacyPolicy from "./routes/privacy"
 import Terms from "./routes/terms"
 import Contact from "./routes/contact"
 import ScrollToTop from "./components2/utils/scrollToTop"
-import useSound from "./sounds/player"
-import { useEffect } from "react"
 import LaunchingSoonHero from "./pages/launching"
 
 function AppContent({room=false}) {
@@ -45,25 +43,7 @@ function AppContent({room=false}) {
 }
 
 export default function App() {
-  const playSound = useSound();
-  useEffect(() => {
-    
-    const handleClick = (e) => {
-      const isButton = e.target.closest(
-        "button, [role='button']"
-      );
-
-      if (isButton) {
-        playSound({type: "click"})
-      }
-    };
-
-    document.addEventListener("click", handleClick);
-
-    return () => {
-      document.removeEventListener("click", handleClick);
-    };
-  }, []);
+  
   return (
     <ThemeProvider theme={theme}>
       

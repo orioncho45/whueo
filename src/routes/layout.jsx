@@ -7,12 +7,33 @@ import theme from "../theme"
 import Navbar from "../components2/utils/navbar"
 import useConfirmAction from "../hooks/confirmAction"
 import SettingsDialog from "../components2/utils/settings"
+import useSound from "../sounds/player"
+import { useEffect } from "react"
 
 export default function Layout() {
   const { AlertDialog, showAlert } = useAlertDialog()
   const roomData = useSelector(state=>state.roomData.value);
 // const roomData = {}
 const { ConfirmDialog, confirmAction } = useConfirmAction()
+const playSound = useSound();
+  useEffect(() => {
+    
+    const handleClick = (e) => {
+      const isButton = e.target.closest(
+        "button, [role='button']"
+      );
+
+      if (isButton) {
+        playSound({type: "click"})
+      }
+    };
+
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, []);
   
   return (
     <ThemeProvider theme={theme}>
