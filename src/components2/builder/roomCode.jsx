@@ -137,7 +137,23 @@ export default function RoomCodeForm({ onJoin = () => {}, showAlert = () => {}, 
       </Box>
     )
   }
-
+  if (loading) {
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100%"
+      >
+        <CircularProgress
+          size={46}
+          sx={{
+            color: "white"
+          }}
+        />
+      </Box>
+    )
+  }
   // ============================
   // LOBBY VIEW
   // ============================

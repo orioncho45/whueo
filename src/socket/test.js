@@ -152,7 +152,7 @@ const connectSocket = (roomId, onConnect) => {
     `https://kp.orioncho45.partykit.dev/parties/room/${roomId}`
   )
   // socket = new TestSocket(
-  //   `ws://192.168.68.104:1999/parties/room/${roomId}`
+  //   `ws://192.168.68.103:1999/parties/room/${roomId}`
   // )
   onConnect(socket);
 }

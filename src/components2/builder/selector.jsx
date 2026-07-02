@@ -3,10 +3,11 @@ import {
   CircularProgress,
   Paper,
   Stack,
-  Typography
+  Typography,
+  Skeleton
 } from "@mui/material"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 
 // IMPORT YOUR IMAGES
 import createGameBg from "../../assets/menu/create_game.jpg"
@@ -57,6 +58,8 @@ const SelectorCard = ({
   card,
   onClick
 }) => {
+  const [loaded, setLoaded] = useState(false)
+
   return (
     <Paper
       onClick={() => onClick(card.action)}
@@ -83,7 +86,7 @@ const SelectorCard = ({
           "1px solid rgba(255,255,255,0.08)",
 
         transition:
-          "transform 0.25s ease, box-shadow 0.25s ease",
+          "transform .25s ease, box-shadow .25s ease",
 
         "&:hover": {
           transform: {
@@ -92,44 +95,57 @@ const SelectorCard = ({
           },
 
           boxShadow:
-            "0 18px 36px rgba(0,0,0,0.45)"
+            "0 18px 36px rgba(0,0,0,.45)"
         }
       }}
     >
-      {/* IMAGE */}
+      {/* Skeleton */}
+      {!loaded && (
+        <Skeleton
+          variant="rectangular"
+          animation="wave"
+          sx={{
+            position: "absolute",
+            inset: 0,
+            borderRadius: "inherit",
+            bgcolor: "grey.900"
+          }}
+        />
+      )}
+
+      {/* Image */}
       <Box
         component="img"
         src={card.image}
         alt={card.title}
+        onLoad={() => setLoaded(true)}
         sx={{
           display: "block",
-
           width: "100%",
           height: "auto",
-
           objectFit: "contain",
+
+          opacity: loaded ? 1 : 0,
+
+          transition: "opacity .35s ease",
 
           userSelect: "none",
           pointerEvents: "none"
         }}
       />
 
-      {/* OVERLAY */}
+      {/* Overlay */}
       <Box
         sx={{
           position: "absolute",
           inset: 0,
 
-          background: `
-            linear-gradient(
-              rgba(0,0,0,0.45),
-              rgba(0,0,0,0.65)
-            )
-          `
+          background:
+            "linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.65))"
         }}
       />
 
-      {/* CONTENT */}
+      {/* Content */}
       <Box
         sx={{
           position: "absolute",
@@ -159,7 +175,7 @@ const SelectorCard = ({
               lineHeight: 1,
 
               textShadow:
-                "0 2px 12px rgba(0,0,0,0.45)"
+                "0 2px 12px rgba(0,0,0,.45)"
             }}
           >
             {card.title}
@@ -170,14 +186,14 @@ const SelectorCard = ({
               fontSize: 15,
 
               color:
-                "rgba(255,255,255,0.84)",
+                "rgba(255,255,255,.84)",
 
               lineHeight: 1.5,
 
               maxWidth: 260,
 
               textShadow:
-                "0 2px 8px rgba(0,0,0,0.45)"
+                "0 2px 8px rgba(0,0,0,.45)"
             }}
           >
             {card.description}

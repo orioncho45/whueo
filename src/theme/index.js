@@ -44,6 +44,11 @@ const theme = createTheme({
   },
   components: {
     MuiSelect: {
+      defaultProps: {
+        MenuProps: {
+          disablePortal: true
+        }
+      },
       styleOverrides: {
         root: {
           color: 'green',
@@ -73,7 +78,8 @@ const theme = createTheme({
       styleOverrides: {
         paper: {
           backgroundColor: '#1e1e1e', // Give the dropdown panel a dark background
-          color: 'white',             // Default text color for the dropdown options
+          color: 'white',
+          zIndex: 200000             // Default text color for the dropdown options
         },
       },
     },
