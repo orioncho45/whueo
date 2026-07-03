@@ -8,14 +8,18 @@ import Navbar from "../components2/utils/navbar"
 import useConfirmAction from "../hooks/confirmAction"
 import SettingsDialog from "../components2/utils/settings"
 import useSound from "../sounds/player"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 
 export default function Layout() {
   const { AlertDialog, showAlert } = useAlertDialog()
   const roomData = useSelector(state=>state.roomData.value);
-// const roomData = {}
-const { ConfirmDialog, confirmAction } = useConfirmAction()
-const playSound = useSound();
+  // const roomData = {}
+  const { ConfirmDialog, confirmAction } = useConfirmAction()
+  const playSound = useSound();
+  const playSoundRef = useRef(playSound);
+  useEffect(() => {
+    playSoundRef.current = playSound;
+  }, [playSound]);
   useEffect(() => {
     
     const handleClick = (e) => {
@@ -24,7 +28,7 @@ const playSound = useSound();
       );
 
       if (isButton) {
-        playSound({type: "click"})
+        playSoundRef.current({type: "click"})
       }
     };
 

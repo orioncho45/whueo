@@ -50,7 +50,8 @@ export default function useSound() {
 
       const createAndPlay = () => {
         const a = new Audio(src);
-        a.volume = Number(volume || 100)/100;
+        console.log(volume)
+        a.volume = Number(volume)/100;
         activeAudiosRef.current.add(a);
         a.play().catch((err) => console.warn("useSound: play failed", err));
         return a;

@@ -20,6 +20,7 @@ import {
   setHotkey,
   setVolume,
 } from "../../store/features/settings";
+import { store } from "../../store";
 
 function HotkeyInput({
   label,
@@ -264,6 +265,8 @@ export default function SettingsDialog({
                 color: "#60a5fa",
               }}
             />
+            <br />
+            {/* {store.getState().settings.volume} */}
 
             <Typography
               sx={{
