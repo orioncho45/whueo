@@ -70,7 +70,7 @@ export default function BuilderForm({
               onSubmit(response)
               logEvent({ type: "CREATE", roomCode: roomId, username })
             } else {
-              showAlert("error", "Something went wrong!")
+              showAlert("error", response.message)
             }
             setLoading(false)
           }
@@ -93,9 +93,11 @@ export default function BuilderForm({
     socket.emit("settings_change", { settings: values }, (response) => {
       const { success, ...rest } = response || {}
       if (success) {
+        
+        dispatch(setRoomData(response.roomData))
         onSubmit(rest)
       } else {
-        showAlert("error", "Something went wrong!")
+        showAlert("error", response.message)
       }
       setLoading(false)
     })

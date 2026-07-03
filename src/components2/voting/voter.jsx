@@ -5,11 +5,13 @@ import {
   Typography,
 } from "@mui/material"
 import GameTimer from "../timer"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { getSocket } from "../../socket/test"
 import RenderVotingResults from "./votingResult"
 import RenderFinalReveal from "./FinalReveal"
 import { GameAvatar } from "../utils/avatar"
+import { addMessage } from "../../store/features/chat"
+import { setRoomData } from "../../store/features/roomData"
 export default function VotingScreen() {
   const roomData = useSelector(state => state.roomData.value)
   const username = useSelector(state => state.personal.value?.username)
@@ -23,7 +25,7 @@ export default function VotingScreen() {
   const [votingResults, setVotingResults] = useState(null)
   const [finalResults, setFinalResults] = useState(null)
   const [showFinalReveal, setShowFinalReveal] = useState(false)
-
+  const dispatch = useDispatch()
   // Timer values (replace with actual values if needed)
   const startTime = roomData.voteStart
   const duration = roomData.settings?.votingTime || 30
@@ -36,8 +38,18 @@ export default function VotingScreen() {
   }
   const handleResults = (data) => {
     setFinalResults(data.results)
-    // Delay the dramatic reveal
-    //console.log(g(data)
+    const newRoomData = data.roomData;
+    // notify if host changed
+    if (roomData?.hostId !== newRoomData.hostId) {
+        const newHost = newRoomData.players[newRoomData.hostId];
+        if (newHost) {
+            dispatch(addMessage({
+                type: "system",
+                message: `${newHost.username} is now the new host!`
+            }))
+        }
+    }
+    dispatch(setRoomData(newRoomData))
     setTimeout(() => {
       setShowFinalReveal(true)
     }, 2000)

@@ -1,10 +1,11 @@
 import { Close } from "@mui/icons-material"
 import { Box, Fade, IconButton, Paper, Typography } from "@mui/material"
 import BuilderForm from "./builder/builderForm"
+import { useSelector } from "react-redux"
 
 
 const ServerSettings = ({settingsOpen, closeSettings = ()=>{}, showAlert = () => {}}) => {
-    
+    const roomData = useSelector(state=>state.roomData.value)
     return (
         <Fade in={settingsOpen}>
             <Box
@@ -66,7 +67,7 @@ const ServerSettings = ({settingsOpen, closeSettings = ()=>{}, showAlert = () =>
                     }}
                 >
                     <BuilderForm
-                        showAlert={showAlert} changeSettings={true}
+                        showAlert={showAlert} initialSettings={roomData?.settings} changeSettings={true} onSubmit={closeSettings}
                     />
                 </Box>
                 </Paper>

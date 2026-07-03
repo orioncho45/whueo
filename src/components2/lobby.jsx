@@ -1,11 +1,12 @@
 import { Box, IconButton, Tooltip, CircularProgress } from "@mui/material"
-import { ContentCopy, CheckCircle, PlayArrow } from "@mui/icons-material"
+import { ContentCopy, CheckCircle, PlayArrow, SettingsOutlined } from "@mui/icons-material"
 import { useState, useRef } from "react"
 import { getSocket } from "../socket/test"
 import { useSelector } from "react-redux"
 import OrbitingPlayers from "./orbitingPlayers"
 import DisplayTimerPill from "./utils/displayTimer"
 import { LOBBY_TTL } from "../helper/ttls"
+import ServerSettings from "./serverSettings"
 
 export default function GameLobby({ showAlert = () => {}}) {
   const roomData = useSelector((state) => state.roomData.value)
@@ -14,6 +15,7 @@ export default function GameLobby({ showAlert = () => {}}) {
   const socket = getSocket()
   const [loading, setLoading] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const containerRef = useRef(null)
   
 
@@ -196,7 +198,32 @@ export default function GameLobby({ showAlert = () => {}}) {
                 )}
               </IconButton>
             </Tooltip>
-
+            {isHost && (
+              <Tooltip title={"Change game settings"} placement="bottom">
+                <span>
+                  <IconButton
+                    onClick={()=>setSettingsOpen(!settingsOpen)}
+                    sx={{
+                      width: 56,
+                      height: 56,
+                      border: "1.5px solid rgba(90,200,120,0.45)",
+                      bgcolor: "rgba(90,200,120,0.1)",
+                      color: "rgba(90,200,120,1)",
+                      "&:hover": {
+                        bgcolor: "rgba(90,200,120,0.22)",
+                        borderColor: "rgba(90,200,120,0.8)",
+                      },
+                      "&.Mui-disabled": {
+                        opacity: 0.5,
+                        color: "rgba(90,200,120,0.6)",
+                      },
+                    }}
+                  >
+                    <SettingsOutlined/>
+                  </IconButton>
+                </span>
+              </Tooltip>
+            )}
             {isHost && (
               <Tooltip title={loading ? "Starting…" : "Start game"} placement="bottom">
                 <span>
@@ -241,6 +268,7 @@ export default function GameLobby({ showAlert = () => {}}) {
           </Box>
         </Box>
       </Box>
+      <ServerSettings settingsOpen={settingsOpen} closeSettings={()=>setSettingsOpen(false)} showAlert={showAlert} />
     </Box>
   )
 }

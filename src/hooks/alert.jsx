@@ -41,7 +41,7 @@ export default function useAlertDialog() {
       open={open}
       onClick={closeAlert}
       sx={{
-        zIndex: 9999,
+        zIndex: 2000001,
         bgcolor: "rgba(0,0,0,.72)",
         backdropFilter: "blur(3px)",
       }}
@@ -242,7 +242,7 @@ export default function useAlertDialog() {
                 mb: 3,
               }}
             >
-              {alert.message}
+              {alert.message || "Something went wrong!"}
             </Typography>
 
             <Button
