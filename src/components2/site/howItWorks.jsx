@@ -93,7 +93,7 @@ const HowItWorks = () => {
             ),
             title: "Get Your Role",
             desc:
-            "Players become either Artists or Imposters. Artists receive the chosen word and know exactly what to draw. Imposters receive no word and must figure it out from the drawings.",
+            "Players become either Artists or Imposters. Artists receive the chosen word and know exactly what to draw. Imposters receive closer word and must figure it out from the drawings.",
             screenshot: roleImage,
             screenshotAlt: "Role reveal screen",
         },
@@ -109,7 +109,19 @@ const HowItWorks = () => {
             screenshot: wordSelectImage,
             screenshotAlt: "Word selection screen",
         },
-
+        {
+            icon: (
+            <VisibilityOffRounded
+                sx={{ fontSize: 20, color: t.warm }}
+            />
+            ),
+            title: "Word for Imposters",
+            isNew: true,
+            desc:
+            "Imposters get a close word. Be careful or you might be out of track in here!",
+            screenshot: wordForImpImage,
+            screenshotAlt: "Imposter word screen",
+        },
         {
             icon: (
             <VisibilityOffRounded
@@ -122,19 +134,7 @@ const HowItWorks = () => {
             screenshot: canvasImage,
             screenshotAlt: "Drawing phase screen",
         },
-        {
-            icon: (
-            <VisibilityOffRounded
-                sx={{ fontSize: 20, color: t.warm }}
-            />
-            ),
-            title: "Word for lobby",
-            isNew: true,
-            desc:
-            "Imposters get a close word. Be careful or you might be out of track in here!",
-            screenshot: wordForImpImage,
-            screenshotAlt: "Imposter word screen",
-        },
+        
 
         {
             icon: (
