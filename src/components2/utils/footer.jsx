@@ -92,7 +92,7 @@ export default function Footer() {
                 "&:hover": { color: t.textMid, borderColor: t.borderMid },
               }}
             >
-              <DiscordIcon />
+              <DiscordIcon fontSize={18} />
             </IconButton>
             <IconButton
               component="a"
@@ -162,7 +162,7 @@ export default function Footer() {
                   gap: 0.6,
                   fontSize: "0.74rem",
                   fontWeight: 700,
-                  color: t.textLowest,
+                  color: "white",
                   border: `1px solid ${t.border}`,
                   borderRadius: "7px",
                   px: 1.1,

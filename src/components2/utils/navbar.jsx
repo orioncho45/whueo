@@ -47,6 +47,7 @@ export default function Navbar({showAlert=()=>{}, confirmAction = () => {}}) {
     }
     
   }, [roomData])
+  console.log(roomData?.word)
   return (
     <AppBar
       position="static"
@@ -102,9 +103,9 @@ export default function Navbar({showAlert=()=>{}, confirmAction = () => {}}) {
 
   
         {
-          !isImposter && roomData?.state==="started" &&  (
+          roomData?.state==="started" &&  (
             <center>
-              <Typography variant="h6" color="error" >Word: {roomData?.word}</Typography>
+              <Typography variant="h6" color={isImposter ? "error" : "success"} >Word: {isImposter ? roomData?.word?.imposter : roomData?.word?.player}</Typography>
             </center>
           )
         }

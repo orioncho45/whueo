@@ -139,12 +139,13 @@ const GameUtils = ({ showAlert = () => {}, confirmAction = () => {} }) => {
     const handleWordSelect = useCallback((payload) => {
         const current = tempRoomDataRef.current;
         if (!current) return;
+        const newValue = current.imposters.includes(socketId) ? {imposter: payload.word} : {player: payload.word}
         dispatch(setRoomData({
             ...current,
-            word: isImposterRef.current ? null : payload.word
+            word: {...current.word, ...newValue}
         }))
         setShowOverlays(false)
-    }, [dispatch])
+    }, [dispatch, socketId])
 
     const handlePing = useCallback(() => {
         if (!socketId || !socket || !roomData) return;

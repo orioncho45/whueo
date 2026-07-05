@@ -1,11 +1,14 @@
-import { Button, Container, Paper, Box, Stack, Typography } from "@mui/material"
-import { HowToVoteRounded, PlayArrowRounded, RecordVoiceOverRounded, VisibilityOffRounded} from "@mui/icons-material"
+import { Button, Container, Paper, Box, Stack, Typography, Chip } from "@mui/material"
+import { Gamepad, Home, HowToVoteRounded, People, PlayArrowRounded, RecordVoiceOverRounded, VisibilityOffRounded} from "@mui/icons-material"
 import theme from "../../theme"
 import { useNavigate } from "react-router-dom"
 import roleImage from "../../assets/screenshots/role.png"
 import wordSelectImage from "../../assets/screenshots/wordSelect.png"
 import canvasImage from "../../assets/screenshots/canvas.png"
 import voteImage from "../../assets/screenshots/vote.png"
+import gameImage from "../../assets/screenshots/game.png"
+import lobbyImage from "../../assets/screenshots/lobby.png"
+import wordForImpImage from "../../assets/screenshots/wordForImp.png"
 
 // using Swiper instead of react-slick
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -57,7 +60,31 @@ const HowItWorks = () => {
 // Replace src values with real screenshot paths
     const HOW_IT_WORKS = [
         
-
+        {
+            icon: (
+            <Gamepad
+                sx={{ fontSize: 20, color: t.warm }}
+            />
+            ),
+            title: "Choose Game",
+            desc:
+            "Create room or join room or join public rooms.",
+            screenshot: gameImage,
+            screenshotAlt: "Game screen",
+        },
+        {
+            icon: (
+            <Home
+                sx={{ fontSize: 20, color: t.warm }}
+            />
+            ),
+            title: "Lobby",
+            desc:
+            "Once game is created you will be in the lobby waiting for others to join. Copy and share invite link. Lobby is valid for 5 minutes. You can change in-lobby game settings in here. At least 3 players are required for the game to be started.",
+            screenshot: lobbyImage,
+            screenshotAlt: "Lobby screen",
+        },
+        
         {
             icon: (
             <VisibilityOffRounded
@@ -94,6 +121,19 @@ const HowItWorks = () => {
             "Artists draw clues based on the secret word. Imposters secretly study everyone's artwork, guess the word, and create convincing drawings to avoid suspicion.",
             screenshot: canvasImage,
             screenshotAlt: "Drawing phase screen",
+        },
+        {
+            icon: (
+            <VisibilityOffRounded
+                sx={{ fontSize: 20, color: t.warm }}
+            />
+            ),
+            title: "Word for lobby",
+            isNew: true,
+            desc:
+            "Imposters get a close word. Be careful or you might be out of track in here!",
+            screenshot: wordForImpImage,
+            screenshotAlt: "Imposter word screen",
         },
 
         {
@@ -157,43 +197,83 @@ const HowItWorks = () => {
                   >
                     {HOW_IT_WORKS.map((item, idx) => (
                       <SwiperSlide key={idx} style={{ padding: 8 }}>
-                        <Paper elevation={0} sx={{
-                          ...cardBase,
-                          minHeight: 220,
-                          "&:hover": {
-                            borderColor: t.borderMid,
-                            transform: "translateY(-3px)",
-                            boxShadow: "0 10px 40px rgba(0,0,0,0.3)",
-                          },
-                        }}>
+                        <Paper
+                          elevation={0}
+                          sx={{
+                            ...cardBase,
+                            minHeight: 220,
+                            position: "relative",
+                            "&:hover": {
+                              borderColor: t.borderMid,
+                              transform: "translateY(-3px)",
+                              boxShadow: "0 10px 40px rgba(0,0,0,0.3)",
+                            },
+                          }}
+                        >
+                          {item.isNew && (
+                            <Chip
+                              label="NEW"
+                              size="small"
+                              color="success"
+                              sx={{
+                                position: "absolute",
+                                top: 12,
+                                right: 12,
+                                fontWeight: 700,
+                                fontSize: "0.7rem",
+                                zIndex: 2,
+                                height: 22,
+                                letterSpacing: 0.5,
+                              }}
+                            />
+                          )}
+
                           <Stack spacing={2.5}>
                             {item.screenshot ? (
-                              <Box sx={{
-                                width: "100%",
-                                aspectRatio: "16 / 10",
-                                borderRadius: "10px",
-                                overflow: "hidden",
-                                border: `1px solid ${t.border}`,
-                              }}>
+                              <Box
+                                sx={{
+                                  width: "100%",
+                                  aspectRatio: "16 / 10",
+                                  borderRadius: "10px",
+                                  overflow: "hidden",
+                                  border: `1px solid ${t.border}`,
+                                }}
+                              >
                                 <Box
                                   component="img"
                                   src={item.screenshot}
                                   alt={item.screenshotAlt}
                                   loading="lazy"
-                                  sx={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                                  sx={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover",
+                                    display: "block",
+                                  }}
                                 />
                               </Box>
                             ) : (
                               <ScreenPlaceholder alt={item.screenshotAlt} />
                             )}
+
                             <Stack spacing={1.25}>
                               <Stack direction="row" alignItems="center" spacing={1}>
                                 {item.icon}
-                                <Typography fontWeight={700} sx={{ fontSize: "0.97rem", color: t.textHi }}>
+                                <Typography
+                                  fontWeight={700}
+                                  sx={{ fontSize: "0.97rem", color: t.textHi }}
+                                >
                                   {item.title}
                                 </Typography>
                               </Stack>
-                              <Typography sx={{ fontSize: "0.82rem", lineHeight: 1.8, color: t.textMid }}>
+
+                              <Typography
+                                sx={{
+                                  fontSize: "0.82rem",
+                                  lineHeight: 1.8,
+                                  color: t.textMid,
+                                }}
+                              >
                                 {item.desc}
                               </Typography>
                             </Stack>

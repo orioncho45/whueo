@@ -86,7 +86,7 @@ export default function WordSelectOverlay({ words = [], showAlert = () => {} }) 
 
           return (
             <Button
-              key={word}
+              key={word.player}
               fullWidth
               disabled={!!loadingWord}
               onClick={() => handleSelect(word)}
@@ -103,7 +103,7 @@ export default function WordSelectOverlay({ words = [], showAlert = () => {} }) 
                 }
               }}
             >
-              {word}
+              {word.player}
 
               {isLoading && (
                 <CircularProgress
