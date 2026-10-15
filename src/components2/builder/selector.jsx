@@ -1,15 +1,12 @@
 import {
   Box,
-  CircularProgress,
   Paper,
   Stack,
-  Typography,
-  Skeleton
+  Typography
 } from "@mui/material"
 
 import { useState } from "react"
 
-// IMPORT YOUR IMAGES
 import createGameBg from "../../assets/menu/create_game.jpg"
 import joinGameBg from "../../assets/menu/join_room.jpg"
 import publicGameBg from "../../assets/menu/join_public_room.jpg"
@@ -39,21 +36,6 @@ const cards = [
   }
 ]
 
-const preloadImages = images => {
-  return Promise.all(
-    images.map(src => {
-      return new Promise(resolve => {
-        const img = new Image()
-
-        img.src = src
-
-        img.onload = resolve
-        img.onerror = resolve
-      })
-    })
-  )
-}
-
 const SelectorCard = ({
   card,
   onClick
@@ -73,12 +55,16 @@ const SelectorCard = ({
         },
 
         maxWidth: "100%",
+        aspectRatio: "4 / 1",
+        minHeight: 104,
 
         overflow: "hidden",
 
         borderRadius: "32px",
 
-        bgcolor: "var(--whueo-hex_111111)",
+        bgcolor: "var(--whueo-hex_161e15)",
+        background:
+          "linear-gradient(110deg, var(--whueo-hex_1f3729), var(--whueo-hex_161e15))",
 
         cursor: "pointer",
 
@@ -99,20 +85,6 @@ const SelectorCard = ({
         }
       }}
     >
-      {/* Skeleton */}
-      {!loaded && (
-        <Skeleton
-          variant="rectangular"
-          animation="wave"
-          sx={{
-            position: "absolute",
-            inset: 0,
-            borderRadius: "inherit",
-            bgcolor: "var(--whueo-hex_161e15)"
-          }}
-        />
-      )}
-
       {/* Image */}
       <Box
         component="img"
@@ -120,10 +92,11 @@ const SelectorCard = ({
         alt={card.title}
         onLoad={() => setLoaded(true)}
         sx={{
-          display: "block",
+          position: "absolute",
+          inset: 0,
           width: "100%",
-          height: "auto",
-          objectFit: "contain",
+          height: "100%",
+          objectFit: "cover",
 
           opacity: loaded ? 1 : 0,
 
@@ -206,38 +179,10 @@ const SelectorCard = ({
 const Selector = ({
   onClick = () => {}
 }) => {
-  const [loaded, setLoaded] =
-    useState(true)
   const playSound = useSound()
   const handleClick = (e)=>{
     playSound({type: "click"});
     onClick(e)
-  }
-
-  // useEffect(() => {
-  //   preloadImages(
-  //     cards.map(card => card.image)
-  //   ).then(() => {
-  //     setLoaded(true)
-  //   })
-  // }, [])
-
-  if (!loaded) {
-    return (
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100%"
-      >
-        <CircularProgress
-          size={46}
-          sx={{
-            color: "var(--whueo-hex_ffffff)"
-          }}
-        />
-      </Box>
-    )
   }
 
   return (

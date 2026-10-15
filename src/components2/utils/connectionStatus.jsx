@@ -28,13 +28,5 @@ export default function ConnectionStatus({ connected = true, compact = false }) 
     )
   }
 
-  if (connected) return null
-  return (
-    <Box role="status" sx={{ display: "inline-flex", alignItems: "center", gap: 0.6, color: "var(--whueo-hex_7db87a)" }}>
-      <CircularProgress size={12} thickness={5} sx={{ color: "inherit" }} />
-      <Typography component="span" sx={{ fontSize: 11, fontWeight: 700, color: "inherit", whiteSpace: "nowrap" }}>
-        Reconnecting…
-      </Typography>
-    </Box>
-  )
+  
 }
