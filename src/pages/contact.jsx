@@ -82,8 +82,8 @@ export default function Contact() {
         <Box sx={{
           position: "absolute", inset: 0,
           background: `
-            radial-gradient(ellipse at center, rgba(8,14,10,0.2) 0%, rgba(8,14,10,0.72) 100%),
-            linear-gradient(180deg, rgba(8,14,10,0.1) 0%, rgba(8,14,10,0.9) 100%)
+            radial-gradient(ellipse at center, var(--whueo-rgba_8_14_10_0p2) 0%, var(--whueo-rgba_8_14_10_0p72) 100%),
+            linear-gradient(180deg, var(--whueo-rgba_8_14_10_0p1) 0%, var(--whueo-rgba_8_14_10_0p9) 100%)
           `,
         }} />
 
@@ -109,7 +109,7 @@ export default function Contact() {
               letterSpacing: "-0.02em",
               fontSize: { xs: "3rem", sm: "4rem", md: "5.5rem" },
               color: t.textHi,
-              textShadow: "0 6px 40px rgba(0,0,0,0.6)",
+              textShadow: "0 6px 40px var(--whueo-rgba_0_0_0_0p6)",
               mb: 2.5,
             }}>
               Get In Touch
@@ -158,7 +158,7 @@ export default function Contact() {
             position: "relative",
             borderRadius: 5,
             bgcolor: "transparent",
-            border: "1px solid rgba(255,255,255,0.08)",
+            border: "1px solid var(--whueo-rgba_255_255_255_0p08)",
             backdropFilter: "blur(12px)",
             p: { xs: 3, md: 5 },
           }}
@@ -170,7 +170,7 @@ export default function Contact() {
               width: 300,
               height: 300,
               borderRadius: "50%",
-              bgcolor: "rgba(21, 255, 0, 0.12)",
+              bgcolor: "var(--whueo-rgba_21_255_0_0p12)",
               filter: "blur(100px)",
               top: -100,
               right: -60,
@@ -188,7 +188,7 @@ export default function Contact() {
               <Typography
                 variant="body1"
                 textAlign="center"
-                sx={{ color: "rgba(255,255,255,0.7)", maxWidth: 700 }}
+                sx={{ color: "var(--whueo-rgba_255_255_255_0p7)", maxWidth: 700 }}
               >
                 Questions, feedback, bug reports, or partnership inquiries? We'd love to hear from you.
               </Typography>
@@ -218,8 +218,8 @@ export default function Contact() {
                     error={formik.touched.name && Boolean(formik.errors.name)}
                     helperText={formik.touched.name && formik.errors.name}
                     sx={{
-                      input: { color: "white" },
-                      label: { color: "rgba(255,255,255,0.6)" }
+                      input: { color: "var(--whueo-hex_ffffff)" },
+                      label: { color: "var(--whueo-rgba_255_255_255_0p6)" }
                     }}
                   />
 
@@ -234,8 +234,8 @@ export default function Contact() {
                     error={formik.touched.email && Boolean(formik.errors.email)}
                     helperText={formik.touched.email && formik.errors.email}
                     sx={{
-                      input: { color: "white" },
-                      label: { color: "rgba(255,255,255,0.6)" }
+                      input: { color: "var(--whueo-hex_ffffff)" },
+                      label: { color: "var(--whueo-rgba_255_255_255_0p6)" }
                     }}
                   />
                 </Stack>
@@ -254,8 +254,8 @@ export default function Contact() {
                   error={formik.touched.message && Boolean(formik.errors.message)}
                   helperText={formik.touched.message && formik.errors.message}
                   sx={{
-                    textarea: { color: "white" },
-                    label: { color: "rgba(255,255,255,0.6)" }
+                    textarea: { color: "var(--whueo-hex_ffffff)" },
+                    label: { color: "var(--whueo-rgba_255_255_255_0p6)" }
                   }}
                 />
                 <br />
@@ -275,7 +275,7 @@ export default function Contact() {
             </Stack>
 
             <Divider
-              sx={{ width: "100%", borderColor: "rgba(255,255,255,0.08)" }}
+              sx={{ width: "100%", borderColor: "var(--whueo-rgba_255_255_255_0p08)" }}
             />
 
             
@@ -284,8 +284,8 @@ export default function Contact() {
             <Stack direction="row" spacing={1} justifyContent="center">
               <IconButton
                 sx={{
-                  bgcolor: "rgba(255,255,255,0.05)",
-                  "&:hover": { bgcolor: "rgba(255,255,255,0.1)" }
+                  bgcolor: "var(--whueo-rgba_255_255_255_0p05)",
+                  "&:hover": { bgcolor: "var(--whueo-rgba_255_255_255_0p1)" }
                 }}
               >
                 <GitHubIcon />
@@ -293,8 +293,8 @@ export default function Contact() {
 
               <IconButton
                 sx={{
-                  bgcolor: "rgba(255,255,255,0.05)",
-                  "&:hover": { bgcolor: "rgba(255,255,255,0.1)" }
+                  bgcolor: "var(--whueo-rgba_255_255_255_0p05)",
+                  "&:hover": { bgcolor: "var(--whueo-rgba_255_255_255_0p1)" }
                 }}
               >
                 <LinkedInIcon />
@@ -302,8 +302,8 @@ export default function Contact() {
 
               <IconButton
                 sx={{
-                  bgcolor: "rgba(255,255,255,0.05)",
-                  "&:hover": { bgcolor: "rgba(255,255,255,0.1)" }
+                  bgcolor: "var(--whueo-rgba_255_255_255_0p05)",
+                  "&:hover": { bgcolor: "var(--whueo-rgba_255_255_255_0p1)" }
                 }}
               >
                 <EmailIcon />

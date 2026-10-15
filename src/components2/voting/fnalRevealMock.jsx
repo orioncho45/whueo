@@ -48,7 +48,7 @@ export default function FinalRevealMock() {
       <Box
         sx={{
           p: 3,
-          bgcolor: "#111",
+          bgcolor: "var(--whueo-hex_111111)",
           minHeight: "100vh"
         }}
       >

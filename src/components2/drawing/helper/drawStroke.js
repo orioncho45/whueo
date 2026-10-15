@@ -1,3 +1,4 @@
+import { drawingPalette } from "../../../theme"
 const { default: floodFill } = require("./floodFill")
 
 const drawStroke = (
@@ -60,7 +61,7 @@ const drawStroke = (
 
     ctx.strokeStyle =
       stroke.tool === "eraser"
-        ? "#ffffff"
+        ? drawingPalette[1]
         : stroke.color
 
     ctx.lineWidth =

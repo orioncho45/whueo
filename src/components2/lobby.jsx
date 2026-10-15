@@ -125,7 +125,7 @@ export default function GameLobby({ showAlert = () => {}}) {
               sx={{
                 fontSize: "16px",
                 letterSpacing: "0.22em",
-                color: "rgba(255,255,255)",
+                color: "var(--whueo-rgba_255_255_255)",
                 textTransform: "uppercase",
                 mb: 0.5,
               }}
@@ -136,7 +136,7 @@ export default function GameLobby({ showAlert = () => {}}) {
               sx={{
                 fontSize: "10px",
                 letterSpacing: "0.22em",
-                color: "rgba(255,255,255,0.35)",
+                color: "var(--whueo-rgba_255_255_255_0p35)",
                 textTransform: "uppercase",
                 mb: 0.5,
               }}
@@ -147,7 +147,7 @@ export default function GameLobby({ showAlert = () => {}}) {
               sx={{
                 fontSize: { xs: "28px", sm: "36px" },
                 fontWeight: 800,
-                color: "white",
+                color: "var(--whueo-hex_ffffff)",
                 letterSpacing: "0.1em",
                 lineHeight: 1,
               }}
@@ -167,27 +167,27 @@ export default function GameLobby({ showAlert = () => {}}) {
                   width: 48,
                   height: 48,
                   border: copied
-                    ? "1.5px solid rgba(90,200,120,0.6)"
-                    : "1.5px solid rgba(255,255,255,0.2)",
+                    ? "1.5px solid var(--whueo-rgba_90_200_120_0p6)"
+                    : "1.5px solid var(--whueo-rgba_255_255_255_0p2)",
 
                   bgcolor: copied
-                    ? "rgba(90,200,120,0.12)"
-                    : "rgba(255,255,255,0.06)",
+                    ? "var(--whueo-rgba_90_200_120_0p12)"
+                    : "var(--whueo-rgba_255_255_255_0p06)",
 
                   color: copied
-                    ? "rgba(90,200,120,1)"
-                    : "white",
+                    ? "var(--whueo-rgba_90_200_120_1)"
+                    : "var(--whueo-hex_ffffff)",
 
                   transition: "all 0.25s ease",
 
                   "&:hover": {
                     bgcolor: copied
-                      ? "rgba(90,200,120,0.18)"
-                      : "rgba(255,255,255,0.14)",
+                      ? "var(--whueo-rgba_90_200_120_0p18)"
+                      : "var(--whueo-rgba_255_255_255_0p14)",
 
                     borderColor: copied
-                      ? "rgba(90,200,120,0.9)"
-                      : "rgba(255,255,255,0.45)",
+                      ? "var(--whueo-rgba_90_200_120_0p9)"
+                      : "var(--whueo-rgba_255_255_255_0p45)",
                   },
                 }}
               >
@@ -206,16 +206,16 @@ export default function GameLobby({ showAlert = () => {}}) {
                     sx={{
                       width: 56,
                       height: 56,
-                      border: "1.5px solid rgba(90,200,120,0.45)",
-                      bgcolor: "rgba(90,200,120,0.1)",
-                      color: "rgba(90,200,120,1)",
+                      border: "1.5px solid var(--whueo-rgba_90_200_120_0p45)",
+                      bgcolor: "var(--whueo-rgba_90_200_120_0p1)",
+                      color: "var(--whueo-rgba_90_200_120_1)",
                       "&:hover": {
-                        bgcolor: "rgba(90,200,120,0.22)",
-                        borderColor: "rgba(90,200,120,0.8)",
+                        bgcolor: "var(--whueo-rgba_90_200_120_0p22)",
+                        borderColor: "var(--whueo-rgba_90_200_120_0p8)",
                       },
                       "&.Mui-disabled": {
                         opacity: 0.5,
-                        color: "rgba(90,200,120,0.6)",
+                        color: "var(--whueo-rgba_90_200_120_0p6)",
                       },
                     }}
                   >
@@ -233,21 +233,21 @@ export default function GameLobby({ showAlert = () => {}}) {
                     sx={{
                       width: 56,
                       height: 56,
-                      border: "1.5px solid rgba(90,200,120,0.45)",
-                      bgcolor: "rgba(90,200,120,0.1)",
-                      color: "rgba(90,200,120,1)",
+                      border: "1.5px solid var(--whueo-rgba_90_200_120_0p45)",
+                      bgcolor: "var(--whueo-rgba_90_200_120_0p1)",
+                      color: "var(--whueo-rgba_90_200_120_1)",
                       "&:hover": {
-                        bgcolor: "rgba(90,200,120,0.22)",
-                        borderColor: "rgba(90,200,120,0.8)",
+                        bgcolor: "var(--whueo-rgba_90_200_120_0p22)",
+                        borderColor: "var(--whueo-rgba_90_200_120_0p8)",
                       },
                       "&.Mui-disabled": {
                         opacity: 0.5,
-                        color: "rgba(90,200,120,0.6)",
+                        color: "var(--whueo-rgba_90_200_120_0p6)",
                       },
                     }}
                   >
                     {loading ? (
-                      <CircularProgress size={20} sx={{ color: "rgba(90,200,120,0.8)" }} />
+                      <CircularProgress size={20} sx={{ color: "var(--whueo-rgba_90_200_120_0p8)" }} />
                     ) : (
                       <PlayArrow />
                     )}
@@ -260,7 +260,7 @@ export default function GameLobby({ showAlert = () => {}}) {
           <Box
             sx={{
               fontSize: "11px",
-              color: "rgba(255,255,255,0.28)",
+              color: "var(--whueo-rgba_255_255_255_0p28)",
               letterSpacing: "0.06em",
             }}
           >

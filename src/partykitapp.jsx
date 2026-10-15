@@ -251,7 +251,7 @@
 //                 { x: 1, y: 1 },
 //                 { x: 2, y: 2 }
 //               ],
-//               color: "red",
+//               color: "var(--whueo-hex_d32f2f)",
 //               size: 5
 //             }
 //           })
@@ -284,8 +284,8 @@
 //       <pre
 //         style={{
 //           marginTop: 20,
-//           background: "#111",
-//           color: "#0f0",
+//           background: "var(--whueo-hex_111111)",
+//           color: "var(--whueo-hex_00ff00)",
 //           padding: 10,
 //           height: 400,
 //           overflow: "auto"

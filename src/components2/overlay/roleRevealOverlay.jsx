@@ -32,7 +32,7 @@ export default function RoleRevealOverlay({ isImposter, onDone = () => {} }) {
 
   const role = isImposter ? "IMPOSTER" : "ARTIST"
   const mascot = isImposter ? badMascot : goodMascot
-  const glowColor = isImposter ? "#ff3b3b" : "#4fc3f7"
+  const glowColor = isImposter ? "var(--whueo-hex_ff3b3b)" : "var(--whueo-hex_4fc3f7)"
 
   return (
     <Box
@@ -46,7 +46,7 @@ export default function RoleRevealOverlay({ isImposter, onDone = () => {} }) {
         flexDirection: "column",
         bgcolor: "brand.dark",
           backgroundImage:
-              "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)",
+              "radial-gradient(var(--whueo-rgba_255_255_255_0p045) 1px, transparent 1px)",
           backgroundSize: "26px 26px",
 
         opacity: fadeOut ? 0 : 1,
@@ -64,8 +64,8 @@ export default function RoleRevealOverlay({ isImposter, onDone = () => {} }) {
           height: "auto",
           mb: 2,
           filter: isImposter
-            ? "drop-shadow(0 0 25px rgba(255,0,0,0.6))"
-            : "drop-shadow(0 0 25px rgba(79,195,247,0.6))",
+            ? "drop-shadow(0 0 25px var(--whueo-rgba_255_0_0_0p6))"
+            : "var(--whueo-artwork-filter) drop-shadow(0 0 25px var(--whueo-rgba_79_195_247_0p6))",
           animation: "popIn 300ms ease-out"
         }}
       />
@@ -76,8 +76,8 @@ export default function RoleRevealOverlay({ isImposter, onDone = () => {} }) {
           fontSize: { xs: 34, md: 56 },
           fontWeight: 900,
           letterSpacing: 6,
-          color: "#ddd",
-          textShadow: "0 0 20px rgba(0,0,0,0.8)",
+          color: "var(--whueo-hex_dddddd)",
+          textShadow: "0 0 20px var(--whueo-rgba_0_0_0_0p8)",
           mb: 1
         }}
       >
@@ -91,7 +91,7 @@ export default function RoleRevealOverlay({ isImposter, onDone = () => {} }) {
           fontWeight: 1000,
           letterSpacing: 8,
           color: glowColor,
-          textShadow: `0 0 15px ${glowColor}, 0 0 35px rgba(0,0,0,0.9)`,
+          textShadow: `0 0 15px ${glowColor}, 0 0 35px var(--whueo-rgba_0_0_0_0p9)`,
         }}
       >
         {role}

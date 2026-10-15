@@ -120,8 +120,8 @@ export default function Terms() {
             position: "absolute",
             inset: 0,
             background: `
-              radial-gradient(ellipse at center, rgba(8,14,10,0.2) 0%, rgba(8,14,10,0.72) 100%),
-              linear-gradient(180deg, rgba(8,14,10,0.1) 0%, rgba(8,14,10,0.9) 100%)
+              radial-gradient(ellipse at center, var(--whueo-rgba_8_14_10_0p2) 0%, var(--whueo-rgba_8_14_10_0p72) 100%),
+              linear-gradient(180deg, var(--whueo-rgba_8_14_10_0p1) 0%, var(--whueo-rgba_8_14_10_0p9) 100%)
             `
           }}
         />
@@ -153,7 +153,7 @@ export default function Terms() {
                 letterSpacing: "-0.02em",
                 fontSize: { xs: "3rem", sm: "4rem", md: "5.5rem" },
                 color: t.textHi,
-                textShadow: "0 6px 40px rgba(0,0,0,0.6)",
+                textShadow: "0 6px 40px var(--whueo-rgba_0_0_0_0p6)",
                 mb: 2.5
               }}
             >
@@ -161,7 +161,7 @@ export default function Terms() {
             </Typography>
             <Typography
               sx={{
-                color: "white",
+                color: "var(--whueo-hex_ffffff)",
                 fontSize: { xs: "1rem", md: "1.15rem" },
                 maxWidth: 520,
                 mx: "auto"
@@ -181,7 +181,7 @@ export default function Terms() {
             p: { xs: 3, md: 5 },
             borderRadius: 5,
             bgcolor: "transparent",
-            border: "1px solid rgba(255,255,255,0.08)",
+            border: "1px solid var(--whueo-rgba_255_255_255_0p08)",
             backdropFilter: "blur(12px)"
           }}
         >
@@ -208,7 +208,7 @@ export default function Terms() {
                 <Typography
                   sx={{
                     lineHeight: 1.9,
-                    color: "rgba(255,255,255,0.75)"
+                    color: "var(--whueo-rgba_255_255_255_0p75)"
                   }}
                 >
                   {section.content}

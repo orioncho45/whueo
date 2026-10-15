@@ -57,7 +57,7 @@ export default function Footer() {
           }}
         >
           <Box>
-            <Typography sx={{ fontWeight: 700, fontSize: "3rem", color: "white" }}>
+            <Typography sx={{ fontWeight: 700, fontSize: "3rem", color: "var(--whueo-hex_ffffff)" }}>
               Got any questions?
             </Typography>
             <Button variant="contained" color="primary" size="large" onClick={()=>navigate("/contact")}  sx={{borderRadius:"200px"}} >Contact us</Button>
@@ -162,7 +162,7 @@ export default function Footer() {
                   gap: 0.6,
                   fontSize: "0.74rem",
                   fontWeight: 700,
-                  color: "white",
+                  color: "var(--whueo-hex_ffffff)",
                   border: `1px solid ${t.border}`,
                   borderRadius: "7px",
                   px: 1.1,

@@ -42,7 +42,7 @@ export default function useAlertDialog() {
       onClick={closeAlert}
       sx={{
         zIndex: 2000001,
-        bgcolor: "rgba(0,0,0,.72)",
+        bgcolor: "var(--whueo-rgba_0_0_0_p72)",
         backdropFilter: "blur(3px)",
       }}
     >
@@ -133,9 +133,10 @@ export default function useAlertDialog() {
                 sm: 400,
               },
 
-              bgcolor: "#FFFDF5",
+              bgcolor: "var(--whueo-hex_fffdf5)",
+              color: "var(--whueo-hex_111911)",
 
-              border: "4px solid #222",
+              border: "4px solid var(--whueo-hex_222222)",
 
               borderRadius: "36px",
               mx: 3,
@@ -149,7 +150,7 @@ export default function useAlertDialog() {
               pb: 3,
 
               boxShadow:
-                "0 16px 40px rgba(0,0,0,.35)",
+                "0 16px 40px var(--whueo-rgba_0_0_0_p35)",
             }}
           >
             {/* Desktop Tail */}
@@ -179,7 +180,7 @@ export default function useAlertDialog() {
                   "18px solid transparent",
 
                 borderRight:
-                  "28px solid #222",
+                  "28px solid var(--whueo-hex_222222)",
               }}
             />
 
@@ -208,7 +209,7 @@ export default function useAlertDialog() {
                   "14px solid transparent",
 
                 borderRight:
-                  "22px solid #FFFDF5",
+                  "22px solid var(--whueo-hex_fffdf5)",
               }}
             />
 
@@ -262,16 +263,16 @@ export default function useAlertDialog() {
 
                 background:
                   alert.type === "success"
-                    ? "#F4B400"
-                    : "#D32F2F",
+                    ? "var(--whueo-hex_f4b400)"
+                    : "var(--whueo-hex_d32f2f)",
 
                 boxShadow: "none",
 
                 "&:hover": {
                   background:
                     alert.type === "success"
-                      ? "#DB9F00"
-                      : "#B71C1C",
+                      ? "var(--whueo-hex_db9f00)"
+                      : "var(--whueo-hex_b71c1c)",
 
                   boxShadow: "none",
                 },

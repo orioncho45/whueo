@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import WaitingForWordOverlay from "./selectingOverlay";
 import RoundOverlay from "./roundOverlay";
 
-const Overlays = ({words, isImposter, isEliminated, selectorSocketId, round, showAlert}) => {
+const Overlays = ({words, isImposter, isEliminated, selectorSocketId, round, started, showAlert}) => {
     const [showRound, setShowRound] = useState(true);
     const [showRole, setShowRole] = useState(false);
     const [showWordSelect, setShowWordSelect] = useState(false)
@@ -36,7 +36,7 @@ const Overlays = ({words, isImposter, isEliminated, selectorSocketId, round, sho
 
             {
                 showWordSelect && isSelector && (
-                    <WordSelectOverlay words={words} showAlert={showAlert}/>
+                    <WordSelectOverlay words={words} started={started} showAlert={showAlert}/>
                 )
             }
             {

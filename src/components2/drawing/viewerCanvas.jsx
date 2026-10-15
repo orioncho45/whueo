@@ -1,3 +1,4 @@
+import { drawingPalette } from "../../theme"
 import {
   forwardRef,
   useEffect,
@@ -5,12 +6,15 @@ import {
   useRef
 } from "react";
 
-import { drawStroke } from "./helper/drawStroke";
+import { drawStroke, drawAllStrokes } from "./helper/drawStroke";
+
+const EMPTY_STROKES = [];
 
 const ViewerCanvas = forwardRef(({
   initialCanvas = null,
   liveChunk,
   finalStroke,
+  initialStrokes = EMPTY_STROKES,
   onClick = () => {},
   isEliminated = false
 }, ref) => {
@@ -47,6 +51,11 @@ const ViewerCanvas = forwardRef(({
     ctxRef.current = ctx;
 
   }, []);
+  useEffect(() => {
+    if (!initialCanvas && ctxRef.current && initialStrokes.length) {
+      drawAllStrokes(initialStrokes, canvasRef, ctxRef);
+    }
+  }, [initialCanvas, initialStrokes]);
 
   /*
   =========================================
@@ -178,7 +187,7 @@ const ViewerCanvas = forwardRef(({
 
     ctx.strokeStyle =
       liveChunk.tool === "eraser"
-        ? "#ffffff"
+        ? drawingPalette[1]
         : liveChunk.color;
 
     ctx.lineWidth =
@@ -242,8 +251,8 @@ const ViewerCanvas = forwardRef(({
           );
         }}
         style={{
-          border: "2px solid #333",
-          background: "#fff",
+          border: "2px solid var(--whueo-hex_333333)",
+          background: "var(--whueo-hex_ffffff)",
           borderRadius: "8px",
           width: "100%",
           height: "100%"
@@ -256,8 +265,8 @@ const ViewerCanvas = forwardRef(({
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "rgba(0,0,0,0.55)",
-          color: "#fff",
+          background: "var(--whueo-rgba_0_0_0_0p55)",
+          color: "var(--whueo-hex_ffffff)",
           fontSize: 16,
           fontWeight: 700,
           borderRadius: 8,

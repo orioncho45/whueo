@@ -77,7 +77,7 @@ export default function useConfirmAction() {
       onClick={closeDialog}
       sx={{
         zIndex: 9999,
-        bgcolor: "rgba(0,0,0,.72)",
+        bgcolor: "var(--whueo-rgba_0_0_0_p72)",
         backdropFilter: "blur(3px)",
       }}
     >
@@ -160,9 +160,10 @@ export default function useConfirmAction() {
                 sm: 420,
               },
 
-              bgcolor: "#FFFDF5",
+              bgcolor: "var(--whueo-hex_fffdf5)",
+              color: "var(--whueo-hex_111911)",
 
-              border: "4px solid #222",
+              border: "4px solid var(--whueo-hex_222222)",
 
               borderRadius: "36px",
 
@@ -178,7 +179,7 @@ export default function useConfirmAction() {
               pb: 3,
 
               boxShadow:
-                "0 16px 40px rgba(0,0,0,.35)",
+                "0 16px 40px var(--whueo-rgba_0_0_0_p35)",
             }}
           >
             {/* Desktop Tail */}
@@ -208,7 +209,7 @@ export default function useConfirmAction() {
                   "18px solid transparent",
 
                 borderRight:
-                  "28px solid #222",
+                  "28px solid var(--whueo-hex_222222)",
               }}
             />
 
@@ -237,7 +238,7 @@ export default function useConfirmAction() {
                   "14px solid transparent",
 
                 borderRight:
-                  "22px solid #FFFDF5",
+                  "22px solid var(--whueo-hex_fffdf5)",
               }}
             />
 
@@ -299,13 +300,13 @@ export default function useConfirmAction() {
 
                   borderWidth: "3px",
 
-                  borderColor: "#222",
+                  borderColor: "var(--whueo-hex_222222)",
 
-                  color: "#222",
+                  color: "var(--whueo-hex_222222)",
 
                   "&:hover": {
                     borderWidth: "3px",
-                    borderColor: "#222",
+                    borderColor: "var(--whueo-hex_222222)",
                   },
                 }}
               >
@@ -332,16 +333,16 @@ export default function useConfirmAction() {
 
                   background:
                     confirm.type === "success"
-                      ? "#43A047"
-                      : "#D32F2F",
+                      ? "var(--whueo-hex_43a047)"
+                      : "var(--whueo-hex_d32f2f)",
 
                   boxShadow: "none",
 
                   "&:hover": {
                     background:
                       confirm.type === "success"
-                        ? "#2E7D32"
-                        : "#B71C1C",
+                        ? "var(--whueo-hex_2e7d32)"
+                        : "var(--whueo-hex_b71c1c)",
 
                     boxShadow: "none",
                   },

@@ -1,6 +1,7 @@
 import { Box } from "@mui/material"
 import { useState, useEffect, useRef, useCallback } from "react"
 import { GameAvatar } from "./utils/avatar"
+import ConnectionStatus from "./utils/connectionStatus"
 
 function seededRand(seed) {
   let h = 2166136261
@@ -139,19 +140,20 @@ function OrbitingPlayer({
             width: 48,
             height: 48,
             borderRadius: "50%",
-            border: "2px solid rgba(255,255,255,0.25)",
+            border: "2px solid var(--whueo-rgba_255_255_255_0p25)",
             overflow: "hidden",
-            boxShadow: "0 2px 16px rgba(0,0,0,0.5)",
+            boxShadow: "0 2px 16px var(--whueo-rgba_0_0_0_0p5)",
           }}
         >
           <GameAvatar id={player.userId} />
         </Box>
+        <ConnectionStatus connected={player.connected !== false} compact />
       </Box>
 
       <Box
         sx={{
           fontSize: "10px",
-          color: "rgba(255,255,255,0.7)",
+          color: "var(--whueo-rgba_255_255_255_0p7)",
           whiteSpace: "nowrap",
           letterSpacing: "0.04em",
           fontWeight: 500,
@@ -159,6 +161,7 @@ function OrbitingPlayer({
       >
         {player.username}
       </Box>
+      <ConnectionStatus connected={player.connected !== false} />
     </Box>
   )
 }

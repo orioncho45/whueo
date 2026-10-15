@@ -1,12 +1,11 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { Box, Button, CircularProgress, Typography } from "@mui/material"
 import { getSocket } from "../../socket/test"
 import DisplayTimerPill from "../utils/displayTimer"
 import { WORD_TTL } from "../../helper/ttls"
-export default function WordSelectOverlay({ words = [], showAlert = () => {} }) {
+export default function WordSelectOverlay({ words = [], started, showAlert = () => {} }) {
   const [loadingWord, setLoadingWord] = useState(null)
   const socket = getSocket()
-  const timeRef = useRef(Date.now()).current
 
   const handleSelect = (word) => {
     if (!socket || loadingWord) return
@@ -16,7 +15,7 @@ export default function WordSelectOverlay({ words = [], showAlert = () => {} }) 
     socket.emit("word_select", { word }, response=>{
       if (!response.success) {
         setLoadingWord(null);
-        showAlert("error", "Something went wrong!")
+        if (response.message !== "Word selection is unavailable") showAlert("error", response.message || "Something went wrong!")
       }
       
       
@@ -35,7 +34,7 @@ export default function WordSelectOverlay({ words = [], showAlert = () => {} }) 
         justifyContent: "center",
         bgcolor: "brand.dark",
           backgroundImage:
-              "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)",
+              "radial-gradient(var(--whueo-rgba_255_255_255_0p045) 1px, transparent 1px)",
           backgroundSize: "26px 26px",
       }}
     >
@@ -52,8 +51,8 @@ export default function WordSelectOverlay({ words = [], showAlert = () => {} }) 
           overflow: "hidden",
           position: "relative",
           bgcolor: "transparent",
-          color: "white",
-          border: "3px solid #374151"
+          color: "var(--whueo-hex_ffffff)",
+          border: "3px solid var(--whueo-hex_374151)"
         }}
       >
         {/* GLOW */}
@@ -63,17 +62,17 @@ export default function WordSelectOverlay({ words = [], showAlert = () => {} }) 
               width: 300,
               height: 300,
               borderRadius: "50%",
-              bgcolor: "rgba(21, 255, 0, 0.12)",
+              bgcolor: "var(--whueo-rgba_21_255_0_0p12)",
               filter: "blur(100px)",
               top: -120,
               right: -100,
               pointerEvents: "none"
             }}
           />
-        <DisplayTimerPill startTime={timeRef} text={"Autoselects in: "} totalTime={WORD_TTL} onFinish={()=>handleSelect(words[0])} />
+        <DisplayTimerPill startTime={started} text={"Autoselects in: "} totalTime={WORD_TTL} onFinish={()=>{ if (words[0]) handleSelect(words[0]) }} />
         <Typography
           sx={{
-            color: "#fff",
+            color: "var(--whueo-hex_ffffff)",
             fontWeight: 700,
             letterSpacing: 2
           }}
@@ -95,11 +94,11 @@ export default function WordSelectOverlay({ words = [], showAlert = () => {} }) 
                 padding: "12px 16px",
                 fontWeight: 700,
                 fontSize: 16,
-                color: "#fff",
-                border: "1px solid #444",
-                background: "rgba(255,255,255,0.05)",
+                color: "var(--whueo-hex_ffffff)",
+                border: "1px solid var(--whueo-hex_444444)",
+                background: "var(--whueo-rgba_255_255_255_0p05)",
                 "&:hover": {
-                  background: "rgba(255,255,255,0.1)"
+                  background: "var(--whueo-rgba_255_255_255_0p1)"
                 }
               }}
             >
@@ -111,7 +110,7 @@ export default function WordSelectOverlay({ words = [], showAlert = () => {} }) 
                   sx={{
                     position: "absolute",
                     right: 12,
-                    color: "#4fc3f7"
+                    color: "var(--whueo-hex_4fc3f7)"
                   }}
                 />
               )}

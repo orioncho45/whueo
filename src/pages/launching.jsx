@@ -41,8 +41,8 @@ export default function LaunchingSoonHero() {
       <Box sx={{
         position: "absolute", inset: 0,
         background: `
-          radial-gradient(ellipse at center, rgba(8,14,10,0.2) 0%, rgba(8,14,10,0.72) 100%),
-          linear-gradient(180deg, rgba(8,14,10,0.1) 0%, rgba(8,14,10,0.9) 100%)
+          radial-gradient(ellipse at center, var(--whueo-rgba_8_14_10_0p2) 0%, var(--whueo-rgba_8_14_10_0p72) 100%),
+          linear-gradient(180deg, var(--whueo-rgba_8_14_10_0p1) 0%, var(--whueo-rgba_8_14_10_0p9) 100%)
         `,
       }} />
 
@@ -93,7 +93,7 @@ export default function LaunchingSoonHero() {
             letterSpacing: "-0.02em",
             fontSize: { xs: "3rem", sm: "4rem", md: "5.5rem" },
             color: t.textHi,
-            textShadow: "0 6px 40px rgba(0,0,0,0.6)",
+            textShadow: "0 6px 40px var(--whueo-rgba_0_0_0_0p6)",
             mb: 2.5,
           }}>
             Whueo?<Box component="span" sx={{ color: t.accent }}>io</Box>

@@ -21,6 +21,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { getSocket } from "../socket/test"
 import { closePlayers } from "../store/features/players"
 import { GameAvatar } from "./utils/avatar"
+import ConnectionStatus from "./utils/connectionStatus"
 
 export default function Players({
   inGame = false,
@@ -241,9 +242,9 @@ export default function Players({
         flexDirection: "column",
 
         borderRadius: '16px',
-        backgroundColor: 'rgba(0, 0, 0, 0.4)', // Light opacity black
+        backgroundColor: 'var(--whueo-rgba_0_0_0_0p4)', // Light opacity black
         backdropFilter: 'blur(4px)',          // Subtle glassmorphism effect
-        border: '1px solid rgba(255, 255, 255, 0.1)',
+        border: '1px solid var(--whueo-rgba_255_255_255_0p1)',
         
 
         overflow: "hidden",
@@ -273,13 +274,13 @@ export default function Players({
             "space-between",
 
           borderBottom:
-            "1px solid #1f2937"
+            "1px solid var(--whueo-hex_1f2937)"
         }}
       >
 
         <Typography
           fontWeight={700}
-          color="white"
+          color="var(--whueo-hex_ffffff)"
         >
           Players
         </Typography>
@@ -292,7 +293,7 @@ export default function Players({
             )
           }
           sx={{
-            color: "#9ca3af"
+            color: "var(--whueo-hex_9ca3af)"
           }}
         >
           <CloseIcon />
@@ -339,10 +340,10 @@ export default function Players({
                 borderRadius: 2,
 
                 bgcolor:
-                  "rgba(91, 126, 91, 0.03)",
+                  "var(--whueo-rgba_91_126_91_0p03)",
 
                 border:
-                  "1px solid rgba(255,255,255,0.05)"
+                  "1px solid var(--whueo-rgba_255_255_255_0p05)"
               }}
             >
 
@@ -368,7 +369,7 @@ export default function Players({
                   <Typography
                     noWrap
                     sx={{
-                      color: "white",
+                      color: "var(--whueo-hex_ffffff)",
                       fontWeight: 600,
                       fontSize: 14
                     }}
@@ -382,12 +383,14 @@ export default function Players({
                       " 💀"}
                   </Typography>
 
+                  <ConnectionStatus connected={p.connected !== false} />
+
                   {id ===
                     roomData.hostId && (
                     <Typography
                       sx={{
                         color:
-                          "brand.light",
+                          "var(--whueo-hex_7db87a)",
                         fontSize: 11
                       }}
                     >
@@ -430,7 +433,7 @@ export default function Players({
                         size={18}
                         sx={{
                           color:
-                            "white"
+                            "var(--whueo-hex_ffffff)"
                         }}
                       />
                     ) : (
@@ -471,7 +474,7 @@ export default function Players({
                         size={18}
                         sx={{
                           color:
-                            "white"
+                            "var(--whueo-hex_ffffff)"
                         }}
                       />
 

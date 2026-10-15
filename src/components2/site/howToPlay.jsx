@@ -44,11 +44,11 @@ function AdviceCard({
           p: 2,
           borderRadius: 4,
           bgcolor: imposter
-            ? "rgba(239,68,68,0.08)"
-            : "rgba(255,255,255,0.05)",
+            ? "var(--whueo-rgba_239_68_68_0p08)"
+            : "var(--whueo-rgba_255_255_255_0p05)",
           border: imposter
-            ? "1px solid rgba(239,68,68,0.15)"
-            : "1px solid rgba(255,255,255,0.08)",
+            ? "1px solid var(--whueo-rgba_239_68_68_0p15)"
+            : "1px solid var(--whueo-rgba_255_255_255_0p08)",
           maxWidth: 700
         }}
       >

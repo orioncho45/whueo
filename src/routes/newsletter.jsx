@@ -81,7 +81,7 @@ export default function NewsletterPage() {
             borderRadius: 5,
             p: { xs: 3, md: 5 },
             bgcolor: "transparent",
-            border: "1px solid rgba(255,255,255,0.08)",
+            border: "1px solid var(--whueo-rgba_255_255_255_0p08)",
             backdropFilter: "blur(12px)"
           }}
         >
@@ -92,7 +92,7 @@ export default function NewsletterPage() {
               width: 300,
               height: 300,
               borderRadius: "50%",
-              bgcolor: "rgba(21, 255, 0, 0.12)",
+              bgcolor: "var(--whueo-rgba_21_255_0_0p12)",
               filter: "blur(100px)",
               top: -120,
               right: -100,
@@ -112,7 +112,7 @@ export default function NewsletterPage() {
 
               <Typography
                 sx={{
-                  color: "rgba(255,255,255,0.72)",
+                  color: "var(--whueo-rgba_255_255_255_0p72)",
                   lineHeight: 1.8
                 }}
               >
@@ -187,7 +187,7 @@ export default function NewsletterPage() {
               variant="body2"
               textAlign="center"
               sx={{
-                color: "rgba(255,255,255,0.5)"
+                color: "var(--whueo-rgba_255_255_255_0p5)"
               }}
             >
               No spam. Only important updates and

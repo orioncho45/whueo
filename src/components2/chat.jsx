@@ -72,11 +72,11 @@ export default function Chat({ inGame = false }) {
             display: "flex",
             flexDirection: "column",
             borderRadius: '16px',
-            backgroundColor: 'rgba(0, 0, 0, 0.4)', // Light opacity black
+            backgroundColor: 'var(--whueo-rgba_0_0_0_0p4)', // Light opacity black
             backdropFilter: 'blur(4px)',          // Subtle glassmorphism effect
-            border: '1px solid rgba(255, 255, 255, 0.1)',
+            border: '1px solid var(--whueo-rgba_255_255_255_0p1)',
             
-            color: "white",
+            color: "var(--whueo-hex_ffffff)",
 
             "@media (max-width: 768px)": {
               width: 280,
@@ -92,7 +92,7 @@ export default function Chat({ inGame = false }) {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              borderBottom: "1px solid #333"
+              borderBottom: "1px solid var(--whueo-hex_333333)"
             }}
           >
             <Typography fontWeight="bold">
@@ -101,7 +101,7 @@ export default function Chat({ inGame = false }) {
 
             <IconButton
               onClick={() => dispatch(closeChat())}
-              sx={{ color: "white" }}
+              sx={{ color: "var(--whueo-hex_ffffff)" }}
             >
               <CloseIcon />
             </IconButton>
@@ -136,10 +136,10 @@ export default function Chat({ inGame = false }) {
                   borderRadius: 2,
   
                   bgcolor:
-                    "rgba(91, 126, 91, 0.03)",
+                    "var(--whueo-rgba_91_126_91_0p03)",
   
                   border:
-                    "1px solid rgba(255,255,255,0.05)"
+                    "1px solid var(--whueo-rgba_255_255_255_0p05)"
                 }}
               
               
@@ -151,7 +151,7 @@ export default function Chat({ inGame = false }) {
                         sx={{
                           textAlign:"center",
                           fontSize: 12,
-                          color: "#fbbf24",
+                          color: "var(--whueo-hex_fbbf24)",
                           fontWeight: 600,
                           letterSpacing: "0.02em"
                         }}
@@ -181,7 +181,7 @@ export default function Chat({ inGame = false }) {
                       <Typography
                         noWrap
                         sx={{
-                          color: "white",
+                          color: "var(--whueo-hex_ffffff)",
                           fontWeight: 600,
                           fontSize: 14
                         }}
@@ -196,7 +196,7 @@ export default function Chat({ inGame = false }) {
                       <Typography
                         sx={{
                           color:
-                            "#ffffffff",
+                            "var(--whueo-hex_ffffffff)",
                           fontSize: 11,
                           wordBreak: "break-word",
                           textWrap: "revert-layer"
@@ -218,7 +218,7 @@ export default function Chat({ inGame = false }) {
           <Box
             sx={{
               p: 1,
-              borderTop: "1px solid #333"
+              borderTop: "1px solid var(--whueo-hex_333333)"
             }}
           >
             {/* CHARACTER COUNTER */}
@@ -233,8 +233,8 @@ export default function Chat({ inGame = false }) {
                 fontSize={12}
                 color={
                   remainingChars <= 20
-                    ? "#f87171"
-                    : "#9ca3af"
+                    ? "var(--whueo-hex_f87171)"
+                    : "var(--whueo-hex_9ca3af)"
                 }
               >
                 {input.length}/{MAX_CHARACTERS}
@@ -272,22 +272,22 @@ export default function Chat({ inGame = false }) {
                 }}
                 sx={{
                   "& input": {
-                    color: "white"
+                    color: "var(--whueo-hex_ffffff)"
                   },
 
                   "& .MuiOutlinedInput-root": {
-                    color: "white",
+                    color: "var(--whueo-hex_ffffff)",
 
                     "& fieldset": {
-                      borderColor: "#444"
+                      borderColor: "var(--whueo-hex_444444)"
                     },
 
                     "&:hover fieldset": {
-                      borderColor: "#666"
+                      borderColor: "var(--whueo-hex_666666)"
                     },
 
                     "&.Mui-focused fieldset": {
-                      borderColor: "#60a5fa"
+                      borderColor: "var(--whueo-hex_60a5fa)"
                     }
                   }
                 }}
@@ -306,7 +306,7 @@ export default function Chat({ inGame = false }) {
                 {loading ? (
                   <CircularProgress
                     size={22}
-                    sx={{ color: "white" }}
+                    sx={{ color: "var(--whueo-hex_ffffff)" }}
                   />
                 ) : (
                   <Send/>

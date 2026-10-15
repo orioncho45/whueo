@@ -11,7 +11,7 @@ import {
 import { useFormik } from "formik"
 import * as Yup from "yup"
 import { useDispatch } from "react-redux"
-import { connectSocket, getSocket } from "../../socket/test"
+import { connectSocket, getSocket, saveSession } from "../../socket/test"
 import { setRoomData } from "../../store/features/roomData"
 import { useState, useMemo } from "react"
 import { setPersonal } from "../../store/features/personal"
@@ -64,7 +64,8 @@ export default function BuilderForm({
           { ...values, roomId, username },
           ({ success, ...response }) => {
             if (success) {
-              const { socketId, username, userId, roomData } = response
+              const { socketId, username, userId, roomData, sessionToken } = response
+              saveSession(roomId, sessionToken)
               dispatch(setRoomData(roomData))
               dispatch(setPersonal({ socketId, username, userId }))
               onSubmit(response)

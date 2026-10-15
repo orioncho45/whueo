@@ -121,8 +121,8 @@ export default function LandingPage() {
         <Box sx={{
           position: "absolute", inset: 0,
           background: `
-            radial-gradient(ellipse at center, rgba(8,14,10,0.2) 0%, rgba(8,14,10,0.72) 100%),
-            linear-gradient(180deg, rgba(8,14,10,0.1) 0%, rgba(8,14,10,0.9) 100%)
+            radial-gradient(ellipse at center, var(--whueo-rgba_8_14_10_0p2) 0%, var(--whueo-rgba_8_14_10_0p72) 100%),
+            linear-gradient(180deg, var(--whueo-rgba_8_14_10_0p1) 0%, var(--whueo-rgba_8_14_10_0p9) 100%)
           `,
         }} />
 
@@ -167,7 +167,7 @@ export default function LandingPage() {
               letterSpacing: "-0.02em",
               fontSize: { xs: "3rem", sm: "4rem", md: "5.5rem" },
               color: t.textHi,
-              textShadow: "0 6px 40px rgba(0,0,0,0.6)",
+              textShadow: "0 6px 40px var(--whueo-rgba_0_0_0_0p6)",
               mb: 2.5,
             }}>
               Whueo?<Box component="span" sx={{ color: t.accent }}>io</Box>
@@ -203,7 +203,7 @@ export default function LandingPage() {
                   borderRadius: "12px",
                   fontWeight: 800, fontSize: "0.9rem",
                   boxShadow: "none",
-                  "&:hover": { boxShadow: "0 0 28px rgba(83,117,63,0.45)" },
+                  "&:hover": { boxShadow: "0 0 28px var(--whueo-rgba_83_117_63_0p45)" },
                 }}
               >
                 Start Playing
@@ -216,12 +216,12 @@ export default function LandingPage() {
                   px: 3, py: 1.3,
                   borderRadius: "12px",
                   fontWeight: 700, fontSize: "0.9rem",
-                  borderColor: "rgba(255,255,255,0.18)",
+                  borderColor: "var(--whueo-rgba_255_255_255_0p18)",
                   color: t.textMid,
                   "&:hover": {
-                    borderColor: "rgba(255,255,255,0.35)",
+                    borderColor: "var(--whueo-rgba_255_255_255_0p35)",
                     color: t.textHi,
-                    bgcolor: "rgba(255,255,255,0.05)",
+                    bgcolor: "var(--whueo-rgba_255_255_255_0p05)",
                   },
                 }}
               >
@@ -300,7 +300,7 @@ export default function LandingPage() {
         />
         <Box sx={{
           position: "absolute", inset: 0,
-          background: `linear-gradient(135deg, rgba(8,14,10,0.95) 0%, rgba(8,14,10,0.7) 60%, rgba(8,14,10,0.92) 100%)`,
+          background: `linear-gradient(135deg, var(--whueo-rgba_8_14_10_0p95) 0%, var(--whueo-rgba_8_14_10_0p7) 60%, var(--whueo-rgba_8_14_10_0p92) 100%)`,
         }} />
 
         <Container maxWidth="xl" sx={{ py: { xs: 8, md: 10 }, position: "relative" }}>
@@ -542,7 +542,7 @@ export default function LandingPage() {
             borderRadius: "13px",
             fontWeight: 800, fontSize: "0.95rem",
             boxShadow: "none",
-            "&:hover": { boxShadow: "0 0 36px rgba(83,117,63,0.45)" },
+            "&:hover": { boxShadow: "0 0 36px var(--whueo-rgba_83_117_63_0p45)" },
           }}
         >
           Play Free Now
@@ -600,7 +600,7 @@ export default function LandingPage() {
                 borderRadius: "12px",
                 fontWeight: 800, fontSize: "0.9rem",
                 boxShadow: "none",
-                "&:hover": { boxShadow: "0 0 28px rgba(83,117,63,0.45)" },
+                "&:hover": { boxShadow: "0 0 28px var(--whueo-rgba_83_117_63_0p45)" },
               }}
             >
               Join the Discord
@@ -614,12 +614,12 @@ export default function LandingPage() {
                 px: 3, py: 1.3,
                 borderRadius: "12px",
                 fontWeight: 700, fontSize: "0.9rem",
-                borderColor: "rgba(255,255,255,0.18)",
+                borderColor: "var(--whueo-rgba_255_255_255_0p18)",
                 color: t.textMid,
                 "&:hover": {
-                  borderColor: "rgba(255,255,255,0.35)",
+                  borderColor: "var(--whueo-rgba_255_255_255_0p35)",
                   color: t.textHi,
-                  bgcolor: "rgba(255,255,255,0.05)",
+                  bgcolor: "var(--whueo-rgba_255_255_255_0p05)",
                 },
               }}
             >

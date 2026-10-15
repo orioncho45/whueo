@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e274cd56.css",
+    "main.js": "/static/js/main.95fc0dec.js",
+    "static/media/drawing.png": "/static/media/drawing.022fb3594bfac2853294.png",
+    "static/media/hero.png": "/static/media/hero.6a3567482b0ea319954a.png",
+    "static/media/success.png": "/static/media/success.b3b3bcc37b0ee50a2172.png",
+    "static/media/good.png": "/static/media/good.06113b200169dbfcd14c.png",
+    "static/media/bad.png": "/static/media/bad.f58f18ddded1d28cf908.png",
+    "static/media/error.png": "/static/media/error.4ec581666d8413cca2bc.png",
+    "static/media/role.mp3": "/static/media/role.da9580bcc2c59997970b.mp3",
+    "static/media/tick.mp3": "/static/media/tick.67c65e7d36120b689925.mp3",
+    "static/media/leave.mp3": "/static/media/leave.dea8c6678db7a3d75c03.mp3",
+    "static/media/game.png": "/static/media/game.831553903114b9a2da29.png",
+    "static/media/role.png": "/static/media/role.066a2cd838c6b1dd5d34.png",
+    "static/media/vote.png": "/static/media/vote.019e0ba96ac0967cad0f.png",
+    "static/media/canvas.png": "/static/media/canvas.07dbcdc0842a4197da52.png",
+    "static/media/join.mp3": "/static/media/join.f579c76cb21241541e87.mp3",
+    "static/media/lobby.png": "/static/media/lobby.927a436dce8b1533b037.png",
+    "static/media/wordForImp.png": "/static/media/wordForImp.bd7bf2deb48760e5acc9.png",
+    "static/media/join_public_room.jpg": "/static/media/join_public_room.5e7f5faf02537bbc0902.jpg",
+    "static/media/create_game.jpg": "/static/media/create_game.4d23805c93baa94c3e3d.jpg",
+    "static/media/join_room.jpg": "/static/media/join_room.12aeef4c018935ffb84c.jpg",
+    "static/media/wordSelect.png": "/static/media/wordSelect.18f7da24b218f9bcf6aa.png",
+    "index.html": "/index.html",
+    "static/media/click.mp3": "/static/media/click.e84bb3b026a9485137f6.mp3",
+    "main.e274cd56.css.map": "/static/css/main.e274cd56.css.map",
+    "main.95fc0dec.js.map": "/static/js/main.95fc0dec.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e274cd56.css",
+    "static/js/main.95fc0dec.js"
+  ]
+}

@@ -77,7 +77,7 @@ function HotkeyInput({
           width: 90,
           fontSize: 14,
           fontWeight: 600,
-          color: "white",
+          color: "var(--whueo-hex_ffffff)",
         }}
       >
         {label}
@@ -95,12 +95,12 @@ function HotkeyInput({
           borderRadius: "10px",
 
           border:
-            "1px solid rgba(255,255,255,0.1)",
+            "1px solid var(--whueo-rgba_255_255_255_0p1)",
 
           bgcolor:
-            "rgba(255,255,255,0.04)",
+            "var(--whueo-rgba_255_255_255_0p04)",
 
-          color: "white",
+          color: "var(--whueo-hex_ffffff)",
 
           fontWeight: 700,
 
@@ -114,13 +114,13 @@ function HotkeyInput({
 
           "&:focus": {
             border:
-              "1px solid #60a5fa",
+              "1px solid var(--whueo-hex_60a5fa)",
 
             bgcolor:
-              "rgba(96,165,250,.12)",
+              "var(--whueo-rgba_96_165_250_p12)",
 
             boxShadow:
-              "0 0 0 3px rgba(96,165,250,.18)",
+              "0 0 0 3px var(--whueo-rgba_96_165_250_p18)",
           },
         }}
       >
@@ -165,14 +165,14 @@ export default function SettingsDialog({
         borderRadius: "16px",
 
         backgroundColor:
-          "rgba(0, 0, 0, 0.4)",
+          "var(--whueo-rgba_0_0_0_0p4)",
 
         backdropFilter: "blur(4px)",
 
         border:
-          "1px solid rgba(255, 255, 255, 0.1)",
+          "1px solid var(--whueo-rgba_255_255_255_0p1)",
 
-        color: "white",
+        color: "var(--whueo-hex_ffffff)",
 
         overflow: "hidden",
 
@@ -197,7 +197,7 @@ export default function SettingsDialog({
           alignItems: "center",
 
           borderBottom:
-            "1px solid #333",
+            "1px solid var(--whueo-hex_333333)",
         }}
       >
         <Stack
@@ -219,7 +219,7 @@ export default function SettingsDialog({
             dispatch(closeSettings())
           }
           sx={{
-            color: "white",
+            color: "var(--whueo-hex_ffffff)",
           }}
         >
           <CloseIcon />
@@ -262,7 +262,7 @@ export default function SettingsDialog({
                 )
               }
               sx={{
-                color: "#60a5fa",
+                color: "var(--whueo-hex_60a5fa)",
               }}
             />
             <br />
@@ -336,16 +336,16 @@ export default function SettingsDialog({
               dispatch(resetHotkeys())
             }
             sx={{
-              color: "white",
+              color: "var(--whueo-hex_ffffff)",
 
               borderColor:
-                "rgba(255,255,255,0.12)",
+                "var(--whueo-rgba_255_255_255_0p12)",
 
               textTransform: "none",
 
               "&:hover": {
                 borderColor:
-                  "rgba(255,255,255,0.22)",
+                  "var(--whueo-rgba_255_255_255_0p22)",
               },
             }}
           >

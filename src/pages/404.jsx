@@ -25,8 +25,8 @@ export default function NotFound() {
             py:1,
             borderRadius: 5,
             textAlign: "center",
-            bgcolor: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.08)",
+            bgcolor: "var(--whueo-rgba_255_255_255_0p04)",
+            border: "1px solid var(--whueo-rgba_255_255_255_0p08)",
             backdropFilter: "blur(12px)",
             position: "relative",
             overflow: "hidden"
@@ -39,7 +39,7 @@ export default function NotFound() {
               width: 320,
               height: 320,
               borderRadius: "50%",
-              bgcolor: "rgba(21, 255, 0, 0.12)",    
+              bgcolor: "var(--whueo-rgba_21_255_0_0p12)",    
               filter: "blur(120px)",
               top: -150,
               left: "50%",
@@ -58,7 +58,7 @@ export default function NotFound() {
                 width: 100,
                 height: 100,
                 objectFit: "contain",
-                filter: "drop-shadow(0 10px 25px rgba(0,0,0,0.6))"
+                filter: "drop-shadow(0 10px 25px var(--whueo-rgba_0_0_0_0p6))"
               }}
             />
 
@@ -77,7 +77,7 @@ export default function NotFound() {
 
             <Typography
               sx={{
-                color: "rgba(255,255,255,0.7)",
+                color: "var(--whueo-rgba_255_255_255_0p7)",
                 maxWidth: 420,
                 lineHeight: 1.7
               }}

@@ -19,9 +19,9 @@ export default function DisplayTimerPill({text, startTime, totalTime, onFinish})
         px: 1.5,
         py: 0.5,
         borderRadius: '16px',
-        backgroundColor: 'rgba(0, 0, 0, 0.4)', // Light opacity black
+        backgroundColor: 'var(--whueo-rgba_0_0_0_0p4)', // Light opacity black
         backdropFilter: 'blur(4px)',          // Subtle glassmorphism effect
-        border: '1px solid rgba(255, 255, 255, 0.1)',
+        border: '1px solid var(--whueo-rgba_255_255_255_0p1)',
         
         // Crucial for Games
         pointerEvents: 'none', // Lets players click right through the UI element
@@ -34,14 +34,14 @@ export default function DisplayTimerPill({text, startTime, totalTime, onFinish})
       <Typography
         variant="caption"
         sx={{
-          color: 'rgba(255, 255, 255, 0.7)',
+          color: 'var(--whueo-rgba_255_255_255_0p7)',
           fontFamily: 'monospace', // Prevents layout shaking when numbers change
           fontWeight: 500,
           letterSpacing: '0.05em',
         }}
       >
         {text}:{' '}
-        <Box component="span" sx={{ color: '#fff', fontWeight: 700 }}>
+        <Box component="span" sx={{ color: 'var(--whueo-hex_ffffff)', fontWeight: 700 }}>
           <GameTimer startTime={startTime} totalTime={totalTime} onFinish={onFinish} />
         </Box>
         

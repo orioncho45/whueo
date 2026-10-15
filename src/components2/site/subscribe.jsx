@@ -76,7 +76,7 @@ export default function NewsletterInline() {
     <Box sx={{width: "100%", mx: 2}}>
       <Typography
         variant="h5"
-        color="white"
+        color="var(--whueo-hex_ffffff)"
         fontWeight={700}
         gutterBottom
       >
@@ -86,7 +86,7 @@ export default function NewsletterInline() {
       <Typography
         variant="body2"
         sx={{
-          color: "rgba(255,255,255,0.75)",
+          color: "var(--whueo-rgba_255_255_255_0p75)",
           mb: 2.5,
         }}
       >
@@ -101,7 +101,7 @@ export default function NewsletterInline() {
           display: "flex",
           alignItems: "center",
           width: "100%",
-          bgcolor: "rgba(255,255,255,0.03)",
+          bgcolor: "var(--whueo-rgba_255_255_255_0p03)",
           border: "1px solid",
           borderColor: hasError
             ? "error.main"
@@ -115,7 +115,7 @@ export default function NewsletterInline() {
               ? "error.main"
               : "primary.main",
             boxShadow:
-              "0 0 0 3px rgba(255,255,255,0.08)",
+              "0 0 0 3px var(--whueo-rgba_255_255_255_0p08)",
           },
         }}
       >
@@ -131,11 +131,11 @@ export default function NewsletterInline() {
             py: 0.75,
 
             "& input": {
-              color: "white",
+              color: "var(--whueo-hex_ffffff)",
             },
 
             "& input::placeholder": {
-              color: "rgba(255,255,255,0.55)",
+              color: "var(--whueo-rgba_255_255_255_0p55)",
               opacity: 1,
             },
           }}
@@ -156,8 +156,8 @@ export default function NewsletterInline() {
             },
 
             "&.Mui-disabled": {
-              bgcolor: "rgba(255,255,255,0.1)",
-              color: "rgba(255,255,255,0.4)",
+              bgcolor: "var(--whueo-rgba_255_255_255_0p1)",
+              color: "var(--whueo-rgba_255_255_255_0p4)",
             },
           }}
         >

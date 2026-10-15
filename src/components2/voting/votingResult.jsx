@@ -25,7 +25,7 @@ const RenderVotingResults = ({votingResults, analyzing, finalResults}) => {
             p: 4
           }}
         >
-          <Typography variant="h4" color="white" fontWeight="bold" mb={4}>
+          <Typography variant="h4" color="var(--whueo-hex_ffffff)" fontWeight="bold" mb={4}>
             Voting Results
           </Typography>
           
@@ -49,8 +49,8 @@ const RenderVotingResults = ({votingResults, analyzing, finalResults}) => {
                     bgcolor: "transparent",
                     borderRadius: 3,
                     border: isVotedOut
-                      ? "3px solid #e53935"
-                      : "2px solid #2f2f38",
+                      ? "3px solid var(--whueo-hex_e53935)"
+                      : "2px solid var(--whueo-hex_2f2f38)",
                     overflow: "hidden",
                     transition: "all 0.3s ease"
                   }}
@@ -62,16 +62,16 @@ const RenderVotingResults = ({votingResults, analyzing, finalResults}) => {
                       alignItems: "center",
                       p: 2,
                       columnGap: 2,
-                      bgcolor: isVotedOut ? "#2d1f1f" : "transparent"
+                      bgcolor: isVotedOut ? "var(--whueo-hex_2d1f1f)" : "transparent"
                     }}
                   >
                     <GameAvatar size={36} id={player.userId} ></GameAvatar>
-                    <Typography color="white" fontWeight="bold" fontSize={18} sx={{ flex: 1 }}>
+                    <Typography color="var(--whueo-hex_ffffff)" fontWeight="bold" fontSize={18} sx={{ flex: 1 }}>
                       {player.username}
                     </Typography>
                     <Box
                       sx={{
-                        bgcolor: isVotedOut ? "#e53935" : "brand.light",
+                        bgcolor: isVotedOut ? "var(--whueo-hex_e53935)" : "brand.light",
                         px: 2,
                         py: 0.5,
                         borderRadius: 2,
@@ -81,12 +81,12 @@ const RenderVotingResults = ({votingResults, analyzing, finalResults}) => {
                       }}
                     >
                       <HowToVote sx={{ fontSize: 20 }} />
-                      <Typography fontWeight="bold" color="white">
+                      <Typography fontWeight="bold" color="var(--whueo-hex_ffffff)">
                         {voters.length} {voters.length === 1 ? 'vote' : 'votes'}
                       </Typography>
                     </Box>
                     {isVotedOut && (
-                      <HighlightOff sx={{ color: "#e53935", ml: 2, fontSize: 32 }} />
+                      <HighlightOff sx={{ color: "var(--whueo-hex_e53935)", ml: 2, fontSize: 32 }} />
                     )}
                   </Box>
 
@@ -94,12 +94,12 @@ const RenderVotingResults = ({votingResults, analyzing, finalResults}) => {
                   {voters.length > 0 && (
                     <Box
                       sx={{
-                        borderTop: "1px solid #2f2f38",
+                        borderTop: "1px solid var(--whueo-hex_2f2f38)",
                         bgcolor: "transparent",
                         p: 2
                       }}
                     >
-                      <Typography color="#888" fontSize={12} mb={1}>
+                      <Typography color="var(--whueo-hex_888888)" fontSize={12} mb={1}>
                         VOTED BY:
                       </Typography>
                       <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
@@ -136,7 +136,7 @@ const RenderVotingResults = ({votingResults, analyzing, finalResults}) => {
                             <Box
                               sx={{
                                 fontSize: "10px",
-                                color: "rgba(255,255,255,0.7)",
+                                color: "var(--whueo-rgba_255_255_255_0p7)",
                                 whiteSpace: "nowrap",
                                 letterSpacing: "0.04em",
                                 fontWeight: 500,
@@ -155,7 +155,7 @@ const RenderVotingResults = ({votingResults, analyzing, finalResults}) => {
           </Box>
 
           {analyzing && (
-            <Typography color="#888" fontWeight="bold" fontSize={16} mt={4}>
+            <Typography color="var(--whueo-hex_888888)" fontWeight="bold" fontSize={16} mt={4}>
               Analyzing results...
             </Typography>
           )}

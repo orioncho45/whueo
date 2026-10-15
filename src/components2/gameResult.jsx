@@ -6,14 +6,14 @@ import { useState } from "react";
 import { GameAvatar } from "./utils/avatar";
 import theme from "../theme";
 const palette = {
-  bg: "#0A0C11",
-  panel: "#11141B",
-  panelBorder: "rgba(255,255,255,0.07)",
-  hairline: "rgba(255,255,255,0.09)",
-  textPrimary: "#EEF0F4",
-  textMuted: "#838B9C",
-  crew: "#3DDC84",
-  imposter: "#FF5C5C",
+  bg: "var(--whueo-hex_0a0c11)",
+  panel: "var(--whueo-hex_11141b)",
+  panelBorder: "var(--whueo-rgba_255_255_255_0p07)",
+  hairline: "var(--whueo-rgba_255_255_255_0p09)",
+  textPrimary: "var(--whueo-hex_eef0f4)",
+  textMuted: "var(--whueo-hex_838b9c)",
+  crew: "var(--whueo-hex_3ddc84)",
+  imposter: "var(--whueo-hex_ff5c5c)",
 };
 
 const fontDisplay = "'Space Grotesk', 'Inter', sans-serif";
@@ -71,7 +71,7 @@ const GameResult = ({ gameResult, showAlert }) => {
           justifyContent: "center",
           bgcolor: "brand.dark",
             backgroundImage:
-                "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)",
+                "radial-gradient(var(--whueo-rgba_255_255_255_0p045) 1px, transparent 1px)",
             backgroundSize: "26px 26px",
           
           p: 2,
@@ -80,9 +80,9 @@ const GameResult = ({ gameResult, showAlert }) => {
         
         <style>{`
           @keyframes resultPulse {
-            0%   { box-shadow: 0 0 0 0 ${accent}55; }
-            70%  { box-shadow: 0 0 0 16px ${accent}00; }
-            100% { box-shadow: 0 0 0 0 ${accent}00; }
+            0%   { box-shadow: 0 0 0 0 color-mix(in srgb, ${accent} 33%, transparent); }
+            70%  { box-shadow: 0 0 0 16px transparent; }
+            100% { box-shadow: 0 0 0 0 transparent; }
           }
           @media (prefers-reduced-motion: reduce) {
             .result-badge { animation: none !important; }
@@ -100,8 +100,8 @@ const GameResult = ({ gameResult, showAlert }) => {
                 
             overflow: "hidden",
             bgcolor: "transparent",
-            color: "white",
-            border: "3px solid #374151"
+            color: "var(--whueo-hex_ffffff)",
+            border: "3px solid var(--whueo-hex_374151)"
           }}
         >
         {/* GLOW */}
@@ -111,7 +111,7 @@ const GameResult = ({ gameResult, showAlert }) => {
               width: 300,
               height: 300,
               borderRadius: "50%",
-              bgcolor: crewWin ? "rgba(21, 255, 0, 0.12)" : "rgba(255, 0, 0, 0.12)",
+              bgcolor: crewWin ? "var(--whueo-rgba_21_255_0_0p12)" : "var(--whueo-rgba_255_0_0_0p12)",
               filter: "blur(100px)",
               top: -120,
               right: -100,
@@ -200,7 +200,7 @@ const GameResult = ({ gameResult, showAlert }) => {
                       display: "flex",
                       alignItems: "center",
                       gap: 1,
-                      bgcolor: "rgba(255,255,255,0.035)",
+                      bgcolor: "var(--whueo-rgba_255_255_255_0p035)",
                       border: `1px solid ${palette.hairline}`,
                       borderRadius: "999px",
                       pl: 0.5,

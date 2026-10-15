@@ -43,7 +43,7 @@ export default function RoundOverlay({
         zIndex: 99999,
         bgcolor: "brand.dark",
           backgroundImage:
-              "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)",
+              "radial-gradient(var(--whueo-rgba_255_255_255_0p045) 1px, transparent 1px)",
           backgroundSize: "26px 26px",
       }}
     >
@@ -53,11 +53,11 @@ export default function RoundOverlay({
         <Typography
           variant="h1"
           fontWeight="bold"
-          color="white"
+          color="var(--whueo-hex_ffffff)"
           sx={{
             userSelect: "none",
             textShadow:
-              "0 0 20px rgba(255,255,255,0.3)"
+              "0 0 20px var(--whueo-rgba_255_255_255_0p3)"
           }}
         >
           Round {Number(round)+1}

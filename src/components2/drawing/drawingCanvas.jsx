@@ -1,14 +1,17 @@
+import { drawingPalette } from "../../theme"
 import { useEffect, useRef, useState } from "react"
 import {
   Box,
 } from "@mui/material"
 
 import floodFill from "./helper/floodFill"
-import { drawStroke } from "./helper/drawStroke"
+import { drawStroke, drawAllStrokes } from "./helper/drawStroke"
 import DrawingToolbar from "./drawingToolBar"
 import { useSelector } from "react-redux"
 
-export default function DrawingCanvas({onDrawing=()=>{}, onChunk=()=>{}, isEliminated, initialCanvas}) {
+const EMPTY_STROKES = []
+
+export default function DrawingCanvas({onDrawing=()=>{}, onChunk=()=>{}, isEliminated, initialCanvas, initialStrokes=EMPTY_STROKES}) {
 
   const canvasRef = useRef(null);
   const ctxRef = useRef(null);
@@ -27,7 +30,7 @@ export default function DrawingCanvas({onDrawing=()=>{}, onChunk=()=>{}, isElimi
   const [tool, setTool] = useState("brush")
   const [drawing, setDrawing] = useState(false)
 
-  const [color, setColor] = useState("#000000")
+  const [color, setColor] = useState(drawingPalette[0])
   const [size, setSize] = useState(4)
 
   // read hotkeys from settings slice
@@ -49,6 +52,11 @@ export default function DrawingCanvas({onDrawing=()=>{}, onChunk=()=>{}, isElimi
     //console.log(g("setup")
 
   }, [isEliminated])
+  useEffect(() => {
+    if (!initialCanvas && ctxRef.current && initialStrokes.length) {
+      drawAllStrokes(initialStrokes, canvasRef, ctxRef)
+    }
+  }, [initialCanvas, initialStrokes])
   /*
   =========================================
   LOAD SNAPSHOT
@@ -367,8 +375,8 @@ export default function DrawingCanvas({onDrawing=()=>{}, onChunk=()=>{}, isElimi
             height: "100%",
             
             // Matching your canvas design exactly
-            background: "#fff",
-            border: "2px solid #333",
+            background: "var(--whueo-hex_ffffff)",
+            border: "2px solid var(--whueo-hex_333333)",
             borderRadius: "8px",
             
             // Flexbox to perfectly center the text
@@ -379,7 +387,7 @@ export default function DrawingCanvas({onDrawing=()=>{}, onChunk=()=>{}, isElimi
             zIndex: 10
           }}>
             <h2 style={{ 
-              color: "#dc2626", // Eye-catching elimination red
+              color: "var(--whueo-hex_dc2626)", // Eye-catching elimination red
               fontSize: "2rem", 
               fontWeight: "bold",
               margin: 0,
@@ -403,8 +411,8 @@ export default function DrawingCanvas({onDrawing=()=>{}, onChunk=()=>{}, isElimi
               width: "100%",
               height: "100%",
               display: "block",
-              border: "2px solid #333",
-              background: "#fff",
+              border: "2px solid var(--whueo-hex_333333)",
+              background: "var(--whueo-hex_ffffff)",
               borderRadius: "8px",
               cursor: "crosshair",
               touchAction: "none"

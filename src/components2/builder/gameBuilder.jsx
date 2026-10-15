@@ -36,13 +36,13 @@ export default function GameBuilderForm({
         sx={{
           width: "100%",
           maxWidth: 500,
-          color:"white",
+          color:"var(--whueo-hex_ffffff)",
           // bgcolor: "brand.light",
           bgcolor: "transparent",
           position: "relative",
           overflow: "hidden",
           border:
-            "1px solid #2b313d",
+            "1px solid var(--whueo-hex_2b313d)",
 
           borderRadius: 5,
 
@@ -56,7 +56,7 @@ export default function GameBuilderForm({
               width: 300,
               height: 300,
               borderRadius: "50%",
-              bgcolor: "rgba(21, 255, 0, 0.12)",
+              bgcolor: "var(--whueo-rgba_21_255_0_0p12)",
               filter: "blur(100px)",
               top: -120,
               right: -100,
@@ -70,7 +70,7 @@ export default function GameBuilderForm({
         <Typography
           variant="h4"
           fontWeight="bold"
-          color="white"
+          color="var(--whueo-hex_ffffff)"
           mb={4}
         >
           {changeSettings ? "Game Settings" : "Create Game"}

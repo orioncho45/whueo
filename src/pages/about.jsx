@@ -67,8 +67,8 @@ const displayFont = "'Playfair Display', Georgia, serif"
         <Box sx={{
           position: "absolute", inset: 0,
           background: `
-            radial-gradient(ellipse at center, rgba(8,14,10,0.2) 0%, rgba(8,14,10,0.72) 100%),
-            linear-gradient(180deg, rgba(8,14,10,0.1) 0%, rgba(8,14,10,0.9) 100%)
+            radial-gradient(ellipse at center, var(--whueo-rgba_8_14_10_0p2) 0%, var(--whueo-rgba_8_14_10_0p72) 100%),
+            linear-gradient(180deg, var(--whueo-rgba_8_14_10_0p1) 0%, var(--whueo-rgba_8_14_10_0p9) 100%)
           `,
         }} />
 
@@ -96,7 +96,7 @@ const displayFont = "'Playfair Display', Georgia, serif"
               letterSpacing: "-0.02em",
               fontSize: { xs: "3rem", sm: "4rem", md: "5.5rem" },
               color: t.textHi,
-              textShadow: "0 6px 40px rgba(0,0,0,0.6)",
+              textShadow: "0 6px 40px var(--whueo-rgba_0_0_0_0p6)",
               mb: 2.5,
             }}>
               Behind The Canvas
@@ -136,7 +136,7 @@ const displayFont = "'Playfair Display', Georgia, serif"
             // overflow: "hidden",
             borderRadius: 5,
             bgcolor: "transparent",
-            border: "1px solid rgba(255,255,255,0.08)",
+            border: "1px solid var(--whueo-rgba_255_255_255_0p08)",
             backdropFilter: "blur(12px)",
             p: { xs: 3, md: 5 },
             pt: 10
@@ -149,7 +149,7 @@ const displayFont = "'Playfair Display', Georgia, serif"
               width: 300,
               height: 300,
               borderRadius: "50%",
-              bgcolor: "rgba(21, 255, 0, 0.12)",
+              bgcolor: "var(--whueo-rgba_21_255_0_0p12)",
               filter: "blur(100px)",
               top: 0,
               right: 0,
@@ -168,8 +168,8 @@ const displayFont = "'Playfair Display', Georgia, serif"
               top: 0,
               left: "50%",
               transform: "translate(-50%, -50%)",
-              border: "4px solid #0b0b0b",
-              boxShadow: "0 10px 40px rgba(0,0,0,0.5)"
+              border: "4px solid var(--whueo-hex_0b0b0b)",
+              boxShadow: "0 10px 40px var(--whueo-rgba_0_0_0_0p5)"
             }}
           />
 
@@ -189,7 +189,7 @@ const displayFont = "'Playfair Display', Georgia, serif"
                 variant="body1"
                 textAlign="center"
                 sx={{
-                  color: "rgba(255,255,255,0.7)",
+                  color: "var(--whueo-rgba_255_255_255_0p7)",
                   maxWidth: 700
                 }}
               >
@@ -204,7 +204,7 @@ const displayFont = "'Playfair Display', Georgia, serif"
               textAlign="center"
               sx={{
                 lineHeight: 1.9,
-                color: "rgba(255,255,255,0.8)",
+                color: "var(--whueo-rgba_255_255_255_0p8)",
                 maxWidth: 750
               }}
             >
@@ -236,9 +236,9 @@ const displayFont = "'Playfair Display', Georgia, serif"
                     key={skill}
                     label={skill}
                     sx={{
-                      bgcolor: "rgba(255,255,255,0.06)",
-                      border: "1px solid rgba(255,255,255,0.08)",
-                      color: "white",
+                      bgcolor: "var(--whueo-rgba_255_255_255_0p06)",
+                      border: "1px solid var(--whueo-rgba_255_255_255_0p08)",
+                      color: "var(--whueo-hex_ffffff)",
                       fontWeight: 500
                     }}
                   />
@@ -249,7 +249,7 @@ const displayFont = "'Playfair Display', Georgia, serif"
             <Divider
               sx={{
                 width: "100%",
-                borderColor: "rgba(255,255,255,0.08)"
+                borderColor: "var(--whueo-rgba_255_255_255_0p08)"
               }}
             />
 
@@ -263,7 +263,7 @@ const displayFont = "'Playfair Display', Georgia, serif"
               <Typography
                 textAlign="center"
                 sx={{
-                  color: "rgba(255,255,255,0.75)",
+                  color: "var(--whueo-rgba_255_255_255_0p75)",
                   lineHeight: 1.8,
                   fontStyle: "italic"
                 }}
@@ -288,9 +288,9 @@ const displayFont = "'Playfair Display', Georgia, serif"
                 rel="noopener noreferrer"
                 aria-label="Website Portfolio"
                 sx={{
-                  bgcolor: "rgba(255,255,255,0.05)",
+                  bgcolor: "var(--whueo-rgba_255_255_255_0p05)",
                   "&:hover": {
-                    bgcolor: "rgba(255,255,255,0.1)"
+                    bgcolor: "var(--whueo-rgba_255_255_255_0p1)"
                   }
                 }}
               >
@@ -304,9 +304,9 @@ const displayFont = "'Playfair Display', Georgia, serif"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Profile"
                 sx={{
-                  bgcolor: "rgba(255,255,255,0.05)",
+                  bgcolor: "var(--whueo-rgba_255_255_255_0p05)",
                   "&:hover": {
-                    bgcolor: "rgba(255,255,255,0.1)"
+                    bgcolor: "var(--whueo-rgba_255_255_255_0p1)"
                   }
                 }}
               >
@@ -318,9 +318,9 @@ const displayFont = "'Playfair Display', Georgia, serif"
                 href="mailto:orioncho45@gmail.com"
                 aria-label="Email Contact"
                 sx={{
-                  bgcolor: "rgba(255,255,255,0.05)",
+                  bgcolor: "var(--whueo-rgba_255_255_255_0p05)",
                   "&:hover": {
-                    bgcolor: "rgba(255,255,255,0.1)"
+                    bgcolor: "var(--whueo-rgba_255_255_255_0p1)"
                   }
                 }}
               >

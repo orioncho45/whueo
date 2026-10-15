@@ -43,7 +43,7 @@ function ScreenPlaceholder({ alt }) {
       width: "100%",
       aspectRatio: "16 / 10",
       borderRadius: "12px",
-      bgcolor: "rgba(255,255,255,0.03)",
+      bgcolor: "var(--whueo-rgba_255_255_255_0p03)",
       border: `1px dashed ${t.border}`,
       display: "flex",
       alignItems: "center",
@@ -206,7 +206,7 @@ const HowItWorks = () => {
                             "&:hover": {
                               borderColor: t.borderMid,
                               transform: "translateY(-3px)",
-                              boxShadow: "0 10px 40px rgba(0,0,0,0.3)",
+                              boxShadow: "0 10px 40px var(--whueo-rgba_0_0_0_0p3)",
                             },
                           }}
                         >

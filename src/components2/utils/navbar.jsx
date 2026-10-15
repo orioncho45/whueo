@@ -47,7 +47,6 @@ export default function Navbar({showAlert=()=>{}, confirmAction = () => {}}) {
     }
     
   }, [roomData])
-  console.log(roomData?.word)
   return (
     <AppBar
       position="static"
@@ -56,7 +55,7 @@ export default function Navbar({showAlert=()=>{}, confirmAction = () => {}}) {
         background: "transparent",
         // bgcolor: "brand.dark",
         //             backgroundImage:
-        //                 "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)",
+        //                 "radial-gradient(var(--whueo-rgba_255_255_255_0p045) 1px, transparent 1px)",
         //             backgroundSize: "26px 26px",
         color: "text.primary",
       }}

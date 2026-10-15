@@ -17,7 +17,7 @@ export default function WaitingForWordOverlay() {
         justifyContent: "center",
         bgcolor: "brand.dark",
           backgroundImage:
-              "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)",
+              "radial-gradient(var(--whueo-rgba_255_255_255_0p045) 1px, transparent 1px)",
           backgroundSize: "26px 26px",
       }}
     >
@@ -35,8 +35,8 @@ export default function WaitingForWordOverlay() {
            overflow: "hidden",
           position: "relative",
           bgcolor: "transparent",
-          color: "white",
-          border: "3px solid #374151"
+          color: "var(--whueo-hex_ffffff)",
+          border: "3px solid var(--whueo-hex_374151)"
         }}
       >
         {/* GLOW */}
@@ -46,7 +46,7 @@ export default function WaitingForWordOverlay() {
               width: 300,
               height: 300,
               borderRadius: "50%",
-              bgcolor: "rgba(21, 255, 0, 0.12)",
+              bgcolor: "var(--whueo-rgba_21_255_0_0p12)",
               filter: "blur(100px)",
               top: -120,
               right: -100,
@@ -58,7 +58,7 @@ export default function WaitingForWordOverlay() {
         <Typography
           variant="h5"
           sx={{
-            color: "#fff",
+            color: "var(--whueo-hex_ffffff)",
             textAlign: "center",
             fontWeight: 700
           }}
@@ -68,7 +68,7 @@ export default function WaitingForWordOverlay() {
 
         <Typography
           sx={{
-            color: "#999",
+            color: "var(--whueo-hex_999999)",
             textAlign: "center"
           }}
         >

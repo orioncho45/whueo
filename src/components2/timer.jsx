@@ -18,8 +18,10 @@ export default function GameTimer({
   =========================================
   */
 
-  const [timeLeft, setTimeLeft] =
-    useState(totalTime)
+  const remainingSeconds = () => Math.max(0, Math.ceil((startTime + totalTime * 1000 - Date.now()) / 1000))
+  const [timeLeft, setTimeLeft] = useState(remainingSeconds)
+  const onFinishRef = useRef(onFinish)
+  onFinishRef.current = onFinish
 
   /*
   =========================================
@@ -28,40 +30,22 @@ export default function GameTimer({
   */
 
   useEffect(() => {
-
-    const interval = setInterval(() => {
-
-      const elapsed =
-        Math.floor(
-          (Date.now() - startTime) / 1000
-        )
-
-      const remaining =
-        totalTime - elapsed
-
-      if (remaining <= 0) {
-
-        setTimeLeft(0)
-
-        clearInterval(interval)
-
-        onFinish()
-        if (stopRef.current) {
-          stopRef.current()
-          stopRef.current = null
-        }
-
-
-        return
-      }
-
+    let finished = false
+    let interval
+    const tick = () => {
+      const remaining = Math.max(0, Math.ceil((startTime + totalTime * 1000 - Date.now()) / 1000))
       setTimeLeft(remaining)
-
-    }, 200)
-
-    return () =>
-      clearInterval(interval)
-
+      if (remaining === 0 && !finished) {
+        finished = true
+        clearInterval(interval)
+        onFinishRef.current()
+        stopRef.current?.()
+        stopRef.current = null
+      }
+    }
+    tick()
+    if (!finished) interval = setInterval(tick, 200)
+    return () => clearInterval(interval)
   }, [startTime, totalTime])
 
   
@@ -117,8 +101,8 @@ export default function GameTimer({
 
   const color =
     percentage <= 0.3
-      ? "#ff5252"
-      : "#4caf50"
+      ? "var(--whueo-hex_ff5252)"
+      : "var(--whueo-hex_4caf50)"
 
   /*
   =========================================

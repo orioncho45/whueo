@@ -52,8 +52,8 @@ export const GameAvatar = ({
         sx={{ 
           width: size, 
           height: size,
-          border: `2px solid ${imposter  ? "red" : "brand.light"}`, // Matches the cool blue sunglasses
-          boxShadow: `0px 4px 10px ${imposter ? "rgba(255, 0, 0, 0.15)" : "rgba(0, 0, 0, 0.15)"}`
+          border: `2px solid ${imposter ? "var(--whueo-hex_d32f2f)" : "var(--whueo-hex_1f3729)"}`,
+          boxShadow: `0px 4px 10px ${imposter ? "var(--whueo-rgba_255_0_0_0p15)" : "var(--whueo-rgba_0_0_0_0p15)"}`
         }}
       />
     </Box>

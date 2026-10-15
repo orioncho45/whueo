@@ -1,3 +1,4 @@
+import { drawingPalette } from "../../theme"
 import { useState } from "react"
 import {
   Box,
@@ -37,18 +38,7 @@ export default function DrawingToolbar({
   const [sizeAnchor, setSizeAnchor] =
     useState(null)
 
-  const colors = [
-    "#000000",
-    "#FFFFFF",
-    "#FF0000",
-    "#FFA500",
-    "#FFFF00",
-    "#00AA00",
-    "#0000FF",
-    "#800080",
-    "#8B4513",
-    "#FF69B4",
-  ]
+  const colors = drawingPalette
 
   const brushSizes = [
     { value: 2, preview: 4 },
@@ -64,7 +54,7 @@ export default function DrawingToolbar({
       display="flex"
       alignItems="center"
       gap={1}
-      color="#fff"
+      color="var(--whueo-hex_ffffff)"
       flexWrap="nowrap"
     >
       {/* BRUSH */}
@@ -166,8 +156,8 @@ export default function DrawingToolbar({
                   cursor: "pointer",
                   border:
                     color === c
-                      ? "3px solid #fff"
-                      : "1px solid #888",
+                      ? "3px solid var(--whueo-hex_ffffff)"
+                      : "1px solid var(--whueo-hex_888888)",
                 }}
               />
             ))}
@@ -220,7 +210,7 @@ export default function DrawingToolbar({
                 borderRadius: "50%",
                 bgcolor: color,
                 border:
-                  "1px solid #999",
+                  "1px solid var(--whueo-hex_999999)",
               }}
             />
           </Button>
@@ -261,8 +251,8 @@ export default function DrawingToolbar({
                     cursor: "pointer",
                     border:
                       color === c
-                        ? "3px solid #1976d2"
-                        : "1px solid #888",
+                        ? "3px solid var(--whueo-hex_1976d2)"
+                        : "1px solid var(--whueo-hex_888888)",
                   }}
                 />
               ))}
@@ -291,7 +281,7 @@ export default function DrawingToolbar({
                 width: 10,
                 height: 10,
                 borderRadius: "50%",
-                bgcolor: "#000",
+                bgcolor: "var(--whueo-hex_000000)",
               }}
             />
           </Button>
@@ -339,7 +329,7 @@ export default function DrawingToolbar({
                         borderRadius:
                           "50%",
                         bgcolor:
-                          "#000",
+                          "var(--whueo-hex_000000)",
                         flexShrink: 0,
                       }}
                     />

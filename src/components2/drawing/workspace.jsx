@@ -11,6 +11,7 @@ import { getSocket } from "../../socket/test"
 import ViewCompactIcon from "@mui/icons-material/ViewCompact";
 import GridViewIcon from "@mui/icons-material/GridView";
 import DisplayTimerPill from "../utils/displayTimer"
+import ConnectionStatus from "../utils/connectionStatus"
 import { START_TTL } from "../../helper/ttls"
 const labelStyle = {
   position: "absolute",
@@ -20,10 +21,11 @@ const labelStyle = {
   py: 0.5,
   borderRadius: 2,
   fontSize: 13,
-  color: "#fff",
-  bgcolor: "rgba(0,0,0,0.55)",
+  color: "var(--whueo-hex_ffffff)",
+  bgcolor: "var(--whueo-rgba_0_0_0_0p55)",
   backdropFilter: "blur(6px)"
 }
+const EMPTY_STROKES = []
 
 const CanvasTile = ({
   player,
@@ -32,6 +34,7 @@ const CanvasTile = ({
   viewMode,
   liveChunk,
   finalStroke,
+  initialStrokes,
   isOwn=false,
   viewerRef=null,
   isEliminated=false
@@ -48,8 +51,8 @@ const CanvasTile = ({
         minHeight: 0,
         borderRadius: 3,
         overflow: "hidden",
-        bgcolor: "#111",
-        border: isSelected ? "2px solid #1976d2" : "1px solid #222",
+        bgcolor: "var(--whueo-hex_111111)",
+        border: isSelected ? "2px solid var(--whueo-hex_1976d2)" : "1px solid var(--whueo-hex_222222)",
         cursor: "pointer",
         transition: "0.2s ease",
         "&:hover": { transform: "scale(1.02)" },
@@ -66,6 +69,7 @@ const CanvasTile = ({
           onClick={onClick}
           liveChunk={liveChunk}
           finalStroke={finalStroke}
+          initialStrokes={initialStrokes}
           isEliminated={isEliminated}
         />
       </Box>
@@ -78,12 +82,13 @@ const CanvasTile = ({
           py: 0.3,
           borderRadius: 1,
           fontSize: 11,
-          color: "#fff",
-          bgcolor: "rgba(0,0,0,0.6)",
+          color: "var(--whueo-hex_ffffff)",
+          bgcolor: "var(--whueo-rgba_0_0_0_0p6)",
           backdropFilter: "blur(4px)"
         }}
       >
         {isOwn ? `${username} (You)` : player.username}
+        <ConnectionStatus connected={player.connected !== false} />
       </Box>
     </Box>
   )
@@ -142,9 +147,9 @@ export default function CanvasWorkspace({
             // borderRadius: 4,
             overflow: "hidden",
             bgcolor: "transparent",
-            border: "1px solid #222",
+            border: "1px solid var(--whueo-hex_222222)",
             position: "relative",
-            boxShadow: "0 0 30px rgba(0,0,0,0.4)"
+            boxShadow: "0 0 30px var(--whueo-rgba_0_0_0_0p4)"
           }}
         >
           {selectedCanvas ? (
@@ -153,6 +158,7 @@ export default function CanvasWorkspace({
                 liveChunk={liveChunk?.[selectedCanvas.socketId]}
                 finalStroke={finalStroke?.[selectedCanvas.socketId] || null}
                 initialCanvas={initialCanvas}
+                initialStrokes={initialCanvas ? EMPTY_STROKES : roomData.drawings?.[selectedCanvas.socketId] || EMPTY_STROKES}
               />
               <Box sx={labelStyle}>{selectedCanvas.username}</Box>
             </>
@@ -162,6 +168,7 @@ export default function CanvasWorkspace({
                 isEliminated={isEliminated}
                 username={username}
                 initialCanvas={initialCanvas}
+                initialStrokes={initialCanvas ? EMPTY_STROKES : roomData.drawings?.[socketId] || EMPTY_STROKES}
                 onChunk={(chunk) => {
                   socket.emit("stroke_chunk", { chunk })
                   setOwnLiveChunk(chunk)
@@ -187,8 +194,8 @@ export default function CanvasWorkspace({
       <Box
         sx={{
           position: "relative",
-          borderLeft: { xs: "none", md: "1px solid #1e1e1e" },
-          borderTop: { xs: "1px solid #1e1e1e", md: "none" },
+          borderLeft: { xs: "none", md: "1px solid var(--whueo-hex_1e1e1e)" },
+          borderTop: { xs: "1px solid var(--whueo-hex_1e1e1e)", md: "none" },
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
@@ -205,9 +212,9 @@ export default function CanvasWorkspace({
             zIndex: 10,
             p: 0.5,
             borderRadius: 3,
-            bgcolor: "rgba(21,21,21,0.75)",
+            bgcolor: "var(--whueo-rgba_21_21_21_0p75)",
             backdropFilter: "blur(8px)",
-            border: "1px solid #222",
+            border: "1px solid var(--whueo-hex_222222)",
             display: "flex",
             gap: 0.5
           }}
@@ -221,7 +228,7 @@ export default function CanvasWorkspace({
             size="small"
             sx={{
               "& .MuiToggleButton-root": {
-                color: "#bbb",
+                color: "var(--whueo-hex_bbbbbb)",
                 border: "none",
                 px: 1,
                 py: 0.5,
@@ -229,7 +236,7 @@ export default function CanvasWorkspace({
               },
               "& .Mui-selected": {
       
-                color: "#fff"
+                color: "var(--whueo-hex_ffffff)"
               }
             }}
           >
@@ -259,6 +266,7 @@ export default function CanvasWorkspace({
           {!isEliminated && (
             <CanvasTile
               finalStroke={ownFinalStroke}
+              initialStrokes={roomData.drawings?.[socketId] || EMPTY_STROKES}
               liveChunk={ownLiveChunk}
               viewMode={viewMode}
               isOwn={true}
@@ -273,6 +281,7 @@ export default function CanvasWorkspace({
           {otherPlayers.map((player, index) => (
             <CanvasTile
               finalStroke={finalStroke[player.socketId]}
+              initialStrokes={roomData.drawings?.[player.socketId] || EMPTY_STROKES}
               liveChunk={liveChunk[player.socketId]}
               selectedCanvas={selectedCanvas}
               viewMode={viewMode}

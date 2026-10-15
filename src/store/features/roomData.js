@@ -9,8 +9,15 @@ const roomDataSlice = createSlice({
 
   reducers: {
     setRoomData: (state, action) => {
-      //console.log(g(action.payload)
-      state.value = action.payload;
+      const next = action.payload
+      if (next && state.value && next.round === state.value.round) {
+        state.value = {
+          ...next,
+          word: next.word || state.value.word,
+          imposters: next.imposters?.length ? next.imposters : state.value.imposters,
+          drawings: next.drawings || state.value.drawings
+        }
+      } else state.value = next
     },
     removePlayer: (state, action) => {
       if (state.value && state.value.players) {

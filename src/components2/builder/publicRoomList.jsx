@@ -40,8 +40,8 @@ export default function PublicRoomsList({ onClick = () => {} }) {
             overflow: "hidden",
             position: "relative",
             bgcolor: "transparent",
-            color: "white",
-            border: "3px solid #374151",
+            color: "var(--whueo-hex_ffffff)",
+            border: "3px solid var(--whueo-hex_374151)",
             backdropFilter: "blur(10px)",
           }}
         >
@@ -51,7 +51,7 @@ export default function PublicRoomsList({ onClick = () => {} }) {
               width: 320,
               height: 320,
               borderRadius: "50%",
-              bgcolor: "rgba(33, 150, 243, 0.14)",
+              bgcolor: "var(--whueo-rgba_33_150_243_0p14)",
               filter: "blur(120px)",
               top: -150,
               right: -120,
@@ -63,7 +63,7 @@ export default function PublicRoomsList({ onClick = () => {} }) {
             <Typography variant="h6" fontWeight={700}>
               Loading Public Rooms...
             </Typography>
-            <Typography variant="body2" color="gray">
+            <Typography variant="body2" color="var(--whueo-hex_888888)">
               Fetching active players and rooms
             </Typography>
           </Stack>
@@ -95,8 +95,8 @@ export default function PublicRoomsList({ onClick = () => {} }) {
             overflow: "hidden",
             position: "relative",
             bgcolor: "transparent",
-            color: "white",
-            border: "3px solid #374151",
+            color: "var(--whueo-hex_ffffff)",
+            border: "3px solid var(--whueo-hex_374151)",
           }}
         >
           <Box
@@ -105,7 +105,7 @@ export default function PublicRoomsList({ onClick = () => {} }) {
               width: 320,
               height: 320,
               borderRadius: "50%",
-              bgcolor: "rgba(255,255,255,0.05)",
+              bgcolor: "var(--whueo-rgba_255_255_255_0p05)",
               filter: "blur(120px)",
               top: -150,
               right: -120,
@@ -118,8 +118,8 @@ export default function PublicRoomsList({ onClick = () => {} }) {
                 width: 90,
                 height: 90,
                 borderRadius: "50%",
-                bgcolor: "rgba(255,255,255,0.05)",
-                border: "1px solid #3f3f46",
+                bgcolor: "var(--whueo-rgba_255_255_255_0p05)",
+                border: "1px solid var(--whueo-hex_3f3f46)",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
@@ -131,7 +131,7 @@ export default function PublicRoomsList({ onClick = () => {} }) {
             <Typography variant="h5" fontWeight={800}>
               No Public Rooms
             </Typography>
-            <Typography color="gray" textAlign="center" maxWidth={400}>
+            <Typography color="var(--whueo-hex_888888)" textAlign="center" maxWidth={400}>
               Looks quiet right now. Create a room and become the first squad online.
             </Typography>
             <Button
@@ -143,9 +143,9 @@ export default function PublicRoomsList({ onClick = () => {} }) {
                 borderRadius: 2,
                 textTransform: "none",
                 fontWeight: 600,
-                borderColor: "#374151",
-                color: "gray",
-                "&:hover": { borderColor: "#15ff00", color: "#15ff00" },
+                borderColor: "var(--whueo-hex_374151)",
+                color: "var(--whueo-hex_888888)",
+                "&:hover": { borderColor: "var(--whueo-hex_15ff00)", color: "var(--whueo-hex_15ff00)" },
               }}
             >
               Refresh
@@ -193,7 +193,7 @@ export default function PublicRoomsList({ onClick = () => {} }) {
   >
     <Box>
       <Stack direction="row" spacing={1} alignItems="center">
-        <Typography variant="h4" color="white" fontWeight={900}>
+        <Typography variant="h4" color="var(--whueo-hex_ffffff)" fontWeight={900}>
           Public Rooms
         </Typography>
         <Tooltip title="Refresh rooms">
@@ -201,8 +201,8 @@ export default function PublicRoomsList({ onClick = () => {} }) {
             onClick={refresh}
             size="small"
             sx={{
-              color: "gray",
-              "&:hover": { color: "#15ff00" },
+              color: "var(--whueo-hex_888888)",
+              "&:hover": { color: "var(--whueo-hex_15ff00)" },
             }}
           >
             <RefreshIcon fontSize="small" />
@@ -210,7 +210,7 @@ export default function PublicRoomsList({ onClick = () => {} }) {
         </Tooltip>
       </Stack>
 
-      <Typography variant="body2" color="gray">
+      <Typography variant="body2" color="var(--whueo-hex_888888)">
         Join active games happening right now
       </Typography>
     </Box>
@@ -225,8 +225,8 @@ export default function PublicRoomsList({ onClick = () => {} }) {
         sx={{
           px: 2,
           py: 1.2,
-          bgcolor: "rgba(255,255,255,0.04)",
-          border: "1px solid #2f2f2f",
+          bgcolor: "var(--whueo-rgba_255_255_255_0p04)",
+          border: "1px solid var(--whueo-hex_2f2f2f)",
           borderRadius: 3,
         }}
       >
@@ -236,7 +236,7 @@ export default function PublicRoomsList({ onClick = () => {} }) {
             <Typography fontWeight={800} lineHeight={1}>
               {activeRooms}
             </Typography>
-            <Typography variant="caption" color="gray">
+            <Typography variant="caption" color="var(--whueo-hex_888888)">
               Active Rooms
             </Typography>
           </Box>
@@ -247,8 +247,8 @@ export default function PublicRoomsList({ onClick = () => {} }) {
         sx={{
           px: 2,
           py: 1.2,
-          bgcolor: "rgba(255,255,255,0.04)",
-          border: "1px solid #2f2f2f",
+          bgcolor: "var(--whueo-rgba_255_255_255_0p04)",
+          border: "1px solid var(--whueo-hex_2f2f2f)",
           borderRadius: 3,
         }}
       >
@@ -258,7 +258,7 @@ export default function PublicRoomsList({ onClick = () => {} }) {
             <Typography fontWeight={800} lineHeight={1}>
               {activePlayers}
             </Typography>
-            <Typography variant="caption" color="gray">
+            <Typography variant="caption" color="var(--whueo-hex_888888)">
               Players Online
             </Typography>
           </Box>
@@ -286,15 +286,15 @@ export default function PublicRoomsList({ onClick = () => {} }) {
             cursor: "pointer",
             position: "relative",
             overflow: "hidden",
-            bgcolor: "rgba(255,255,255,0.03)",
-            border: "1px solid #262626",
+            bgcolor: "var(--whueo-rgba_255_255_255_0p03)",
+            border: "1px solid var(--whueo-hex_262626)",
             borderRadius: 4,
             transition: "all 0.25s ease",
             "&:hover": {
               borderColor: "brand.light",
               transform: "translateY(-3px)",
-              bgcolor: "rgba(255,255,255,0.05)",
-              boxShadow: "0 10px 30px rgba(21, 255, 0, 0.12)",
+              bgcolor: "var(--whueo-rgba_255_255_255_0p05)",
+              boxShadow: "0 10px 30px var(--whueo-rgba_21_255_0_0p12)",
             },
           }}
         >
@@ -304,7 +304,7 @@ export default function PublicRoomsList({ onClick = () => {} }) {
               width: 180,
               height: 180,
               borderRadius: "50%",
-              bgcolor: "rgba(21, 255, 0, 0.12)",
+              bgcolor: "var(--whueo-rgba_21_255_0_0p12)",
               filter: "blur(80px)",
               top: -80,
               right: -60,
@@ -335,7 +335,7 @@ export default function PublicRoomsList({ onClick = () => {} }) {
               </Stack>
 
               <Stack direction="row" spacing={1} mt={0.7}>
-                <Typography variant="body2" color="#9ca3af">
+                <Typography variant="body2" color="var(--whueo-hex_9ca3af)">
                   ⏱{" "}
                   <GameTimer
                     startTime={room.created}

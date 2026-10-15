@@ -9,14 +9,30 @@ import useConfirmAction from "../hooks/confirmAction"
 import SettingsDialog from "../components2/utils/settings"
 import useSound from "../sounds/player"
 import { useEffect, useRef } from "react"
+import { connectSocket, getSavedSession } from "../socket/test"
+import { useDispatch } from "react-redux"
+import { setPersonal } from "../store/features/personal"
+import { setRoomData } from "../store/features/roomData"
 
 export default function Layout() {
+  const dispatch = useDispatch()
   const { AlertDialog, showAlert } = useAlertDialog()
   const roomData = useSelector(state=>state.roomData.value);
   // const roomData = {}
   const { ConfirmDialog, confirmAction } = useConfirmAction()
   const playSound = useSound();
   const playSoundRef = useRef(playSound);
+  useEffect(() => {
+    const saved = getSavedSession()
+    if (!saved) return
+    const socket = connectSocket(saved.roomId)
+    const restore = ({ roomData, socketId, username, userId, drawings }) => {
+      dispatch(setPersonal({ socketId, username, userId }))
+      dispatch(setRoomData({ ...roomData, drawings }))
+    }
+    socket.on("session_restored", restore)
+    return () => socket.off("session_restored", restore)
+  }, [dispatch])
   useEffect(() => {
     playSoundRef.current = playSound;
   }, [playSound]);
@@ -60,7 +76,7 @@ export default function Layout() {
                     position: "relative",
                     bgcolor: "brand.dark",
                     backgroundImage:
-                        "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)",
+                        "radial-gradient(var(--whueo-rgba_255_255_255_0p045) 1px, transparent 1px)",
                     backgroundSize: "26px 26px",
                 }}
                 >

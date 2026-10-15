@@ -55,7 +55,7 @@ export function LandingNavbar() {
           backgroundColor: isSticky ? "brand.dark" : "transparent",
           borderBottom: isSticky ? 1 : "none",
           borderColor: "divider",
-          color: "white",
+          color: "var(--whueo-hex_ffffff)",
           transition: "all 200ms ease",
         }}
       >
@@ -124,7 +124,7 @@ export function LandingNavbar() {
             onClick={() => setMobileOpen(true)}
             sx={{
               display: { xs: "flex", md: "none" },
-              color: "white",
+              color: "var(--whueo-hex_ffffff)",
             }}
           >
             <MenuIcon />
@@ -141,7 +141,7 @@ export function LandingNavbar() {
           sx: {
             width: 280,
             backgroundColor: "brand.dark",
-            color: "white",
+            color: "var(--whueo-hex_ffffff)",
           },
         }}
       >
@@ -162,7 +162,7 @@ export function LandingNavbar() {
 
           <IconButton
             onClick={closeDrawer}
-            sx={{ color: "white" }}
+            sx={{ color: "var(--whueo-hex_ffffff)" }}
           >
             <Close />
           </IconButton>
@@ -175,7 +175,7 @@ export function LandingNavbar() {
               closeDrawer()
             }}
           >
-            <ListItemIcon sx={{ color: "white" }}>
+            <ListItemIcon sx={{ color: "var(--whueo-hex_ffffff)" }}>
               <HelpOutline />
             </ListItemIcon>
 
@@ -188,7 +188,7 @@ export function LandingNavbar() {
               closeDrawer()
             }}
           >
-            <ListItemIcon sx={{ color: "white" }}>
+            <ListItemIcon sx={{ color: "var(--whueo-hex_ffffff)" }}>
               <InfoOutlined />
             </ListItemIcon>
 
@@ -201,7 +201,7 @@ export function LandingNavbar() {
               closeDrawer()
             }}
           >
-            <ListItemIcon sx={{ color: "white" }}>
+            <ListItemIcon sx={{ color: "var(--whueo-hex_ffffff)" }}>
               <PlayArrow />
             </ListItemIcon>
 

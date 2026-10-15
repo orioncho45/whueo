@@ -5,12 +5,12 @@ import { GameAvatar } from "../utils/avatar";
 
 
 const palette = {
-  panelBorder: "rgba(255,255,255,0.07)",
-  hairline: "rgba(255,255,255,0.09)",
-  textPrimary: "#EEF0F4",
-  textMuted: "#838B9C",
-  crew: "#3DDC84",
-  imposter: "#FF5C5C",
+  panelBorder: "var(--whueo-rgba_255_255_255_0p07)",
+  hairline: "var(--whueo-rgba_255_255_255_0p09)",
+  textPrimary: "var(--whueo-hex_eef0f4)",
+  textMuted: "var(--whueo-hex_838b9c)",
+  crew: "var(--whueo-hex_3ddc84)",
+  imposter: "var(--whueo-hex_ff5c5c)",
 };
 
 const fontDisplay = "'Space Grotesk', 'Inter', sans-serif";
@@ -23,9 +23,7 @@ const RenderFinalReveal = ({ finalResults }) => {
     ? roomData.players[finalResults.votedOut]
     : null;
 
-  const wasImposter = finalResults.votedOut
-    ? roomData.imposters.includes(finalResults.votedOut)
-    : false;
+  const wasImposter = !!finalResults.imposterDetected;
 
   // A tie (no one ejected) is visually treated the same as an imposter win —
   // nothing useful happened for the crew, so it gets the red/imposter styling.
@@ -54,16 +52,16 @@ const RenderFinalReveal = ({ finalResults }) => {
           justifyContent: "center",
           bgcolor: "brand.dark",
           backgroundImage:
-            "radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px)",
+            "radial-gradient(var(--whueo-rgba_255_255_255_0p045) 1px, transparent 1px)",
           backgroundSize: "26px 26px",
           p: 2,
         }}
       >
         <style>{`
           @keyframes resultPulse {
-            0%   { box-shadow: 0 0 0 0 ${accent}55; }
-            70%  { box-shadow: 0 0 0 16px ${accent}00; }
-            100% { box-shadow: 0 0 0 0 ${accent}00; }
+            0%   { box-shadow: 0 0 0 0 color-mix(in srgb, ${accent} 33%, transparent); }
+            70%  { box-shadow: 0 0 0 16px transparent; }
+            100% { box-shadow: 0 0 0 0 transparent; }
           }
           @media (prefers-reduced-motion: reduce) {
             .result-badge { animation: none !important; }
@@ -80,8 +78,8 @@ const RenderFinalReveal = ({ finalResults }) => {
             py: 5,
             overflow: "hidden",
             bgcolor: "transparent",
-            color: "white",
-            border: "3px solid #374151",
+            color: "var(--whueo-hex_ffffff)",
+            border: "3px solid var(--whueo-hex_374151)",
           }}
         >
           {/* GLOW */}
@@ -92,8 +90,8 @@ const RenderFinalReveal = ({ finalResults }) => {
               height: 300,
               borderRadius: "50%",
               bgcolor: goodOutcome
-                ? "rgba(21, 255, 0, 0.12)"
-                : "rgba(255, 0, 0, 0.12)",
+                ? "var(--whueo-rgba_21_255_0_0p12)"
+                : "var(--whueo-rgba_255_0_0_0p12)",
               filter: "blur(100px)",
               top: -120,
               right: -100,

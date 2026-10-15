@@ -10,6 +10,7 @@ import { getSocket } from "../../socket/test"
 import RenderVotingResults from "./votingResult"
 import RenderFinalReveal from "./FinalReveal"
 import { GameAvatar } from "../utils/avatar"
+import ConnectionStatus from "../utils/connectionStatus"
 import { addMessage } from "../../store/features/chat"
 import { setRoomData } from "../../store/features/roomData"
 export default function VotingScreen() {
@@ -20,15 +21,24 @@ export default function VotingScreen() {
   const players = Object.values(playersObj)
   const socket = getSocket()
   const [selectedPlayer, setSelectedPlayer] = useState(null)
-  const [votingEnded, setVotingEnded] = useState(false)
+  const [votingEnded, setVotingEnded] = useState(!!roomData.votePhase)
   const [waitingResult, setWaitingResult] = useState(false)
-  const [votingResults, setVotingResults] = useState(null)
-  const [finalResults, setFinalResults] = useState(null)
-  const [showFinalReveal, setShowFinalReveal] = useState(false)
+  const [votingResults, setVotingResults] = useState(roomData.voteResults || null)
+  const [finalResults, setFinalResults] = useState(roomData.finalResults || null)
+  const [showFinalReveal, setShowFinalReveal] = useState(roomData.votePhase === "final_result")
   const dispatch = useDispatch()
   // Timer values (replace with actual values if needed)
   const startTime = roomData.voteStart
   const duration = roomData.settings?.votingTime || 30
+
+  useEffect(() => {
+    if (!roomData.votePhase) return
+    setVotingEnded(true)
+    setWaitingResult(false)
+    setVotingResults(roomData.voteResults || null)
+    setFinalResults(roomData.finalResults || null)
+    if (roomData.votePhase === "final_result") setShowFinalReveal(true)
+  }, [roomData.votePhase, roomData.voteResults, roomData.finalResults])
 
   const handleVotingResults = (data) => {
     //console.log(g(data)
@@ -115,13 +125,13 @@ export default function VotingScreen() {
           justifyContent: "space-between",
 
           borderBottom:
-            "2px solid #2d2d33"
+            "2px solid var(--whueo-hex_2d2d33)"
         }}
       >
         <Typography
           variant="h4"
           fontWeight="bold"
-          color="white"
+          color="var(--whueo-hex_ffffff)"
           mb={2}
         >
           Voting Time
@@ -170,7 +180,7 @@ export default function VotingScreen() {
                 p: 2,
                 borderRadius: 4,
                 bgcolor: selected ? "brand.light" : "transparent",
-                border: selected ? "2px solid green" : "1px solid #24242b",
+                border: selected ? "2px solid var(--whueo-hex_53753fff)" : "1px solid var(--whueo-hex_24242b)",
                 display: "flex",
                 alignItems: "center",
                 gap: 2,
@@ -197,19 +207,20 @@ export default function VotingScreen() {
                 <Typography
                   fontWeight="bold"
                   fontSize={18}
-                  color="white"
+                  color="var(--whueo-hex_ffffff)"
                   sx={{ textDecoration: isEliminated ? "line-through" : "none" }} // Optional: Cross out name
                 >
                   {player.username}
                 </Typography>
 
                 <Typography
-                  color="#aaa"
+                  color="var(--whueo-hex_aaaaaa)"
                   fontSize={14}
                 >
                   {/* ADDED: Display distinct sub-label for out-of-game players */}
                   {isEliminated ? "Eliminated" : isSelf ? "You" : "Artist"}
                 </Typography>
+                <ConnectionStatus connected={player.connected !== false} />
               </Box>
             </Box>
           )
@@ -225,14 +236,14 @@ export default function VotingScreen() {
           p: 3,
 
           borderTop:
-            "2px solid #2d2d33",
+            "2px solid var(--whueo-hex_2d2d33)",
 
           display: "flex",
           justifyContent: "center"
         }}
       >
         {waitingResult ? (
-          <Typography color="#90caf9" fontWeight="bold" fontSize={22}>
+          <Typography color="var(--whueo-hex_90caf9)" fontWeight="bold" fontSize={22}>
             Waiting for result...
           </Typography>
         ) : (

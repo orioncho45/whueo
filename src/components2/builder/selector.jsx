@@ -78,12 +78,12 @@ const SelectorCard = ({
 
         borderRadius: "32px",
 
-        bgcolor: "#111",
+        bgcolor: "var(--whueo-hex_111111)",
 
         cursor: "pointer",
 
         border:
-          "1px solid rgba(255,255,255,0.08)",
+          "1px solid var(--whueo-rgba_255_255_255_0p08)",
 
         transition:
           "transform .25s ease, box-shadow .25s ease",
@@ -95,7 +95,7 @@ const SelectorCard = ({
           },
 
           boxShadow:
-            "0 18px 36px rgba(0,0,0,.45)"
+            "0 18px 36px var(--whueo-rgba_0_0_0_p45)"
         }
       }}
     >
@@ -108,7 +108,7 @@ const SelectorCard = ({
             position: "absolute",
             inset: 0,
             borderRadius: "inherit",
-            bgcolor: "grey.900"
+            bgcolor: "var(--whueo-hex_161e15)"
           }}
         />
       )}
@@ -141,7 +141,7 @@ const SelectorCard = ({
           inset: 0,
 
           background:
-            "linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.65))"
+            "linear-gradient(var(--whueo-rgba_0_0_0_p45), var(--whueo-rgba_0_0_0_p65))"
         }}
       />
 
@@ -175,7 +175,7 @@ const SelectorCard = ({
               lineHeight: 1,
 
               textShadow:
-                "0 2px 12px rgba(0,0,0,.45)"
+                "0 2px 12px var(--whueo-rgba_0_0_0_p45)"
             }}
           >
             {card.title}
@@ -186,14 +186,14 @@ const SelectorCard = ({
               fontSize: 15,
 
               color:
-                "rgba(255,255,255,.84)",
+                "var(--whueo-rgba_255_255_255_p84)",
 
               lineHeight: 1.5,
 
               maxWidth: 260,
 
               textShadow:
-                "0 2px 8px rgba(0,0,0,.45)"
+                "0 2px 8px var(--whueo-rgba_0_0_0_p45)"
             }}
           >
             {card.description}
@@ -233,7 +233,7 @@ const Selector = ({
         <CircularProgress
           size={46}
           sx={{
-            color: "white"
+            color: "var(--whueo-hex_ffffff)"
           }}
         />
       </Box>

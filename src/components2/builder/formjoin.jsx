@@ -6,7 +6,7 @@ import {
   TextField,
   Typography
 } from "@mui/material"
-import { getSocket } from "../../socket/test"
+import { getSocket, saveSession } from "../../socket/test"
 import { useDispatch } from "react-redux"
 import { setPersonal, setUsername as setUsernameState } from "../../store/features/personal"
 import { setRoomData } from "../../store/features/roomData"
@@ -62,7 +62,7 @@ export default function JoinRoomForm({
         roomId,
         username
       },
-      ({userId, socketId, ...response}) => {
+      ({userId, socketId, sessionToken, ...response}) => {
         setLoading(false)
         //console.log(g(response)
         if (!response.success) {
@@ -76,6 +76,7 @@ export default function JoinRoomForm({
           return
         }
         dispatch(setPersonal({username, userId, socketId}))
+        saveSession(roomId, sessionToken)
         dispatch(setRoomData(response.roomData))
         onJoined({...response, username})
         logEvent({type: "JOIN", roomCode: roomId, username})
@@ -106,8 +107,8 @@ export default function JoinRoomForm({
           overflow: "hidden",
           position: "relative",
           bgcolor: "transparent",
-          color: "white",
-          border: "3px solid #374151"
+          color: "var(--whueo-hex_ffffff)",
+          border: "3px solid var(--whueo-hex_374151)"
         }}
       >
         {/* GLOW */}
@@ -117,7 +118,7 @@ export default function JoinRoomForm({
               width: 300,
               height: 300,
               borderRadius: "50%",
-              bgcolor: "rgba(21, 255, 0, 0.12)",
+              bgcolor: "var(--whueo-rgba_21_255_0_0p12)",
               filter: "blur(100px)",
               top: -120,
               right: -100,
@@ -129,13 +130,13 @@ export default function JoinRoomForm({
           display="flex"
           flexDirection="column"
           gap={3}
-          sx={{color:"white"}}
+          sx={{color:"var(--whueo-hex_ffffff)"}}
         >
 
           <Typography
             variant="h5"
             fontWeight="bold"
-            sx={{color:"white"}}
+            sx={{color:"var(--whueo-hex_ffffff)"}}
           >
             {
               isOwn
@@ -147,7 +148,7 @@ export default function JoinRoomForm({
           <Typography
             variant="body2"
             color="text.secondary"
-            sx={{color:"white"}}
+            sx={{color:"var(--whueo-hex_ffffff)"}}
           >
             Room ID: {roomId}
           </Typography>
@@ -167,7 +168,7 @@ export default function JoinRoomForm({
                 joinRoom()
               }
             }}
-            sx={{input:{color:"white"}}}
+            sx={{input:{color:"var(--whueo-hex_ffffff)"}}}
           />
 
           <Button

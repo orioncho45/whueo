@@ -36,6 +36,7 @@ export default function RoomCodeForm({ onJoin = () => {}, showAlert = () => {}, 
     setLoading(true)
     connectSocket(roomCode, (newSocket) => {
       newSocket.onopen = () => {
+        if (newSocket.lastRestored) { setLoading(false); return }
         newSocket.emit("get_room", roomCode, (response) => {
           setLoading(false)
           ////console.log(response)
@@ -112,11 +113,11 @@ export default function RoomCodeForm({ onJoin = () => {}, showAlert = () => {}, 
       <Box display="flex" justifyContent="center" alignItems="center" minHeight="100%" bgcolor="transparent">
         <Paper elevation={8} sx={{
           width: 450, position: "relative", bgcolor: "transparent",
-          overflow: "hidden", p: 4, borderRadius: 5, color: "white", border: "3px solid #374151"
+          overflow: "hidden", p: 4, borderRadius: 5, color: "var(--whueo-hex_ffffff)", border: "3px solid var(--whueo-hex_374151)"
         }}>
           <Box sx={{
             position: "absolute", width: 300, height: 300, borderRadius: "50%",
-            bgcolor: "rgba(21, 255, 0, 0.12)", filter: "blur(100px)",
+            bgcolor: "var(--whueo-rgba_21_255_0_0p12)", filter: "blur(100px)",
             top: -120, right: -100, pointerEvents: "none"
           }} />
           <Stack spacing={3}>
@@ -127,7 +128,7 @@ export default function RoomCodeForm({ onJoin = () => {}, showAlert = () => {}, 
               placeholder="ROOM CODE"
               fullWidth
               onKeyDown={(e) => { if (e.key === "Enter") fetchRoom() }}
-              sx={{ input: { color: "white", textAlign: "center", fontWeight: "bold", letterSpacing: 4, fontSize: 22 } }}
+              sx={{ input: { color: "var(--whueo-hex_ffffff)", textAlign: "center", fontWeight: "bold", letterSpacing: 4, fontSize: 22 } }}
             />
             <Button variant="contained" size="large" onClick={fetchRoom} disabled={loading}>
               {loading ? <CircularProgress size={24} /> : "Find Room"}
@@ -148,7 +149,7 @@ export default function RoomCodeForm({ onJoin = () => {}, showAlert = () => {}, 
         <CircularProgress
           size={46}
           sx={{
-            color: "white"
+            color: "var(--whueo-hex_ffffff)"
           }}
         />
       </Box>
@@ -170,13 +171,13 @@ export default function RoomCodeForm({ onJoin = () => {}, showAlert = () => {}, 
           display: "flex", flexDirection: "column", alignItems: "center", gap: 2, textAlign: "center"
         }}>
           <Box>
-            <Box sx={{ fontSize: "16px", letterSpacing: "0.22em", color: "rgba(255,255,255)", textTransform: "uppercase", mb: 0.5 }}>
+            <Box sx={{ fontSize: "16px", letterSpacing: "0.22em", color: "var(--whueo-rgba_255_255_255)", textTransform: "uppercase", mb: 0.5 }}>
               Waiting...
             </Box>
-            <Box sx={{ fontSize: "10px", letterSpacing: "0.22em", color: "rgba(255,255,255,0.35)", textTransform: "uppercase", mb: 0.5 }}>
+            <Box sx={{ fontSize: "10px", letterSpacing: "0.22em", color: "var(--whueo-rgba_255_255_255_0p35)", textTransform: "uppercase", mb: 0.5 }}>
               room code
             </Box>
-            <Box sx={{ fontSize: { xs: "28px", sm: "36px" }, fontWeight: 800, color: "white", letterSpacing: "0.1em", lineHeight: 1 }}>
+            <Box sx={{ fontSize: { xs: "28px", sm: "36px" }, fontWeight: 800, color: "var(--whueo-hex_ffffff)", letterSpacing: "0.1em", lineHeight: 1 }}>
               {roomData.id}
             </Box>
           </Box>
@@ -184,9 +185,9 @@ export default function RoomCodeForm({ onJoin = () => {}, showAlert = () => {}, 
           <Box display="flex" gap={1.5} alignItems="center">
             <Tooltip title="Find another room" placement="bottom">
               <IconButton onClick={() => resetToForm()} sx={{
-                width: 48, height: 48, border: "1.5px solid rgba(255,255,255,0.2)",
-                bgcolor: "rgba(255,255,255,0.06)", color: "white",
-                "&:hover": { bgcolor: "rgba(255,255,255,0.14)", borderColor: "rgba(255,255,255,0.45)" }
+                width: 48, height: 48, border: "1.5px solid var(--whueo-rgba_255_255_255_0p2)",
+                bgcolor: "var(--whueo-rgba_255_255_255_0p06)", color: "var(--whueo-hex_ffffff)",
+                "&:hover": { bgcolor: "var(--whueo-rgba_255_255_255_0p14)", borderColor: "var(--whueo-rgba_255_255_255_0p45)" }
               }}>
                 <Search fontSize="small" />
               </IconButton>
@@ -198,10 +199,10 @@ export default function RoomCodeForm({ onJoin = () => {}, showAlert = () => {}, 
                   onClick={() => { if (!isSaturated) onJoin({ roomId: roomCode, roomData }) }}
                   disabled={isSaturated}
                   sx={{
-                    width: 56, height: 56, border: "1.5px solid rgba(90,200,120,0.45)",
-                    bgcolor: "rgba(90,200,120,0.1)", color: "rgba(90,200,120,1)",
-                    "&:hover": { bgcolor: "rgba(90,200,120,0.22)", borderColor: "rgba(90,200,120,0.8)" },
-                    "&.Mui-disabled": { opacity: 0.5, color: "rgba(90,200,120,0.6)" }
+                    width: 56, height: 56, border: "1.5px solid var(--whueo-rgba_90_200_120_0p45)",
+                    bgcolor: "var(--whueo-rgba_90_200_120_0p1)", color: "var(--whueo-rgba_90_200_120_1)",
+                    "&:hover": { bgcolor: "var(--whueo-rgba_90_200_120_0p22)", borderColor: "var(--whueo-rgba_90_200_120_0p8)" },
+                    "&.Mui-disabled": { opacity: 0.5, color: "var(--whueo-rgba_90_200_120_0p6)" }
                   }}
                 >
                   <JoinInner />
@@ -213,7 +214,7 @@ export default function RoomCodeForm({ onJoin = () => {}, showAlert = () => {}, 
           {/* Player count — highlights when full */}
           <Box sx={{
             fontSize: "11px", letterSpacing: "0.06em",
-            color: isSaturated ? "rgba(255,120,120,0.9)" : "rgba(255,255,255,0.28)",
+            color: isSaturated ? "var(--whueo-rgba_255_120_120_0p9)" : "var(--whueo-rgba_255_255_255_0p28)",
             transition: "color 0.3s"
           }}>
             {players.length}/{roomData.settings?.maxMembers ?? "?"} players

@@ -16,7 +16,7 @@ const ServerSettings = ({settingsOpen, closeSettings = ()=>{}, showAlert = () =>
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                bgcolor: "rgba(0,0,0,.55)",
+                bgcolor: "var(--whueo-rgba_0_0_0_p55)",
                 backdropFilter: "blur(6px)",
                 p: 2,
                 }}
@@ -29,10 +29,10 @@ const ServerSettings = ({settingsOpen, closeSettings = ()=>{}, showAlert = () =>
                     display: "flex",
                     flexDirection: "column",
                     borderRadius: "16px",
-                    backgroundColor: "rgba(0,0,0,0.4)",
+                    backgroundColor: "var(--whueo-rgba_0_0_0_0p4)",
                     backdropFilter: "blur(4px)",
-                    border: "1px solid rgba(255,255,255,0.1)",
-                    color: "white",
+                    border: "1px solid var(--whueo-rgba_255_255_255_0p1)",
+                    color: "var(--whueo-hex_ffffff)",
                     overflow: "hidden",
                 }}
                 >
@@ -43,7 +43,7 @@ const ServerSettings = ({settingsOpen, closeSettings = ()=>{}, showAlert = () =>
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
-                    borderBottom: "1px solid #333",
+                    borderBottom: "1px solid var(--whueo-hex_333333)",
                     }}
                 >
                     <Typography fontWeight="bold">
@@ -52,7 +52,7 @@ const ServerSettings = ({settingsOpen, closeSettings = ()=>{}, showAlert = () =>
 
                     <IconButton
                     onClick={closeSettings}
-                    sx={{ color: "white" }}
+                    sx={{ color: "var(--whueo-hex_ffffff)" }}
                     >
                     <Close />
                     </IconButton>
