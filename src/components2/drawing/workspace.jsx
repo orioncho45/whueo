@@ -88,7 +88,7 @@ const CanvasTile = ({
         }}
       >
         {isOwn ? `${username} (You)` : player.username}
-        <ConnectionStatus connected={player.connected !== false} />
+        <ConnectionStatus connected={isOwn || player?.connected !== false} />
       </Box>
     </Box>
   )
@@ -280,6 +280,7 @@ export default function CanvasWorkspace({
 
           {otherPlayers.map((player, index) => (
             <CanvasTile
+              
               finalStroke={finalStroke[player.socketId]}
               initialStrokes={roomData.drawings?.[player.socketId] || EMPTY_STROKES}
               liveChunk={liveChunk[player.socketId]}
